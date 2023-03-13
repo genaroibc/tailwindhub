@@ -1,0 +1,42 @@
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  color: #fff;
+}
+
+.button {
+  background-color: var(--tailwind-color);
+  color: #fff;
+  border-radius: 9999px;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-out;
+}
+
+.button:hover {
+  background-color: var(--tailwind-color-darker);
+}
