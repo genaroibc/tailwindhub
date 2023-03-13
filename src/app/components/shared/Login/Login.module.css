@@ -1,0 +1,34 @@
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login__login_btn {
+  border: 2px solid transparent;
+  background-color: var(--tailwind-color-darker);
+  color: #fff;
+
+  transition: 0.3s ease background-color;
+}
+
+.login__login_btn:hover {
+  background-color: var(--tailwind-color);
+}
+
+.login__logout_btn {
+  border: 2px solid var(--tailwind-color-darker);
+  background-color: transparent;
+  color: var(--tailwind-color-darker);
+
+  transition: 0.3s ease border-color;
+}
+
+.login__logout_btn:hover {
+  border: 2px solid var(--tailwind-color);
+}
+
+.login__error_message {
+  color: #f33;
+}
