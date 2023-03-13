@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #000;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.header__navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header__navbar__link {
+  padding: 0.5rem;
+}
