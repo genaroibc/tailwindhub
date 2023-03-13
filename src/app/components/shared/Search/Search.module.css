@@ -1,0 +1,25 @@
+.search_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search_container__search_input {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.filters_list {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.filters_list__option {
+  font-size: 1rem;
+}
