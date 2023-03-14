@@ -1,5 +1,6 @@
 "use client";
 
+import "@/styles/tailwind.min.css";
 import "@/styles/globals.css";
 import { SupabaseProvider } from "@/context/SupabaseContext";
 import { Header } from "./components/Header/Header";
