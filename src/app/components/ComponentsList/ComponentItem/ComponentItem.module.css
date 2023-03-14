@@ -1,0 +1,20 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem;
+
+  background-color: var(--tailwind-color-darker);
+}
+
+.item__author_username {
+  font-weight: bold;
+}
+
+.item__preview {
+  margin: 2rem auto;
+  border: 2px solid #000;
+}
