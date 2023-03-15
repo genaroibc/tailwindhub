@@ -3,6 +3,8 @@
 import { useState } from "react";
 import styles from "./CodeEditor.module.css";
 import Editor from "@monaco-editor/react";
+import { useSupabase } from "@/hooks/useSupabase";
+import Image from "next/image";
 
 type Props = {
   // eslint-disable-next-line no-unused-vars
@@ -10,30 +12,45 @@ type Props = {
 };
 
 export function CodeEditor({ onSubmit }: Props) {
+  const { session, supabase } = useSupabase();
   const [code, setCode] = useState(
     "<h1 class='text-center font-extrabold text-4xl text-blue-400'>Hello world</h1>"
   );
-
-  // const editorRef = useRef(null);
-
-  // const handleEditorDidMount = (editor: any) => {
-  //   editorRef.current = editor;
-  // };
 
   return (
     <div className={styles.editorContainer}>
       <div dangerouslySetInnerHTML={{ __html: code }}></div>
       <Editor
         theme="vs-dark"
-        height="90vh"
+        height={300}
         defaultLanguage="html"
         defaultValue={code}
-        // onMount={handleEditorDidMount}
         onChange={(code) => setCode(code ?? "")}
         line={2}
       />
 
-      <button onClick={() => onSubmit({ code })}>Create component</button>
+      {session?.user ? (
+        <button onClick={() => onSubmit({ code })}>Publish component</button>
+      ) : (
+        <button
+          onClick={() =>
+            supabase.auth.signInWithOAuth({
+              provider: "github",
+              options: {
+                redirectTo: window.location.href,
+              },
+            })
+          }
+        >
+          <Image
+            width={30}
+            height={30}
+            alt="log in to publish your component"
+            src="/svg/github"
+          />
+          Login to publish your component
+        </button>
+      )}
     </div>
   );
 }

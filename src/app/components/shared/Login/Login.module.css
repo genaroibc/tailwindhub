@@ -32,3 +32,19 @@
 .login__error_message {
   color: #f33;
 }
+
+.login__user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.login__user__name {
+  font-weight: 600;
+}
+
+.login__user__avatar {
+  border-radius: 50%;
+  max-width: 100%;
+}
