@@ -10,5 +10,5 @@ export function useSupabase() {
     );
   }
 
-  return context;
+  return context!;
 }

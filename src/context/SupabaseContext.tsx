@@ -11,7 +11,7 @@ import { createContext, useEffect, useState } from "react";
 export const SupabaseContext = createContext<{
   supabase: SupabaseClient<Database>;
   session: AuthSession | null;
-}>();
+} | null>(null);
 
 type Props = {
   children: React.ReactNode;
