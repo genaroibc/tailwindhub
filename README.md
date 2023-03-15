@@ -4,9 +4,9 @@ The best place to share Tailwind components.
 
 Here you can upload yours and download and like the community ones.
 
-## Visit the site
+## 🔗 Visit the site
 
-You'll can visit the live site soon 👀
+You can visit the live site [here](https://tailwindhub.vercel.app/)
 
 ## 🧑‍🤝‍🧑 Contributing
 
