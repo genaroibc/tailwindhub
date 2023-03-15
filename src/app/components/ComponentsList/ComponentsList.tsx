@@ -10,10 +10,7 @@ export async function ComponentsList() {
     headers,
   });
 
-  console.log("ok");
-  const { data, error } = await supabase.from("components").select();
-
-  console.log({ data, error });
+  const { data } = await supabase.from("components").select();
 
   return (
     <section className={styles.components_list}>

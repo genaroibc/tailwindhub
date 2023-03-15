@@ -1,0 +1,6 @@
+.item_navbar {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: center;
+}
