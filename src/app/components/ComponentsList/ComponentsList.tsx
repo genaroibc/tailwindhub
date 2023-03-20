@@ -10,13 +10,25 @@ export async function ComponentsList() {
     headers,
   });
 
-  const { data } = await supabase.from("components").select();
+  const { data, error } = await supabase
+    .from("components")
+    .select("*", { count: "exact", head: false });
+
+  console.log({ data, error });
 
   return (
     <section className={styles.components_list}>
       {data?.map((result) => (
         <ComponentItem key={result.id} {...result} />
       ))}
+      {JSON.stringify(
+        [
+          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+          process.env.NEXT_PUBLIC_SUPABASE_URL,
+        ],
+        null,
+        2
+      )}
     </section>
   );
 }
