@@ -36,9 +36,6 @@ export function CodeEditor({ onSubmit }: Props) {
           onClick={() =>
             supabase.auth.signInWithOAuth({
               provider: "github",
-              options: {
-                redirectTo: window.location.href,
-              },
             })
           }
         >

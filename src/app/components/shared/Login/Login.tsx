@@ -12,9 +12,6 @@ export function Login() {
   const signIn = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "github",
-      options: {
-        redirectTo: window.location.href,
-      },
     });
 
     if (error) {
