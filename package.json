@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-types": "npx supabase gen types typescript --project-id=iqbmhaqiohbbwsihdtcz > ./src/types/db.ts"
+    "generate-types": "npx supabase gen types typescript --project-id=girlifncacsqcbmvbsou > ./src/types/db.ts"
   },
   "dependencies": {
     "@monaco-editor/react": "4.4.6",
