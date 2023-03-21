@@ -9,3 +9,31 @@
   padding: 1rem;
   margin: 2rem auto;
 }
+
+.login_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  background-color: #000;
+  transition: background-color 0.2s ease-out;
+}
+
+.login_btn:hover {
+  background-color: #111;
+}
+
+.publish_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  background-color: var(--tailwind-color-darker);
+  transition: background-color 0.2s ease-out;
+}
+
+.publish_btn:hover {
+  background-color: var(--tailwind-color);
+}
