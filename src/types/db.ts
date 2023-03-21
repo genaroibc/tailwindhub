@@ -13,20 +13,32 @@ export interface Database {
         Row: {
           author_username: string
           created_at: string
+          downloads: number
           html_code: string
-          id: number
+          id: string
+          likes: number
+          tags: string[]
+          title: string
         }
         Insert: {
-          author_username?: string
+          author_username: string
           created_at?: string
-          html_code?: string
-          id?: number
+          downloads?: number
+          html_code: string
+          id?: string
+          likes?: number
+          tags?: string[]
+          title: string
         }
         Update: {
           author_username?: string
           created_at?: string
+          downloads?: number
           html_code?: string
-          id?: number
+          id?: string
+          likes?: number
+          tags?: string[]
+          title?: string
         }
       }
     }

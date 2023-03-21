@@ -1,10 +1,19 @@
 import { Database } from "@/types/db";
+import Image from "next/image";
 import styles from "./ComponentItem.module.css";
 import { ComponentItemNavBar } from "./ComponentItemNavBar/ComponentItemNavBar";
 
 type Props = Database["public"]["Tables"]["components"]["Row"];
 
-export function ComponentItem({ author_username, html_code, id }: Props) {
+export function ComponentItem({
+  author_username,
+  html_code,
+  id,
+  downloads,
+  likes,
+  tags,
+  title,
+}: Props) {
   return (
     <article className={styles.item} key={id}>
       <div
@@ -13,10 +22,27 @@ export function ComponentItem({ author_username, html_code, id }: Props) {
       ></div>
 
       <footer className={styles.item__footer}>
-        <span className={styles.item__footer__author_username}>
+        <h6 className={styles.item__footer__title}>{title}</h6>
+        <pre>{JSON.stringify(tags)}</pre>
+        <a
+          className={styles.item__footer__author}
+          href={`https://github.com/${author_username}`}
+        >
+          <Image
+            className={styles.item__footer__author__avatar}
+            src="https://avatars.githubusercontent.com/u/98661193?v=4"
+            alt="user avatar"
+            width={30}
+            height={30}
+          />
           @{author_username}
-        </span>
-        <ComponentItemNavBar textToCopy={html_code} />
+        </a>
+
+        <ComponentItemNavBar
+          likes={likes}
+          downloads={downloads}
+          textToCopy={html_code}
+        />
       </footer>
     </article>
   );

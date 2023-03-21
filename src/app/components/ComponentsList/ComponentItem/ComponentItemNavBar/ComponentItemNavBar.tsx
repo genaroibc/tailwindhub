@@ -6,9 +6,11 @@ import styles from "./ComponentItemNavBar.module.css";
 
 type Props = {
   textToCopy: string;
+  likes: number;
+  downloads: number;
 };
 
-export function ComponentItemNavBar({ textToCopy }: Props) {
+export function ComponentItemNavBar({ textToCopy, downloads, likes }: Props) {
   const imageRef = useRef<HTMLImageElement>(null);
 
   const handleCopyCode = () => {
@@ -33,6 +35,7 @@ export function ComponentItemNavBar({ textToCopy }: Props) {
           width={20}
           height={20}
         />
+        {downloads}
       </button>
       <button>
         <Image
@@ -41,6 +44,7 @@ export function ComponentItemNavBar({ textToCopy }: Props) {
           width={20}
           height={20}
         />
+        {likes}
       </button>
     </nav>
   );

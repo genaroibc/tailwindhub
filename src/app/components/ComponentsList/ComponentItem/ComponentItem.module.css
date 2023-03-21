@@ -1,27 +1,37 @@
 .item {
+  min-height: 300px;
+
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
-
-  padding: 1rem;
 
   background-color: #fff;
   border-radius: 4px;
 }
 
-.item__footer__author_username {
-  font-weight: 600;
+.item__footer__author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 0.8rem;
   color: #000;
 
   background-color: transparent;
 }
 
+.item__footer__title {
+  font-size: 1.2rem;
+}
+
+.item__footer__author__avatar {
+  border-radius: 50%;
+}
+
 .item__preview {
   height: 100%;
-  box-shadow: 1px 4px 15px #0003;
+
   padding: 1rem;
 
   border-radius: 4px;
@@ -32,5 +42,10 @@
   flex-direction: column;
   gap: 0.5rem;
   align-items: center;
+  padding: 1rem;
+
+  background-color: #defbff;
+  color: #000;
+
   justify-content: space-between;
 }
