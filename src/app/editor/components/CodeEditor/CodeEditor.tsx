@@ -84,7 +84,7 @@ export function CodeEditor({ onSubmit }: Props) {
             width={30}
             height={30}
             alt="log in to publish your component"
-            src="/svg/github"
+            src="/svg/github.svg"
           />
           Login to publish your component
         </button>
