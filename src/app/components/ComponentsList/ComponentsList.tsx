@@ -4,6 +4,8 @@ import { cookies, headers } from "next/headers";
 import { ComponentItem } from "./ComponentItem/ComponentItem";
 import styles from "./ComponentsList.module.css";
 
+export const revalidate = 30;
+
 export async function ComponentsList() {
   const supabase = createServerComponentSupabaseClient<Database>({
     cookies,
