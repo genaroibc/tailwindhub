@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Hero.module.css";
 
 export function Hero() {
@@ -8,7 +9,9 @@ export function Hero() {
         <p className={styles.subtitle}>
           The best place to share Tailwind components
         </p>
-        <button className={styles.button}>Get started</button>
+        <Link href="/editor" className={styles.button}>
+          Go to editor
+        </Link>
       </div>
     </div>
   );
