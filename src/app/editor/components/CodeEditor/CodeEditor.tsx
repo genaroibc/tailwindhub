@@ -5,6 +5,7 @@ import styles from "./CodeEditor.module.css";
 import Editor from "@monaco-editor/react";
 import { useSupabase } from "@/hooks/useSupabase";
 import Image from "next/image";
+import { Loader } from "@/app/components/shared/Loader";
 
 export function CodeEditor() {
   const { session, supabase } = useSupabase();
@@ -13,17 +14,27 @@ export function CodeEditor() {
     "<h1 class='text-center font-extrabold text-4xl text-blue-400'>Hello world</h1>"
   );
   const [componentTitle, setComponentTitle] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     if (!session?.user) return;
 
-    supabase.from("components").insert({
+    setLoading(true);
+    const { error } = await supabase.from("components").insert({
       author_username: session.user.user_metadata.user_name,
       html_code: code,
       title: componentTitle,
     });
+
+    if (error) {
+      setLoading(false);
+      return setError(error.message);
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -32,6 +43,7 @@ export function CodeEditor() {
         className={styles.codePreview}
         dangerouslySetInnerHTML={{ __html: code }}
       ></div>
+
       <Editor
         theme="vs-dark"
         height={300}
@@ -53,6 +65,12 @@ export function CodeEditor() {
             minLength={5}
             maxLength={40}
           />
+
+          {loading ? (
+            <Loader />
+          ) : (
+            <p>{error ? error : "Component published successfully"}</p>
+          )}
 
           <button className={styles.publish_btn}>
             Publish component
