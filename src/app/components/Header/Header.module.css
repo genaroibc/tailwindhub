@@ -1,19 +1,119 @@
-.header {
+.page_header {
+  z-index: 800;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  width: 100%;
+  min-height: 50px;
+  padding: 0.5rem 2rem;
+
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  background: #000;
-  gap: 1rem;
-  padding: 1rem;
+
+  background-color: var(--secondary-color);
 }
 
-.header__navbar {
+@media screen and (min-width: 768px) {
+  .page_header .menu_visible {
+    top: unset;
+  }
+
+  .page_header .hamburger_menu_btn {
+    display: none;
+  }
+  .page_header .hamburger_menu {
+    position: unset;
+    z-index: unset;
+    width: auto;
+    height: auto;
+
+    flex-direction: row;
+    justify-content: flex-end;
+    background-color: inherit;
+
+    flex-grow: 1;
+    margin-right: 3rem;
+    clip-path: unset;
+  }
+}
+
+/* *** NAVBAR *** */
+.hamburger_menu {
+  position: fixed;
+  left: 0;
+  top: -15vh;
+  z-index: 900;
+
+  width: 100vw;
+  height: 100vh;
+
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  gap: 1rem;
+  gap: 1.8rem;
+
+  clip-path: circle(0 at 50% 0);
+  transition: clip-path 0.7s ease, top 0.7s ease;
+
+  background-color: var(--secondary-color);
 }
 
-.header__navbar__link {
-  padding: 0.5rem;
+.hamburger_menu_link {
+  color: #fff;
+}
+
+.menu_visible {
+  clip-path: circle(100% at 50% 50%);
+  top: 0;
+}
+
+.hamburger_menu_btn {
+  position: fixed;
+  right: 10vw;
+  top: 87svh;
+  z-index: 1000;
+
+  width: 4rem;
+  height: 4rem;
+  padding: 0.8rem;
+  border-radius: 5px;
+  border: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  outline: 0;
+  background: transparent;
+  background-color: var(--secondary-color);
+}
+
+.hamburger_menu_btn .hamburger_stick {
+  width: 100%;
+  height: 3.2px;
+  border-radius: 5px;
+
+  transition: transform 0.5s, opacity 0.5s;
+
+  transform-origin: left;
+
+  background-color: #fff;
+}
+
+.menu_visible ~ .hamburger_menu_btn .hamburger_stick:first-child {
+  transform: rotate(34.5deg) scaleX(1.2);
+}
+
+.menu_visible ~ .hamburger_menu_btn .hamburger_stick:nth-child(2) {
+  opacity: 0;
+}
+.menu_visible ~ .hamburger_menu_btn .hamburger_stick:nth-child(3) {
+  transform: rotate(-34.5deg) scaleX(1.2);
+}
+
+.brand_name {
+  font-weight: bold;
 }
