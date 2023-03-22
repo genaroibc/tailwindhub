@@ -1,6 +1,10 @@
 .item {
+  width: 400px;
+  place-self: center;
+  max-width: 100%;
   min-height: 300px;
 
+  align-self: stretch;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -30,11 +34,17 @@
 }
 
 .item__preview {
-  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   padding: 1rem;
 
   border-radius: 4px;
+}
+
+.item__preview div {
+  height: fit-content;
 }
 
 .item__footer {

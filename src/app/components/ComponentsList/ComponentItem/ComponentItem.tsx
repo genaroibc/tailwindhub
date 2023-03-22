@@ -16,10 +16,9 @@ export function ComponentItem({
 }: Props) {
   return (
     <article className={styles.item} key={id}>
-      <div
-        className={styles.item__preview}
-        dangerouslySetInnerHTML={{ __html: html_code }}
-      ></div>
+      <div className={styles.item__preview}>
+        <div dangerouslySetInnerHTML={{ __html: html_code }}></div>
+      </div>
 
       <footer className={styles.item__footer}>
         <h6 className={styles.item__footer__title}>{title}</h6>
