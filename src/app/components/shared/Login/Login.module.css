@@ -13,6 +13,10 @@
   transition: 0.3s ease background-color;
 }
 
+.login__login_btn__icon {
+  width: 1.2rem;
+}
+
 .login__login_btn:hover {
   background-color: var(--tailwind-color);
 }
@@ -47,4 +51,11 @@
 .login__user__avatar {
   border-radius: 50%;
   max-width: 100%;
+  width: 2rem;
+}
+
+@media screen and (max-width: 576px) {
+  .login__user__name {
+    display: none;
+  }
 }

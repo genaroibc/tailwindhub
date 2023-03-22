@@ -34,7 +34,7 @@ a:hover {
 }
 
 button {
-  padding: 0.8rem 1.2rem;
+  padding: 0.5rem 1rem;
   border-radius: 4px;
   border: none;
   outline: none;
@@ -42,5 +42,12 @@ button {
 }
 
 input {
+  max-width: 100%;
   border: none;
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
 }
