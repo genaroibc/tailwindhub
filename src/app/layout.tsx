@@ -19,7 +19,8 @@ export default function RootLayout({ children }: Props) {
   return (
     <html className={lexendDeca.className} lang="en">
       <head>
-        <Script src="tailwind-3.2.6.min.js" />
+        {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
+        <Script strategy="beforeInteractive" src="tailwind-3.2.6.min.js" />
       </head>
       <body>
         <SupabaseProvider>
