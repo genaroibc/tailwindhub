@@ -2,6 +2,12 @@ import styles from "@/app/page.module.css";
 import { Hero } from "./components/Hero/Hero";
 import { ComponentsList } from "./components/ComponentsList/ComponentsList";
 import { Search } from "./components/shared/Search/Search";
+import { type Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "TailwindHub - UI components",
+  description: "The best place to share Tailwind components",
+};
 
 export const revalidate = 0;
 

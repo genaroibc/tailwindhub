@@ -5,16 +5,8 @@ import styles from "./CodeEditor.module.css";
 import Editor from "@monaco-editor/react";
 import { useSupabase } from "@/hooks/useSupabase";
 import Image from "next/image";
-import { Database } from "@/types/db";
 
-type Props = {
-  onSubmit: (
-    // eslint-disable-next-line no-unused-vars
-    data: Database["public"]["Tables"]["components"]["Insert"]
-  ) => void;
-};
-
-export function CodeEditor({ onSubmit }: Props) {
+export function CodeEditor() {
   const { session, supabase } = useSupabase();
   const componentTitleInputID = useId();
   const [code, setCode] = useState(
@@ -22,10 +14,12 @@ export function CodeEditor({ onSubmit }: Props) {
   );
   const [componentTitle, setComponentTitle] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
     if (!session?.user) return;
 
-    onSubmit({
+    supabase.from("components").insert({
       author_username: session.user.user_metadata.user_name,
       html_code: code,
       title: componentTitle,
