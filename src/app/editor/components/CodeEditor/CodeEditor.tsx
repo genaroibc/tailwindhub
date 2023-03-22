@@ -28,7 +28,10 @@ export function CodeEditor() {
 
   return (
     <div className={styles.editorContainer}>
-      <div dangerouslySetInnerHTML={{ __html: code }}></div>
+      <div
+        className={styles.codePreview}
+        dangerouslySetInnerHTML={{ __html: code }}
+      ></div>
       <Editor
         theme="vs-dark"
         height={300}
@@ -37,9 +40,9 @@ export function CodeEditor() {
         onChange={(code) => setCode(code ?? "")}
         line={2}
       />
-
       {session?.user ? (
-        <form onSubmit={handleSubmit}>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <label htmlFor={componentTitleInputID}>Component title</label>
           <input
             onChange={(event) => setComponentTitle(event.target.value)}
             type="text"
@@ -51,14 +54,13 @@ export function CodeEditor() {
             maxLength={40}
           />
 
-          <label htmlFor={componentTitleInputID}>Component title</label>
           <button className={styles.publish_btn}>
             Publish component
             <Image
               width={30}
               height={30}
               alt="publish component"
-              src="/svg/face-stars.svg"
+              src="/svg/share.svg"
             />
           </button>
         </form>
