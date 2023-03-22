@@ -1,5 +1,5 @@
 .item {
-  width: 400px;
+  width: min(400px, 100%);
   place-self: center;
   max-width: 100%;
   min-height: 300px;
@@ -38,7 +38,9 @@
   justify-content: center;
   align-items: center;
 
-  padding: 1rem;
+  background-color: #fff;
+  padding: 2rem 1rem;
+  overflow: auto;
 
   border-radius: 4px;
 }
