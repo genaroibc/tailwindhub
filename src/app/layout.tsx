@@ -1,10 +1,10 @@
 "use client";
 
-import "@/styles/tailwind.min.css";
 import "@/styles/globals.css";
 import { SupabaseProvider } from "@/context/SupabaseContext";
 import { Header } from "./components/Header/Header";
 import { Lexend_Deca } from "next/font/google";
+import Script from "next/script";
 
 const lexendDeca = Lexend_Deca({
   weight: ["300", "600", "800"],
@@ -18,7 +18,9 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <html className={lexendDeca.className} lang="en">
-      <head />
+      <head>
+        <Script src="tailwind-3.2.6.min.js" />
+      </head>
       <body>
         <SupabaseProvider>
           <Header />
