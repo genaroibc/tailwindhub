@@ -1,4 +1,16 @@
+"use client";
+
 import styles from "./Search.module.css";
+
+const OPTIONS_LIST = [
+  { value: "all", title: "All categories" },
+  { value: "button", title: "Buttons" },
+  { value: "card", title: "Cards" },
+  { value: "form", title: "Forms" },
+  { value: "navbar", title: "Navigation bars" },
+  { value: "input", title: "Inputs" },
+  { value: "image", title: "Images" },
+];
 
 export function Search() {
   return (
@@ -9,21 +21,11 @@ export function Search() {
         className={styles.search_container__search_input}
       />
       <select className={styles.filters_list}>
-        <option className={styles.filters_list__option} value="all">
-          All categories
-        </option>
-        <option className={styles.filters_list__option} value="buttons">
-          Buttons
-        </option>
-        <option className={styles.filters_list__option} value="cards">
-          Cards
-        </option>
-        <option className={styles.filters_list__option} value="forms">
-          Forms
-        </option>
-        <option className={styles.filters_list__option} value="navbars">
-          Navbars
-        </option>
+        {OPTIONS_LIST.map(({ title, value }) => (
+          <option key={value} value={value}>
+            {title}
+          </option>
+        ))}
       </select>
     </div>
   );
