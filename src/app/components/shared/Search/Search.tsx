@@ -1,3 +1,6 @@
+"use client";
+
+import { SEARCH_FILTERS } from "@/constants";
 import styles from "./Search.module.css";
 
 export function Search() {
@@ -9,21 +12,11 @@ export function Search() {
         className={styles.search_container__search_input}
       />
       <select className={styles.filters_list}>
-        <option className={styles.filters_list__option} value="all">
-          All categories
-        </option>
-        <option className={styles.filters_list__option} value="buttons">
-          Buttons
-        </option>
-        <option className={styles.filters_list__option} value="cards">
-          Cards
-        </option>
-        <option className={styles.filters_list__option} value="forms">
-          Forms
-        </option>
-        <option className={styles.filters_list__option} value="navbars">
-          Navbars
-        </option>
+        {SEARCH_FILTERS.map(({ title, value }) => (
+          <option key={value} value={value}>
+            {title}
+          </option>
+        ))}
       </select>
     </div>
   );

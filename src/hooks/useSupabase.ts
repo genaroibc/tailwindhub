@@ -1,14 +1,29 @@
-import { SupabaseContext } from "@/context/SupabaseContext";
-import { useContext } from "react";
+import { useEffect, useState } from "react";
+import { Database } from "@/types/db";
+import {
+  createBrowserSupabaseClient,
+  SupabaseClient,
+} from "@supabase/auth-helpers-nextjs";
+import { AuthSession } from "@supabase/supabase-js";
 
-export function useSupabase() {
-  const context = useContext(SupabaseContext);
+type Client = {
+  supabase: SupabaseClient<Database>;
+  session: AuthSession | null;
+};
 
-  if (context === undefined) {
-    throw new Error(
-      "'useSupabase' hook must be used inside a SupabaseProvider"
-    );
-  }
+export function useSupabase(): Client {
+  const [supabase] = useState(() => createBrowserSupabaseClient<Database>());
+  const [session, setSession] = useState<AuthSession | null>(null);
 
-  return context!;
+  useEffect(() => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [supabase]);
+
+  return { supabase, session };
 }

@@ -1,23 +1,21 @@
 import { Database } from "@/types/db";
-import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { cookies, headers } from "next/headers";
 import { ComponentItem } from "./ComponentItem/ComponentItem";
+import { Search } from "@/app/components/shared/Search/Search";
 import styles from "./ComponentsList.module.css";
 
-export async function ComponentsList() {
-  const supabase = createServerComponentSupabaseClient<Database>({
-    cookies,
-    headers,
-  });
+type Props = {
+  defaultComponents: Array<Database["public"]["Tables"]["components"]["Row"]>;
+};
 
-  const { data, error } = await supabase.from("components").select("*");
-
-  console.log({ data, error });
-
+export function ComponentsList({ defaultComponents }: Props) {
   return (
-    <section className={styles.components_list}>
-      {Array.isArray(data) &&
-        data.map((result) => <ComponentItem key={result.id} {...result} />)}
-    </section>
+    <>
+      <Search />
+      <section className={styles.components_list}>
+        {defaultComponents.map((component) => (
+          <ComponentItem key={component.id} {...component} />
+        ))}
+      </section>
+    </>
   );
 }

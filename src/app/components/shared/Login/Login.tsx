@@ -3,7 +3,6 @@
 import { useSupabase } from "@/hooks/useSupabase";
 import { useState } from "react";
 import styles from "./Login.module.css";
-import Image from "next/image";
 
 export function Login() {
   const { supabase, session } = useSupabase();
@@ -39,7 +38,7 @@ export function Login() {
             <span className={styles.login__user__name}>
               {session.user.user_metadata.user_name}
             </span>
-            <Image
+            <img
               className={styles.login__user__avatar}
               width={50}
               height={50}
