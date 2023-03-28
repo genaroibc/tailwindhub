@@ -1,7 +1,4 @@
-"use client";
-
 import "@/styles/globals.css";
-import { SupabaseProvider } from "@/context/SupabaseContext";
 import { Header } from "./components/Header/Header";
 import { Lexend_Deca } from "next/font/google";
 import Script from "next/script";
@@ -23,10 +20,8 @@ export default function RootLayout({ children }: Props) {
         <Script strategy="beforeInteractive" src="tailwind-3.2.6.min.js" />
       </head>
       <body>
-        <SupabaseProvider>
-          <Header />
-          {children}
-        </SupabaseProvider>
+        <Header />
+        {children}
       </body>
     </html>
   );
