@@ -4,7 +4,6 @@ import { useId, useState } from "react";
 import styles from "./CodeEditor.module.css";
 import Editor from "@monaco-editor/react";
 import { useSupabase } from "@/hooks/useSupabase";
-import Image from "next/image";
 import { Loader } from "@/app/components/shared/Loader";
 
 export function CodeEditor() {
@@ -74,7 +73,7 @@ export function CodeEditor() {
 
           <button className={styles.publish_btn}>
             Publish component
-            <Image
+            <img
               width={30}
               height={30}
               alt="publish component"
@@ -94,7 +93,7 @@ export function CodeEditor() {
             })
           }
         >
-          <Image
+          <img
             width={30}
             height={30}
             alt="log in to publish your component"

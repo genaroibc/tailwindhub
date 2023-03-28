@@ -1,5 +1,4 @@
 import { Database } from "@/types/db";
-import Image from "next/image";
 import styles from "./ComponentItem.module.css";
 import { ComponentItemNavBar } from "./ComponentItemNavBar/ComponentItemNavBar";
 
@@ -27,7 +26,7 @@ export function ComponentItem({
           className={styles.item__footer__author}
           href={`https://github.com/${author_username}`}
         >
-          <Image
+          <img
             className={styles.item__footer__author__avatar}
             src="https://avatars.githubusercontent.com/u/98661193?v=4"
             alt="user avatar"

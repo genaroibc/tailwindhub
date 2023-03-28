@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRef } from "react";
 import styles from "./ComponentItemNavBar.module.css";
 
@@ -28,7 +27,7 @@ export function ComponentItemNavBar({ textToCopy, downloads, likes }: Props) {
   return (
     <nav className={styles.item_navbar}>
       <button onClick={handleCopyCode}>
-        <Image
+        <img
           ref={imageRef}
           alt="Copy code"
           src="/svg/copy.svg"
@@ -38,12 +37,7 @@ export function ComponentItemNavBar({ textToCopy, downloads, likes }: Props) {
         {downloads}
       </button>
       <button>
-        <Image
-          alt="Like"
-          src="/svg/heart-outlined.svg"
-          width={20}
-          height={20}
-        />
+        <img alt="Like" src="/svg/heart-outlined.svg" width={20} height={20} />
         {likes}
       </button>
     </nav>
