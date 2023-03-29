@@ -16,7 +16,13 @@ export function ComponentItem({
 }: Props) {
   return (
     <article className={styles.item} key={id}>
-      <img className={styles.item__preview_img} src={preview_img} alt={title} />
+      <img
+        className={styles.item__preview_img}
+        src={preview_img}
+        alt={title}
+        width={400}
+        height={300}
+      />
 
       <footer className={styles.item__footer}>
         <h6 className={styles.item__footer__title}>{title}</h6>
