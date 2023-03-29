@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./CodeEditor.module.css";
 import Editor from "@monaco-editor/react";
 import Script from "next/script";
+import { DEFAULT_CODE_EDITOR_VALUE } from "@/constants";
 
 type Props = {
   codePreviewRef: React.MutableRefObject<null>;
@@ -9,9 +10,7 @@ type Props = {
 };
 
 export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
-  const [code, setCode] = useState(
-    "<h1 class='text-center font-extrabold text-4xl text-blue-400'>Hello world</h1>"
-  );
+  const [code, setCode] = useState(DEFAULT_CODE_EDITOR_VALUE);
 
   return (
     <div className={styles.editorContainer}>
