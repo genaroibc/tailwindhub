@@ -20,6 +20,9 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@types/node": "18.15.1",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "supabase": "1.45.3",
