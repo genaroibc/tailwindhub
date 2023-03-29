@@ -1,7 +1,5 @@
 import { useSupabase } from "@/hooks/useSupabase";
 import styles from "./LoginToPublishButton.module.css";
-import { Loader } from "@/app/components/shared/Loader";
-import styles from "./CreateComponentForm.module.css";
 
 export function LoginToPublishButton() {
   const { supabase } = useSupabase();

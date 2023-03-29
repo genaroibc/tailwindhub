@@ -24,6 +24,7 @@ export function CodeEditorForm({ onSubmit }: Props) {
 
     onSubmit({ title: componentTitle });
   };
+
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <label className={styles.label} htmlFor={componentTitleInputID}>
