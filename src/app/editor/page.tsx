@@ -1,5 +1,5 @@
-import { CodeEditor } from "./components/CodeEditor/CodeEditor";
 import { type Metadata } from "next";
+import { EditorSection } from "@/app/editor/components/EditorSection/EditorSection";
 
 export const metadata: Metadata = {
   title: "Editor - TailwindHub",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 function HomePage() {
   return (
     <div>
-      <CodeEditor />
+      <EditorSection />
     </div>
   );
 }

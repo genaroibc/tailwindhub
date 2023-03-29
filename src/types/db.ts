@@ -17,6 +17,7 @@ export interface Database {
           html_code: string
           id: string
           likes: number
+          preview_img: string
           tags: string[]
           title: string
         }
@@ -27,6 +28,7 @@ export interface Database {
           html_code: string
           id?: string
           likes?: number
+          preview_img: string
           tags?: string[]
           title: string
         }
@@ -37,6 +39,7 @@ export interface Database {
           html_code?: string
           id?: string
           likes?: number
+          preview_img?: string
           tags?: string[]
           title?: string
         }

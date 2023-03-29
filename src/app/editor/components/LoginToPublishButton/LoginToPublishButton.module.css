@@ -1,0 +1,13 @@
+.login_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  background-color: #000;
+  transition: background-color 0.2s ease-out;
+}
+
+.login_btn:hover {
+  background-color: #111;
+}
