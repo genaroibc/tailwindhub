@@ -7,6 +7,7 @@ import { uploadImageToCloudinary } from "@/services/upload-image-to-cloudinary";
 import { Loader } from "@/app/components/shared/Loader";
 import { CodeEditorForm } from "../CodeEditorForm/CodeEditorForm";
 import { getImageDataURL } from "@/utils/get-image-data-url";
+import styles from "./EditorSection.module.css";
 
 export function EditorSection() {
   const { supabase } = useSupabase();
@@ -15,12 +16,6 @@ export function EditorSection() {
 
   const codePreviewRef = useRef(null);
   const codeEditorRef = useRef(null);
-
-  // {
-  //   code,
-  //   title,
-  //   imageDataURL,
-  // }: ComponentData
 
   const handleCreateComponent = async ({ title }: { title: string }) => {
     const {
@@ -61,28 +56,29 @@ export function EditorSection() {
       });
 
       if (error) {
-        setLoading(false);
         return setError(error.message);
       }
-
-      setLoading(false);
     } catch (error) {
       setError("there was an error generating the image of your component");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <section>
+    <section className={styles.editor_section}>
       <CodeEditor
         codeEditorRef={codeEditorRef}
         codePreviewRef={codePreviewRef}
       />
 
-      <CodeEditorForm
-        onSubmit={({ title }) => handleCreateComponent({ title })}
-      />
-      {error && <p>{error}</p>}
-      {loading && <Loader />}
+      <section className={styles.editor_section__form_section}>
+        <CodeEditorForm
+          onSubmit={({ title }) => handleCreateComponent({ title })}
+        />
+        {error && <p>{error}</p>}
+        {loading && <Loader />}
+      </section>
     </section>
   );
 }
