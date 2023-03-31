@@ -10,7 +10,7 @@ type Props = {
 export function CodeEditorForm({ onSubmit }: Props) {
   const { supabase } = useSupabase();
   const [error, setError] = useState("");
-
+  const [isOpen, setIsOpen] = useState(false);
   const [componentTitle, setComponentTitle] = useState("");
   const componentTitleInputID = useId();
 
@@ -27,31 +27,36 @@ export function CodeEditorForm({ onSubmit }: Props) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <label className={styles.label} htmlFor={componentTitleInputID}>
-        Component title
-      </label>
-      <input
-        onChange={(event) => setComponentTitle(event.target.value)}
-        className={styles.input}
-        type="text"
-        name={componentTitleInputID}
-        id={componentTitleInputID}
-        placeholder="my awesome component"
-        required
-        minLength={5}
-        maxLength={40}
-      />
+      {isOpen ? (
+        <>
+          <label className={styles.label} htmlFor={componentTitleInputID}>
+            Component title
+          </label>
+          <input
+            onChange={(event) => setComponentTitle(event.target.value)}
+            className={styles.input}
+            type="text"
+            name={componentTitleInputID}
+            id={componentTitleInputID}
+            placeholder="my awesome component"
+            required
+            minLength={5}
+            maxLength={40}
+          />
 
-      <button className={styles.publish_btn}>
-        Publish
-        <img
-          width={30}
-          height={30}
-          alt="publish component"
-          src="/svg/share.svg"
-        />
-      </button>
-      {error && <p>{error}</p>}
+          <button className={styles.publish_btn}>Publish</button>
+          <button onClick={() => setIsOpen(false)}>x</button>
+
+          {error && <p>{error}</p>}
+        </>
+      ) : (
+        <button
+          onClick={() => setIsOpen(true)}
+          className={styles.form__open_form_button}
+        >
+          Publish
+        </button>
+      )}
     </form>
   );
 }
