@@ -11,6 +11,7 @@ export interface Database {
     Tables: {
       components: {
         Row: {
+          author_avatar_url: string
           author_username: string
           created_at: string
           downloads: number
@@ -22,6 +23,7 @@ export interface Database {
           title: string
         }
         Insert: {
+          author_avatar_url: string
           author_username: string
           created_at?: string
           downloads?: number
@@ -33,6 +35,7 @@ export interface Database {
           title: string
         }
         Update: {
+          author_avatar_url?: string
           author_username?: string
           created_at?: string
           downloads?: number

@@ -53,6 +53,7 @@ export function EditorSection() {
         html_code: code,
         title,
         preview_img: response.data?.url,
+        author_avatar_url: session.user.user_metadata.avatar_url,
       });
 
       if (error) {

@@ -13,6 +13,7 @@ export function ComponentItem({
   // tags,
   title,
   preview_img,
+  author_avatar_url,
 }: Props) {
   return (
     <article className={styles.item} key={id}>
@@ -37,7 +38,7 @@ export function ComponentItem({
         <img
           className={styles.item__footer__author_avatar}
           // src="https://avatars.githubusercontent.com/u/98661193?v=4"
-          src={"/svg/heart-solid.svg"}
+          src={author_avatar_url}
           alt={`${author_username} avatar`}
           width={30}
           height={30}
