@@ -1,4 +1,3 @@
-import styles from "@/app/page.module.css";
 import { Hero } from "./components/Hero/Hero";
 import { ComponentsList } from "./components/ComponentsList/ComponentsList";
 import { type Metadata } from "next";
@@ -22,7 +21,7 @@ export default async function Home() {
   const { data } = await supabase.from("components").select("*");
 
   return (
-    <div className={styles.container}>
+    <div>
       <Hero />
       {Array.isArray(data) && <ComponentsList defaultComponents={data} />}
     </div>
