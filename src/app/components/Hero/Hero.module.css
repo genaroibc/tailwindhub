@@ -1,9 +1,16 @@
 .hero {
+  background-image: linear-gradient(
+    to bottom,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 2rem;
+  padding: 5rem 1rem;
 }
 
 .container {
