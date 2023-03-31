@@ -10,42 +10,48 @@ export function ComponentItem({
   id,
   downloads,
   likes,
-  tags,
+  // tags,
   title,
   preview_img,
 }: Props) {
   return (
     <article className={styles.item} key={id}>
-      <img
-        className={styles.item__preview_img}
-        src={preview_img}
-        alt={title}
-        width={400}
-        height={300}
-      />
+      <div className={styles.item__preview}>
+        <img
+          className={styles.item__preview__img}
+          src={preview_img}
+          alt={title}
+        />
+
+        <footer className={styles.item__preview__footer}>
+          <ComponentItemNavBar
+            likes={likes}
+            downloads={downloads}
+            textToCopy={html_code}
+          />
+        </footer>
+      </div>
 
       <footer className={styles.item__footer}>
-        <h6 className={styles.item__footer__title}>{title}</h6>
-        <pre>{JSON.stringify(tags)}</pre>
-        <a
-          className={styles.item__footer__author}
-          href={`https://github.com/${author_username}`}
-        >
-          <img
-            className={styles.item__footer__author__avatar}
-            src="https://avatars.githubusercontent.com/u/98661193?v=4"
-            alt="user avatar"
-            width={30}
-            height={30}
-          />
-          @{author_username}
-        </a>
-
-        <ComponentItemNavBar
-          likes={likes}
-          downloads={downloads}
-          textToCopy={html_code}
+        {/* <pre>{JSON.stringify(tags)}</pre> */}
+        <img
+          className={styles.item__footer__author_avatar}
+          // src="https://avatars.githubusercontent.com/u/98661193?v=4"
+          src={"/svg/heart-solid.svg"}
+          alt={`${author_username} avatar`}
+          width={30}
+          height={30}
         />
+
+        <div className={styles.item__footer__info}>
+          <span className={styles.item__footer__info__title}>{title}</span>
+          <a
+            className={styles.item__footer__info__author_username}
+            href={`https://github.com/${author_username}`}
+          >
+            @{author_username}
+          </a>
+        </div>
       </footer>
     </article>
   );

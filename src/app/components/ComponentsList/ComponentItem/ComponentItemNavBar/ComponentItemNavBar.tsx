@@ -26,7 +26,7 @@ export function ComponentItemNavBar({ textToCopy, downloads, likes }: Props) {
 
   return (
     <nav className={styles.item_navbar}>
-      <button onClick={handleCopyCode}>
+      <button className={styles.item_navbar__button} onClick={handleCopyCode}>
         <img
           ref={imageRef}
           alt="Copy code"
@@ -36,7 +36,7 @@ export function ComponentItemNavBar({ textToCopy, downloads, likes }: Props) {
         />
         {downloads}
       </button>
-      <button>
+      <button className={styles.item_navbar__button}>
         <img alt="Like" src="/svg/heart-outlined.svg" width={20} height={20} />
         {likes}
       </button>

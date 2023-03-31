@@ -1,6 +1,15 @@
 .item_navbar {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: end;
   gap: 0.5rem;
   align-items: center;
+}
+
+.item_navbar__button {
+  display: flex;
+  place-items: center;
+  gap: 0.2rem;
+  padding: 0.7rem;
+  background-color: #ededed;
 }

@@ -9,13 +9,13 @@ type Props = {
 
 export function ComponentsList({ defaultComponents }: Props) {
   return (
-    <>
+    <section className={styles.container}>
       <Search />
       <section className={styles.components_list}>
         {defaultComponents.map((component) => (
           <ComponentItem key={component.id} {...component} />
         ))}
       </section>
-    </>
+    </section>
   );
 }
