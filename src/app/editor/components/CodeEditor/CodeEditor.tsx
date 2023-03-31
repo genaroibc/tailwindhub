@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "./CodeEditor.module.css";
 import Editor from "@monaco-editor/react";
-import Script from "next/script";
 import { DEFAULT_CODE_EDITOR_VALUE } from "@/constants";
 
 type Props = {
@@ -14,8 +13,6 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
 
   return (
     <div className={styles.editorContainer}>
-      {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
-      <Script strategy="beforeInteractive" src="tailwind-3.2.6.min.js" />
       <Editor
         onMount={(editor) => (codeEditorRef.current = editor)}
         className={styles.editor}
