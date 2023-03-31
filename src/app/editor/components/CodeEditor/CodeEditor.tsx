@@ -12,7 +12,7 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
   const [code, setCode] = useState(DEFAULT_CODE_EDITOR_VALUE);
 
   return (
-    <div className={styles.editorContainer}>
+    <div className={styles.container}>
       <Editor
         onMount={(editor) => (codeEditorRef.current = editor)}
         className={styles.editor}
@@ -22,13 +22,12 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
         onChange={(code) => setCode(code ?? "")}
         line={2}
       />
-      <div className={styles.previewContainer}>
-        <div
-          ref={codePreviewRef}
-          className={styles.previewContainer__codePreview}
-          dangerouslySetInnerHTML={{ __html: code }}
-        ></div>
-      </div>
+
+      <div
+        ref={codePreviewRef}
+        className={styles.codePreview}
+        dangerouslySetInnerHTML={{ __html: code }}
+      ></div>
     </div>
   );
 }
