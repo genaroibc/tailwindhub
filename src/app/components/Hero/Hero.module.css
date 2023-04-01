@@ -64,7 +64,7 @@
 .button {
   display: block;
   width: fit-content;
-  background-color: var(--dark-brown);
+  background-color: var(--light-brown);
   color: #fff;
   border-radius: 9999px;
   padding: 0.8rem 1.5rem;
@@ -76,7 +76,7 @@
 }
 
 .button:hover {
-  background-color: var(--light-brown);
+  background-color: var(--dark-brown);
 }
 
 @media screen and (max-width: 768px) {

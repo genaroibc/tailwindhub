@@ -11,8 +11,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  background-color: var(--secondary-color);
 }
 
 @media screen and (min-width: 768px) {
@@ -57,12 +55,6 @@
 
   clip-path: circle(0 at 50% 0);
   transition: clip-path 0.7s ease, top 0.7s ease;
-
-  background-color: var(--secondary-color);
-}
-
-.hamburger_menu_link {
-  color: #fff;
 }
 
 .menu_visible {
@@ -100,7 +92,7 @@
 
   transform-origin: left;
 
-  background-color: #fff;
+  background-color: var(--dimmed-black);
 }
 
 .menu_visible ~ .hamburger_menu_btn .hamburger_stick:first-child {
