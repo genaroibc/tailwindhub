@@ -5,12 +5,12 @@
   align-items: center;
   gap: 0.5rem;
 
-  background-color: var(--tailwind-color-darker);
+  background-color: var(--light-brown);
   transition: background-color 0.2s ease-out;
 }
 
 .publish_btn:hover {
-  background-color: var(--tailwind-color);
+  background-color: var(--dark-brown);
 }
 
 .form {
@@ -37,5 +37,5 @@
 
 .form__open_form_button {
   padding: 0.5rem 1rem;
-  background-color: var(--tailwind-color-darker);
+  background-color: var(--light-brown);
 }

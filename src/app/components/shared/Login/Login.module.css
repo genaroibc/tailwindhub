@@ -7,7 +7,7 @@
 
 .login__login_btn {
   border: 2px solid transparent;
-  background-color: var(--tailwind-color-darker);
+  background-color: var(--light-brown);
   color: #fff;
 
   transition: 0.3s ease background-color;
@@ -18,19 +18,19 @@
 }
 
 .login__login_btn:hover {
-  background-color: var(--tailwind-color);
+  background-color: var(--dark-brown);
 }
 
 .login__logout_btn {
-  border: 2px solid var(--tailwind-color-darker);
+  border: 2px solid var(--light-brown);
   background-color: transparent;
-  color: var(--tailwind-color-darker);
+  color: var(--light-brown);
 
   transition: 0.3s ease border-color;
 }
 
 .login__logout_btn:hover {
-  border: 2px solid var(--tailwind-color);
+  border: 2px solid var(--dark-brown);
 }
 
 .login__error_message {
