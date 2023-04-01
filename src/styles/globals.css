@@ -6,15 +6,15 @@
 
 :root {
   background-color: #f9f4ec;
-  color: #000;
+  color: var(--dimmed-black);
 
-  /* --primary-color: #1a202c; */
-  /* --secondary-color: #16428f; */
   --primary-color: #f9f4ec;
   --secondary-color: #e3d4d0;
+  --tertiary-color: #e4cec8;
 
   --dark-brown: #231f20;
-  --light-brown: #5b4b50;
+  --light-brown: #43383b;
+  --dimmed-black: #1a202c;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -44,7 +44,12 @@ button {
   border: none;
   outline: none;
   cursor: pointer;
-  background-color: transparent;
+  transition: background-color 0.2s ease-in-out;
+  background-color: var(--light-brown);
+}
+
+button {
+  background-color: var(--dark-brown);
 }
 
 input {
@@ -53,7 +58,7 @@ input {
 
   padding: 0.5rem 1rem;
   background-color: #fff !important;
-  color: #000 !important;
+  color: var(--dimmed-black) !important;
 }
 
 input:-webkit-autofill,
@@ -66,12 +71,13 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   border: none;
-  -webkit-text-fill-color: #000;
+  -webkit-text-fill-color: var(--dimmed-black);
   background-color: #fff;
 }
 
 img {
   max-width: 100%;
+  height: auto;
   object-fit: cover;
 }
 
