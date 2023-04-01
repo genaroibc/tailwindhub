@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  background-color: #000;
+  background-color: var(--dimmed-black);
   padding: 1rem;
   border-radius: 4px;
 }

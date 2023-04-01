@@ -16,7 +16,7 @@
   max-height: 100vh;
   overflow: scroll;
   background-color: #fff;
-  color: #000;
+  color: var(--dimmed-black);
   padding: 0.8rem;
 }
 
@@ -24,7 +24,7 @@
   background-color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 6px;
-  color: #000;
+  color: var(--dimmed-black);
   box-shadow: 0 5px 10px rgb(0 0 0 / 0.25);
   position: absolute;
   bottom: 0.5rem;
