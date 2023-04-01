@@ -5,8 +5,11 @@
   justify-content: center;
   gap: 1rem;
 
+  background-color: #fff;
+  padding: 1rem;
   max-width: 800px;
   margin: 0 auto;
+  border-radius: 0.5rem;
 }
 
 .search_container__search_input {
@@ -19,5 +22,22 @@
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   font-size: 1rem;
-  color: #000;
+  color: var(--dimmed-black);
+  background-color: var(--secondary-color);
+}
+
+.search_container__search_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--secondary-color);
+}
+
+.search_container__search_button:hover {
+  background-color: var(--tertiary-color);
+}
+
+.search_container__search_button__icon_container {
+  width: 1rem;
 }
