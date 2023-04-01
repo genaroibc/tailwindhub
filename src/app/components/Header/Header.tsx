@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Login } from "../shared/Login/Login";
 import styles from "./Header.module.css";
 import { useRef } from "react";
+import { TailwindHubLogo } from "../shared/Icons";
 
 export function Header() {
   const menuRef = useRef<HTMLHeadingElement>(null);
@@ -14,7 +15,10 @@ export function Header() {
 
   return (
     <header className={styles.page_header}>
-      <span className={styles.brand_name}>TailwindHub</span>
+      <span className={styles.brand_name}>
+        <TailwindHubLogo />
+        <span>TailwindHub</span>
+      </span>
       <nav onClick={toggleMenu} ref={menuRef} className={styles.hamburger_menu}>
         <Link className={styles.hamburger_menu_link} href="/editor">
           Editor
