@@ -4,7 +4,7 @@ import { useSupabase } from "@/hooks/useSupabase";
 import { CodeEditor } from "@/app/editor/components/CodeEditor/CodeEditor";
 import { useRef, useState } from "react";
 import { uploadImageToCloudinary } from "@/services/upload-image-to-cloudinary";
-import { Loader } from "@/app/components/shared/Loader";
+import { Loader } from "@/app/components/shared/Loader/Loader";
 import { CodeEditorForm } from "../CodeEditorForm/CodeEditorForm";
 import { getImageDataURL } from "@/utils/get-image-data-url";
 import styles from "./EditorSection.module.css";
