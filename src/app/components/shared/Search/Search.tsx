@@ -16,7 +16,7 @@ export function Search() {
         <span className={styles.search_container__search_button__text}>
           search
         </span>
-        <SearchIcon width="20" color="#333" />
+        <SearchIcon width="20" fill="#333" />
       </button>
       {/* <select className={styles.filters_list}>
         {SEARCH_FILTERS.map(({ title, value }) => (
