@@ -1,10 +1,11 @@
 import { useSupabase } from "@/hooks/useSupabase";
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
+import { TagsInput } from "../TagsInput/TagsInput";
 import styles from "./CodeEditorForm.module.css";
 
 type Props = {
   // eslint-disable-next-line no-unused-vars
-  onSubmit: (data: { title: string }) => void;
+  onSubmit: (data: { title: string; tags: string[] }) => void;
 };
 
 export function CodeEditorForm({ onSubmit }: Props) {
@@ -13,6 +14,7 @@ export function CodeEditorForm({ onSubmit }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [componentTitle, setComponentTitle] = useState("");
   const componentTitleInputID = useId();
+  const tagsRef = useRef<string[]>([]);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -22,7 +24,7 @@ export function CodeEditorForm({ onSubmit }: Props) {
 
     if (!session?.user) return setError("you must be logged in to publish");
 
-    onSubmit({ title: componentTitle });
+    onSubmit({ title: componentTitle, tags: tagsRef.current });
   };
 
   return (
@@ -30,7 +32,7 @@ export function CodeEditorForm({ onSubmit }: Props) {
       {isOpen ? (
         <>
           <label className={styles.label} htmlFor={componentTitleInputID}>
-            Component title
+            Title
           </label>
           <input
             onChange={(event) => setComponentTitle(event.target.value)}
@@ -44,8 +46,15 @@ export function CodeEditorForm({ onSubmit }: Props) {
             maxLength={40}
           />
 
+          <TagsInput onChange={({ tags }) => (tagsRef.current = tags)} />
+
           <button className={styles.publish_btn}>Publish</button>
-          <button onClick={() => setIsOpen(false)}>x</button>
+          <button
+            className={styles.close_form_button}
+            onClick={() => setIsOpen(false)}
+          >
+            x
+          </button>
 
           {error && <p>{error}</p>}
         </>

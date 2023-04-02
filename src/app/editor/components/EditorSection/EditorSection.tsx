@@ -17,7 +17,13 @@ export function EditorSection() {
   const codePreviewRef = useRef(null);
   const codeEditorRef = useRef(null);
 
-  const handleCreateComponent = async ({ title }: { title: string }) => {
+  const handleCreateComponent = async ({
+    title,
+    tags,
+  }: {
+    title: string;
+    tags: string[];
+  }) => {
     const {
       data: { session },
     } = await supabase.auth.getSession();
@@ -54,6 +60,7 @@ export function EditorSection() {
         title,
         preview_img: response.data?.url,
         author_avatar_url: session.user.user_metadata.avatar_url,
+        tags,
       });
 
       if (error) {
@@ -75,7 +82,7 @@ export function EditorSection() {
 
       <section className={styles.editor_section__form_section}>
         <CodeEditorForm
-          onSubmit={({ title }) => handleCreateComponent({ title })}
+          onSubmit={({ title, tags }) => handleCreateComponent({ title, tags })}
         />
         {error && <p>{error}</p>}
         {loading && <Loader />}

@@ -1,0 +1,63 @@
+.tagInput {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.tag button {
+  background-color: var(--dimmed-black);
+  color: var(--primary-color);
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: var(--dimmed-black);
+  padding: 4px 8px;
+  width: 100%;
+  font-size: 16px;
+}
+
+.suggestionList {
+  position: absolute;
+  max-height: 80vh;
+  overflow: auto;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--primary-color);
+  color: var(--dimmed-black);
+  border: 1px solid #ccc;
+
+  border-radius: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.suggestion {
+  padding: 4px 8px;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: var(--dimmed-black);
+}
+
+.suggestion:hover {
+  background-color: var(--dimmed-black);
+  color: var(--primary-color);
+}

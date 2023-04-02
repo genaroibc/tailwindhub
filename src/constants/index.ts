@@ -17,3 +17,35 @@ export const DEFAULT_CODE_EDITOR_VALUE = `<div class='bg--200 p-8 rounded shadow
 
 <a href="https://github.com/genaroibc/tailwindhub" target="_blank" class="bg-yellow-300 w-fit mx-auto px-4 py-2 rounded-full mt-4">Visit on GitHub</a>
 </div>`;
+
+export const COMPONENT_TAGS = [
+  "form",
+  "menu",
+  "table",
+  "modal",
+  "badge",
+  "widget",
+  "alert",
+  "login",
+  "input",
+  "layout",
+  "card",
+  "icon",
+  "navbar",
+  "forms",
+  "header",
+  "sidebar",
+  "select",
+  "tooltip",
+  "button",
+  "footer",
+  "carousel",
+  "navigation",
+  "dashboard",
+  "accordion",
+  "breadcrumb",
+  "pagination",
+  "timeline",
+  "datepicker",
+  "dropdown",
+];

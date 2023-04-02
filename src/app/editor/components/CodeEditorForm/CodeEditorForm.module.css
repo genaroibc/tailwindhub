@@ -5,12 +5,14 @@
   align-items: center;
   gap: 0.5rem;
 
-  background-color: var(--light-brown);
+  background-color: var(--dark-brown);
+  color: var(--primary-color);
+
   transition: background-color 0.2s ease-out;
 }
 
 .publish_btn:hover {
-  background-color: var(--dark-brown);
+  background-color: var(--dimmed-black);
 }
 
 .form {
@@ -18,7 +20,8 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  background-color: var(--dimmed-black);
+  background-color: var(--primary-color);
+  color: var(--dimmed-black);
   padding: 1rem;
   border-radius: 4px;
 }
@@ -35,7 +38,14 @@
   font-size: 1rem;
 }
 
-.form__open_form_button {
+.form__open_form_button,
+.close_form_button {
   padding: 0.5rem 1rem;
-  background-color: var(--light-brown);
+  background-color: var(--dark-brown);
+  color: var(--primary-color);
+}
+
+.form__open_form_button:hover,
+.close_form_button:hover {
+  background-color: var(--dimmed-black);
 }
