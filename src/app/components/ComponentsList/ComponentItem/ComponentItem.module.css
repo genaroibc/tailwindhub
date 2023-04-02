@@ -1,5 +1,4 @@
 .item {
-  width: min(300px, 100%);
   max-width: 100%;
 
   align-self: stretch;
@@ -15,10 +14,10 @@
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
-  padding: 1rem;
+  padding: 1rem 0;
 
   background-color: transparent;
-  color: var(--dimmed-black);
+  color: var(--primary-color);
 
   align-items: center;
 }
@@ -37,7 +36,6 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.6rem;
-  color: var(--dimmed-black);
 
   background-color: transparent;
 }
@@ -66,6 +64,8 @@
 .item__preview__img {
   display: block;
   width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
   border-radius: 1rem;
   position: relative;
 }
