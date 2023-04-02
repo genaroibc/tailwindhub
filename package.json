@@ -13,6 +13,7 @@
     "@monaco-editor/react": "4.4.6",
     "@supabase/auth-helpers-nextjs": "0.5.6",
     "@supabase/supabase-js": "2.10.0",
+    "emmet-monaco-es": "5.2.1",
     "encoding": "0.1.13",
     "html2canvas": "1.4.1",
     "next": "13.2.4",
