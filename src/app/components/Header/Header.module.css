@@ -4,8 +4,9 @@
   left: 0;
   right: 0;
 
-  width: 100%;
+  max-width: var(--page-max-width);
   min-height: 50px;
+  margin: 0 auto;
   padding: 0.5rem 2rem;
 
   display: flex;

@@ -13,7 +13,9 @@ export function Search() {
         className={styles.search_container__search_input}
       />
       <button className={styles.search_container__search_button}>
-        <span>search</span>
+        <span className={styles.search_container__search_button__text}>
+          search
+        </span>
         <SearchIcon width="20" color="#333" />
       </button>
       {/* <select className={styles.filters_list}>

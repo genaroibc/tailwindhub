@@ -7,7 +7,7 @@
 
   background-color: #fff;
   padding: 1rem;
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
   border-radius: 0.5rem;
 }
@@ -16,6 +16,7 @@
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   font-size: 1rem;
+  min-width: none;
 }
 
 .filters_list {
@@ -40,4 +41,10 @@
 
 .search_container__search_button__icon_container {
   width: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .search_container__search_button__text {
+    display: none;
+  }
 }
