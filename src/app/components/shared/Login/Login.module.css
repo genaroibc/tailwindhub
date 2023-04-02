@@ -6,6 +6,7 @@
 }
 
 .login__login_btn {
+  padding: 0.5rem 1rem;
   border: 2px solid transparent;
   background-color: var(--light-brown);
   color: #fff;
@@ -13,15 +14,12 @@
   transition: 0.3s ease background-color;
 }
 
-.login__login_btn__icon {
-  width: 1.2rem;
-}
-
 .login__login_btn:hover {
   background-color: var(--dark-brown);
 }
 
 .login__logout_btn {
+  padding: 0.5rem 1rem;
   border: 2px solid var(--light-brown);
   background-color: transparent;
   color: var(--light-brown);
