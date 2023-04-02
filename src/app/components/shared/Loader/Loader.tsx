@@ -1,8 +1,15 @@
 import styles from "./Loader.module.css";
 
-export function Loader() {
+export function Loader({ color = "#000" }) {
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      style={
+        {
+          "--uib-color": color,
+        } as React.CSSProperties
+      }
+    >
       <svg width="0" height="0" className={styles.container__loader}>
         <defs>
           <filter id="uib-jelly-ooze">
