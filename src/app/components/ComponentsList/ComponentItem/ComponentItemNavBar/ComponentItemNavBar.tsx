@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import styles from "./ComponentItemNavBar.module.css";
 
 type Props = {
   textToCopy: string;
@@ -25,8 +24,11 @@ export function ComponentItemNavBar({ textToCopy, downloads, likes }: Props) {
   };
 
   return (
-    <nav className={styles.item_navbar}>
-      <button className={styles.item_navbar__button} onClick={handleCopyCode}>
+    <nav className="flex flex-wrap justify-end gap-2 align-center">
+      <button
+        className="flex place-items-center gap-1 p-3 bg-secondary-color"
+        onClick={handleCopyCode}
+      >
         <img
           ref={imageRef}
           alt="Copy code"
@@ -36,7 +38,7 @@ export function ComponentItemNavBar({ textToCopy, downloads, likes }: Props) {
         />
         {downloads}
       </button>
-      <button className={styles.item_navbar__button}>
+      <button className="flex place-items-center gap-1 p-3 bg-secondary-color">
         <img alt="Like" src="/svg/heart-outlined.svg" width={20} height={20} />
         {likes}
       </button>
