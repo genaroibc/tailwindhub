@@ -7,6 +7,8 @@ module.exports = {
         "primary-color": "var(--primary-color)",
         "secondary-color": "var(--secondary-color)",
         "dimmed-dark": "var(--dimmed-black)",
+        "dark-brown": "var(--dark-brown)",
+        "light-brown": "var(--light-brown)",
       },
       maxWidth: {
         "page-max-width": "var(--page-max-width)",
