@@ -6,6 +6,10 @@ module.exports = {
       colors: {
         "primary-color": "var(--primary-color)",
         "secondary-color": "var(--secondary-color)",
+        "dimmed-dark": "var(--dimmed-black)",
+      },
+      maxWidth: {
+        "page-max-width": "var(--page-max-width)",
       },
     },
   },
