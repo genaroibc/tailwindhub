@@ -49,11 +49,13 @@ button {
   outline: none;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
-  background-color: var(--light-brown);
+  background-color: var(--dark-brown);
 }
 
-button {
-  background-color: var(--dark-brown);
+textarea:focus,
+input:focus,
+button:focus {
+  outline: 2px solid #000;
 }
 
 input {
