@@ -15,7 +15,7 @@ export function Search() {
         <span className="hidden sm:block">search</span>
         <SearchIcon width="20" fill="#333" />
       </button>
-      {/* <select className="py-2 px-4 rounded-lg text-base text-dimmed-dark bg-secondary-color">
+      {/* <select className="py-2 px-4 rounded-lg text-base text-dimmed-black bg-secondary-color">
         {SEARCH_FILTERS.map(({ title, value }) => (
           <option key={value} value={value}>
             {title}
