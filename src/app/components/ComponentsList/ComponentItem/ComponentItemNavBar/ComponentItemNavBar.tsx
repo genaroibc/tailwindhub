@@ -26,7 +26,7 @@ export function ComponentItemNavBar({ textToCopy, downloads, likes }: Props) {
   return (
     <nav className="flex flex-wrap justify-end gap-2 align-center">
       <button
-        className="flex place-items-center gap-1 p-3 bg-secondary-color"
+        className="flex place-items-center gap-1 p-3 bg-secondary-color hover:bg-tertiary-color"
         onClick={handleCopyCode}
       >
         <img
@@ -38,7 +38,7 @@ export function ComponentItemNavBar({ textToCopy, downloads, likes }: Props) {
         />
         {downloads}
       </button>
-      <button className="flex place-items-center gap-1 p-3 bg-secondary-color">
+      <button className="flex place-items-center gap-1 p-3 bg-secondary-color hover:bg-tertiary-color">
         <img alt="Like" src="/svg/heart-outlined.svg" width={20} height={20} />
         {likes}
       </button>
