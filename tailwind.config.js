@@ -9,6 +9,7 @@ module.exports = {
         "dimmed-dark": "var(--dimmed-black)",
         "dark-brown": "var(--dark-brown)",
         "light-brown": "var(--light-brown)",
+        "tertiary-color": "var(--tertiary-color)",
       },
       maxWidth: {
         "page-max-width": "var(--page-max-width)",

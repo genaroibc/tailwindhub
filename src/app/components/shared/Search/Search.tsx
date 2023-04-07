@@ -2,23 +2,20 @@
 
 // import { SEARCH_FILTERS } from "@/constants";
 import { SearchIcon } from "../Icons";
-import styles from "./Search.module.css";
 
 export function Search() {
   return (
-    <form className={styles.search_container}>
+    <form className="flex flex-wrap items-center justify-center gap-4 bg-white p-4 max-w-full my-0 mx-auto rounded-lg">
       <input
         type="text"
         placeholder="Search for components..."
-        className={styles.search_container__search_input}
+        className="py-2 px-4 rounded-lg text-base min-w-0"
       />
-      <button className={styles.search_container__search_button}>
-        <span className={styles.search_container__search_button__text}>
-          search
-        </span>
+      <button className="flex items-center justify-center gap-2 bg-secondary-color hover:bg-tertiary-color">
+        <span className="hidden sm:block">search</span>
         <SearchIcon width="20" fill="#333" />
       </button>
-      {/* <select className={styles.filters_list}>
+      {/* <select className="py-2 px-4 rounded-lg text-base text-dimmed-dark bg-secondary-color">
         {SEARCH_FILTERS.map(({ title, value }) => (
           <option key={value} value={value}>
             {title}
