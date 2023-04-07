@@ -3,7 +3,6 @@ import { CloseIcon } from "@/app/components/shared/Icons";
 import { useSupabase } from "@/hooks/useSupabase";
 import { useId, useRef, useState } from "react";
 import { TagsInput } from "../TagsInput/TagsInput";
-import styles from "./CodeEditorForm.module.css";
 
 type Props = {
   // eslint-disable-next-line no-unused-vars
@@ -30,15 +29,18 @@ export function CodeEditorForm({ onSubmit }: Props) {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form
+      className="flex items-center justify-center gap-4 bg-primary-color text-dimmed-black p-4 rounded-md"
+      onSubmit={handleSubmit}
+    >
       {isOpen ? (
         <>
-          <label className={styles.label} htmlFor={componentTitleInputID}>
+          <label className="text-base" htmlFor={componentTitleInputID}>
             Title
           </label>
           <input
             onChange={(event) => setComponentTitle(event.target.value)}
-            className={styles.input}
+            className="flex flex-col gap-2 py-2 px-4 rounded-md"
             type="text"
             name={componentTitleInputID}
             id={componentTitleInputID}
