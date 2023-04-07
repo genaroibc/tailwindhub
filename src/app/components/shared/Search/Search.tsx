@@ -2,6 +2,7 @@
 
 // import { SEARCH_FILTERS } from "@/constants";
 import { SearchIcon } from "../Icons";
+import { Button } from "@/app/components/shared/Button";
 
 export function Search() {
   return (
@@ -11,10 +12,10 @@ export function Search() {
         placeholder="Search for components..."
         className="py-2 px-4 rounded-lg text-base min-w-0"
       />
-      <button className="flex items-center justify-center gap-2 bg-secondary-color hover:bg-tertiary-color">
+      <Button variant="secondary">
         <span className="hidden sm:block">search</span>
         <SearchIcon width="20" fill="#333" />
-      </button>
+      </Button>
       {/* <select className="py-2 px-4 rounded-lg text-base text-dimmed-black bg-secondary-color">
         {SEARCH_FILTERS.map(({ title, value }) => (
           <option key={value} value={value}>

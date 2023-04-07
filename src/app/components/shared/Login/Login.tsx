@@ -2,6 +2,7 @@
 
 import { useSupabase } from "@/hooks/useSupabase";
 import { useState } from "react";
+import { Button } from "@/app/components/shared/Button";
 import { LogoutIcon } from "../Icons";
 
 export function Login() {
@@ -49,24 +50,18 @@ export function Login() {
               src={session.user.user_metadata.avatar_url}
             />
           </div>
-          <button
-            className="py-2 px-4 border-2 border-solid border-light-brown bg-transparent text-light-brown transition-colors hover:border-dark-brown"
-            onClick={signOut}
-          >
+          <Button variant="outlined" onClick={signOut}>
             <LogoutIcon
               width="1rem"
               height="1rem"
               fill="var(--dimmed-black, #000)"
             />
-          </button>
+          </Button>
         </>
       ) : (
-        <button
-          className="py-2 px-4 border-2 border-transparent bg-light-brown text-white transition-colors hover:bg-dark-brown"
-          onClick={signIn}
-        >
+        <Button variant="solid" onClick={signIn}>
           login
-        </button>
+        </Button>
       )}
       {error && <p className="text-red-500">{error}</p>}
     </nav>

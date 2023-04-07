@@ -1,3 +1,5 @@
+import { Button } from "@/app/components/shared/Button";
+import { CloseIcon } from "@/app/components/shared/Icons";
 import { useSupabase } from "@/hooks/useSupabase";
 import { useId, useRef, useState } from "react";
 import { TagsInput } from "../TagsInput/TagsInput";
@@ -48,23 +50,17 @@ export function CodeEditorForm({ onSubmit }: Props) {
 
           <TagsInput onChange={({ tags }) => (tagsRef.current = tags)} />
 
-          <button className={styles.publish_btn}>Publish</button>
-          <button
-            className={styles.close_form_button}
-            onClick={() => setIsOpen(false)}
-          >
-            x
-          </button>
+          <Button variant="solid">Publish</Button>
+          <Button variant="outlined" onClick={() => setIsOpen(false)}>
+            <CloseIcon width="1rem" />
+          </Button>
 
           {error && <p>{error}</p>}
         </>
       ) : (
-        <button
-          onClick={() => setIsOpen(true)}
-          className={styles.form__open_form_button}
-        >
+        <Button variant="solid" onClick={() => setIsOpen(true)}>
           Publish
-        </button>
+        </Button>
       )}
     </form>
   );

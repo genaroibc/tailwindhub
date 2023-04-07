@@ -1,12 +1,14 @@
+"use client";
+
+import { Button } from "@/app/components/shared/Button";
 import { useSupabase } from "@/hooks/useSupabase";
-import styles from "./LoginToPublishButton.module.css";
 
 export function LoginToPublishButton() {
   const { supabase } = useSupabase();
 
   return (
-    <button
-      className={styles.login_btn}
+    <Button
+      variant="secondary"
       onClick={() =>
         supabase.auth.signInWithOAuth({
           provider: "github",
@@ -23,6 +25,6 @@ export function LoginToPublishButton() {
         src="/svg/github.svg"
       />
       Login to publish your component
-    </button>
+    </Button>
   );
 }
