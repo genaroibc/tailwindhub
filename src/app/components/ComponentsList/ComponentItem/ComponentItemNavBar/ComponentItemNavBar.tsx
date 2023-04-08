@@ -1,6 +1,11 @@
 "use client";
 
-import { useRef } from "react";
+import {
+  CopyIcon,
+  DoneIcon,
+  HeartOutlinedIcon,
+} from "@/app/components/shared/Icons";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
   textToCopy: string;
@@ -9,18 +14,20 @@ type Props = {
 };
 
 export function ComponentItemNavBar({ textToCopy, downloads, likes }: Props) {
-  const imageRef = useRef<HTMLImageElement>(null);
+  const [copied, setCopied] = useState(false);
+
+  const imageRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    if (!copied) return;
+
+    const timeoutId = setTimeout(() => setCopied(false), 2000);
+
+    return () => clearTimeout(timeoutId);
+  }, [copied]);
 
   const handleCopyCode = () => {
-    navigator.clipboard.writeText(textToCopy);
-    const image = imageRef.current;
-
-    if (image) {
-      image.src = "/svg/done.svg";
-      setTimeout(() => {
-        image.src = "/svg/copy.svg";
-      }, 2000);
-    }
+    navigator.clipboard.writeText(textToCopy).then(() => setCopied(true));
   };
 
   return (
@@ -29,17 +36,15 @@ export function ComponentItemNavBar({ textToCopy, downloads, likes }: Props) {
         className="flex place-items-center gap-1 p-3 bg-secondary-color hover:bg-tertiary-color"
         onClick={handleCopyCode}
       >
-        <img
-          ref={imageRef}
-          alt="Copy code"
-          src="/svg/copy.svg"
-          width={20}
-          height={20}
-        />
+        {copied ? (
+          <DoneIcon width={20} height={20} />
+        ) : (
+          <CopyIcon ref={imageRef} width={20} height={20} />
+        )}
         {downloads}
       </button>
       <button className="flex place-items-center gap-1 p-3 bg-secondary-color hover:bg-tertiary-color">
-        <img alt="Like" src="/svg/heart-outlined.svg" width={20} height={20} />
+        <HeartOutlinedIcon width={20} height={20} />
         {likes}
       </button>
     </nav>

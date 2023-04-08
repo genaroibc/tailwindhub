@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/app/components/shared/Button";
+import { GitHubIcon } from "@/app/components/shared/Icons";
 import { useSupabase } from "@/hooks/useSupabase";
 
 export function LoginToPublishButton() {
@@ -18,12 +19,7 @@ export function LoginToPublishButton() {
         })
       }
     >
-      <img
-        width={30}
-        height={30}
-        alt="log in to publish your component"
-        src="/svg/github.svg"
-      />
+      <GitHubIcon width={30} height={30} />
       Login to publish your component
     </Button>
   );
