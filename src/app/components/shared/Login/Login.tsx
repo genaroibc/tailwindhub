@@ -1,13 +1,25 @@
 "use client";
 
 import { useSupabase } from "@/hooks/useSupabase";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/app/components/shared/Button";
 import { LogoutIcon } from "../Icons";
+import { AuthSession } from "@supabase/supabase-js";
 
 export function Login() {
-  const { supabase, session } = useSupabase();
+  const { supabase } = useSupabase();
   const [error, setError] = useState<string | null>(null);
+  const [session, setSession] = useState<AuthSession | null>(null);
+
+  useEffect(() => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [supabase]);
 
   const signIn = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
