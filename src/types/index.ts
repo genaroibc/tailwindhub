@@ -1,3 +1,5 @@
+import { Database } from "./db";
+
 export type SearchFilter =
   | "all"
   | "button"
@@ -16,3 +18,8 @@ export type ComponentData = {
   title: string;
   imageDataURL: string;
 };
+
+export type ComponentItem =
+  Database["public"]["Tables"]["components"]["Row"] & {
+    likes: Array<Database["public"]["Tables"]["likes"]["Row"]>;
+  };

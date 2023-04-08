@@ -4,6 +4,7 @@ import { type Metadata } from "next";
 import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { cookies, headers } from "next/headers";
 import { Database } from "@/types/db";
+import { ComponentItem } from "@/types";
 
 export const metadata: Metadata = {
   title: "TailwindHub - UI components",
@@ -18,12 +19,17 @@ export default async function Home() {
     headers,
   });
 
-  const { data } = await supabase.from("components").select("*");
+  const { data } = await supabase
+    .from("components")
+    .select("likes (author_username),*");
 
   return (
     <div>
       <Hero />
-      {Array.isArray(data) && <ComponentsList defaultComponents={data} />}
+      {Array.isArray(data) && data && (
+        // @ts-ignore
+        <ComponentsList defaultComponents={data as ComponentItem[]} />
+      )}
     </div>
   );
 }

@@ -1,9 +1,9 @@
-import { Database } from "@/types/db";
 import { ComponentItem } from "./ComponentItem/ComponentItem";
 import { Search } from "@/app/components/shared/Search/Search";
+import { type ComponentItem as TComponentItem } from "@/types";
 
 type Props = {
-  defaultComponents: Array<Database["public"]["Tables"]["components"]["Row"]>;
+  defaultComponents: TComponentItem[];
 };
 
 export function ComponentsList({ defaultComponents }: Props) {

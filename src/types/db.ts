@@ -14,10 +14,8 @@ export interface Database {
           author_avatar_url: string
           author_username: string
           created_at: string
-          downloads: number
           html_code: string
           id: string
-          likes: number
           preview_img: string
           tags: string[]
           title: string
@@ -26,10 +24,8 @@ export interface Database {
           author_avatar_url: string
           author_username: string
           created_at?: string
-          downloads?: number
           html_code: string
           id?: string
-          likes?: number
           preview_img: string
           tags?: string[]
           title: string
@@ -38,13 +34,28 @@ export interface Database {
           author_avatar_url?: string
           author_username?: string
           created_at?: string
-          downloads?: number
           html_code?: string
           id?: string
-          likes?: number
           preview_img?: string
           tags?: string[]
           title?: string
+        }
+      }
+      likes: {
+        Row: {
+          author_username: string
+          component_id: string
+          id: string
+        }
+        Insert: {
+          author_username: string
+          component_id: string
+          id?: string
+        }
+        Update: {
+          author_username?: string
+          component_id?: string
+          id?: string
         }
       }
     }

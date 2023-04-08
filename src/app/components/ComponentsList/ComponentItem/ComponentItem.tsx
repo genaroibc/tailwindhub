@@ -1,15 +1,13 @@
-import { Database } from "@/types/db";
+import { type ComponentItem as TComponentItem } from "@/types";
 import { ComponentItemNavBar } from "./ComponentItemNavBar/ComponentItemNavBar";
 
-type Props = Database["public"]["Tables"]["components"]["Row"];
+type Props = TComponentItem;
 
 export function ComponentItem({
   author_username,
   html_code,
   id,
-  downloads,
   likes,
-  // tags,
   title,
   preview_img,
   author_avatar_url,
@@ -28,8 +26,9 @@ export function ComponentItem({
 
         <footer className="absolute bottom-2 right-2 opacity-0 invisible duration-300 transition-[transform,visibility,opacity] translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible">
           <ComponentItemNavBar
+            componentId={id}
             likes={likes}
-            downloads={downloads}
+            downloads={0}
             textToCopy={html_code}
           />
         </footer>
