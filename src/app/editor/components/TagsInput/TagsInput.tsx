@@ -1,6 +1,5 @@
 import { COMPONENT_TAGS } from "@/constants";
 import { useEffect, useState } from "react";
-import styles from "./TagsInput.module.css";
 
 type Props = {
   // eslint-disable-next-line no-unused-vars
@@ -58,8 +57,8 @@ export function TagsInput({ onChange }: Props) {
   };
 
   return (
-    <section className={styles.tagInput}>
-      <div className={styles.inputWrapper}>
+    <section className="flex w-full">
+      <div className="relative w-full">
         <input
           onFocus={(event) =>
             setSuggestions(
@@ -72,7 +71,7 @@ export function TagsInput({ onChange }: Props) {
           }
           // onBlur={() => setSuggestions([])}
           type="text"
-          className={styles.input}
+          className="rounded-md bg-primary-color text-dimmed-black py-2 px-4"
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
@@ -81,12 +80,12 @@ export function TagsInput({ onChange }: Props) {
 
         <ul
           onClick={() => console.log("propagation")}
-          className={styles.suggestionList}
+          className="absolute max-h-[80vh] overflow-auto bottom-full left-0 right-0 bg-primary-color text-dimmed-black rounded-md"
         >
           {suggestions.map((tag) => (
             <li
               key={tag}
-              className={styles.suggestion}
+              className="py-1 px-2 cursor-pointer bg-primary-color text-dimmed-black hover:bg-light-brown hover:text-primary-color"
               onClick={() => addTag(tag)}
             >
               {tag}
@@ -94,10 +93,15 @@ export function TagsInput({ onChange }: Props) {
           ))}
         </ul>
       </div>
-      <ul className={styles.tagList}>
+      <ul className="flex flex-wrap gap-1">
         {selectedTags.map((tag) => (
-          <li key={tag} className={styles.tag}>
-            <button onClick={() => removeTag(tag)}>{tag}</button>
+          <li key={tag}>
+            <button
+              className="bg-dimmed-black text-primary-color rounded-full py-2 px-4 w-fit"
+              onClick={() => removeTag(tag)}
+            >
+              {tag}
+            </button>
           </li>
         ))}
       </ul>

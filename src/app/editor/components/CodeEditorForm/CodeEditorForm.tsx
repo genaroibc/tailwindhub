@@ -1,7 +1,8 @@
+import { Button } from "@/app/components/shared/Button";
+import { CloseIcon } from "@/app/components/shared/Icons";
 import { useSupabase } from "@/hooks/useSupabase";
 import { useId, useRef, useState } from "react";
 import { TagsInput } from "../TagsInput/TagsInput";
-import styles from "./CodeEditorForm.module.css";
 
 type Props = {
   // eslint-disable-next-line no-unused-vars
@@ -28,15 +29,18 @@ export function CodeEditorForm({ onSubmit }: Props) {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form
+      className="flex items-center justify-center gap-4 bg-primary-color text-dimmed-black p-4 rounded-md"
+      onSubmit={handleSubmit}
+    >
       {isOpen ? (
         <>
-          <label className={styles.label} htmlFor={componentTitleInputID}>
+          <label className="text-base" htmlFor={componentTitleInputID}>
             Title
           </label>
           <input
             onChange={(event) => setComponentTitle(event.target.value)}
-            className={styles.input}
+            className="flex flex-col gap-2 py-2 px-4 rounded-md"
             type="text"
             name={componentTitleInputID}
             id={componentTitleInputID}
@@ -48,23 +52,17 @@ export function CodeEditorForm({ onSubmit }: Props) {
 
           <TagsInput onChange={({ tags }) => (tagsRef.current = tags)} />
 
-          <button className={styles.publish_btn}>Publish</button>
-          <button
-            className={styles.close_form_button}
-            onClick={() => setIsOpen(false)}
-          >
-            x
-          </button>
+          <Button variant="solid">Publish</Button>
+          <Button variant="outlined" onClick={() => setIsOpen(false)}>
+            <CloseIcon width="1rem" />
+          </Button>
 
           {error && <p>{error}</p>}
         </>
       ) : (
-        <button
-          onClick={() => setIsOpen(true)}
-          className={styles.form__open_form_button}
-        >
+        <Button variant="solid" onClick={() => setIsOpen(true)}>
           Publish
-        </button>
+        </Button>
       )}
     </form>
   );

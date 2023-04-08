@@ -7,7 +7,6 @@ import { uploadImageToCloudinary } from "@/services/upload-image-to-cloudinary";
 import { Loader } from "@/app/components/shared/Loader/Loader";
 import { CodeEditorForm } from "../CodeEditorForm/CodeEditorForm";
 import { getImageDataURL } from "@/utils/get-image-data-url";
-import styles from "./EditorSection.module.css";
 
 export function EditorSection() {
   const { supabase } = useSupabase();
@@ -74,13 +73,13 @@ export function EditorSection() {
   };
 
   return (
-    <section className={styles.editor_section}>
+    <section className="w-screen h-screen max-w-full flex flex-col items-stretch justify-stretch relative">
       <CodeEditor
         codeEditorRef={codeEditorRef}
         codePreviewRef={codePreviewRef}
       />
 
-      <section className={styles.editor_section__form_section}>
+      <section className="flex flex-col items-center justify-center fixed bottom-4 right-4">
         <CodeEditorForm
           onSubmit={({ title, tags }) => handleCreateComponent({ title, tags })}
         />

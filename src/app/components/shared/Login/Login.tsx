@@ -2,8 +2,8 @@
 
 import { useSupabase } from "@/hooks/useSupabase";
 import { useState } from "react";
+import { Button } from "@/app/components/shared/Button";
 import { LogoutIcon } from "../Icons";
-import styles from "./Login.module.css";
 
 export function Login() {
   const { supabase, session } = useSupabase();
@@ -35,35 +35,35 @@ export function Login() {
   };
 
   return (
-    <nav className={styles.login}>
+    <nav className="flex justify-center items-center gap-4">
       {session?.user ? (
         <>
-          <div className={styles.login__user}>
-            <span className={styles.login__user__name}>
+          <div className="flex justify-center items-center gap-2">
+            <span className="font-semibold hidden sm:block">
               {session.user.user_metadata.user_name}
             </span>
             <img
-              className={styles.login__user__avatar}
+              className="rounded-full max-w-full w-8"
               width={50}
               height={50}
               alt={session.user.user_metadata.user_name}
               src={session.user.user_metadata.avatar_url}
             />
           </div>
-          <button className={styles.login__logout_btn} onClick={signOut}>
+          <Button variant="outlined" onClick={signOut}>
             <LogoutIcon
               width="1rem"
               height="1rem"
               fill="var(--dimmed-black, #000)"
             />
-          </button>
+          </Button>
         </>
       ) : (
-        <button className={styles.login__login_btn} onClick={signIn}>
+        <Button variant="solid" onClick={signIn}>
           login
-        </button>
+        </Button>
       )}
-      {error && <p className={styles.login__error_message}>{error}</p>}
+      {error && <p className="text-red-500">{error}</p>}
     </nav>
   );
 }

@@ -1,9 +1,0 @@
-.page_wrapper {
-  background-color: var(--dimmed-black);
-  color: var(--primary-color);
-}
-
-.page_wrapper__main {
-  max-width: var(--page-max-width);
-  margin: 0 auto;
-}
