@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@monaco-editor/react': 4.4.6
+  '@monaco-editor/react': 4.5.0
   '@supabase/auth-helpers-nextjs': 0.5.6
   '@supabase/supabase-js': 2.10.0
   '@types/node': 18.15.1
@@ -22,7 +22,7 @@ specifiers:
   typescript: 4.9.5
 
 dependencies:
-  '@monaco-editor/react': 4.4.6_biqbaboplfbrettd7655fr4n2y
+  '@monaco-editor/react': 4.5.0_biqbaboplfbrettd7655fr4n2y
   '@supabase/auth-helpers-nextjs': 0.5.6_ku2vntnma2imfrsyohnkxzette
   '@supabase/supabase-js': 2.10.0_encoding@0.1.13
   emmet-monaco-es: 5.2.1
@@ -134,15 +134,14 @@ packages:
       state-local: 1.0.7
     dev: false
 
-  /@monaco-editor/react/4.4.6_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-Gr3uz3LYf33wlFE3eRnta4RxP5FSNxiIV9ENn2D2/rN8KgGAD8ecvcITRtsbbyuOuNkwbuHYxfeaz2Vr+CtyFA==}
+  /@monaco-editor/react/4.5.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-VJMkp5Fe1+w8pLEq8tZPHZKu8zDXQIA1FtiDTSNccg1D3wg1YIZaH2es2Qpvop1k62g3c/YySRb3bnGXu2XwYQ==}
     peerDependencies:
       monaco-editor: '>= 0.25.0 < 1'
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@monaco-editor/loader': 1.3.3
-      prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
@@ -2140,6 +2139,7 @@ packages:
   /object-assign/4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
+    dev: true
 
   /object-hash/3.0.0:
     resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}
@@ -2387,6 +2387,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
+    dev: true
 
   /punycode/2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
@@ -2414,6 +2415,7 @@ packages:
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+    dev: true
 
   /react/18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
