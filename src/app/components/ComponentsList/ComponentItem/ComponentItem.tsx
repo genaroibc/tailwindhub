@@ -40,7 +40,6 @@ export function ComponentItem({
             <ComponentItemNavBar
               componentId={id}
               likes={likes}
-              downloads={0}
               textToCopy={html_code}
             />
           </div>

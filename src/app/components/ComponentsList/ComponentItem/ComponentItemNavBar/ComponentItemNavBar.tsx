@@ -13,16 +13,10 @@ import { useEffect, useState } from "react";
 type Props = {
   textToCopy: string;
   likes: ComponentItem["likes"];
-  downloads: number;
   componentId: string;
 };
 
-export function ComponentItemNavBar({
-  textToCopy,
-  downloads,
-  likes,
-  componentId,
-}: Props) {
+export function ComponentItemNavBar({ textToCopy, likes, componentId }: Props) {
   const { supabase } = useSupabase();
 
   const [copied, setCopied] = useState(false);
@@ -88,7 +82,6 @@ export function ComponentItemNavBar({
         ) : (
           <CopyIcon width={20} height={20} />
         )}
-        {downloads}
       </button>
       <button
         onClick={handleLike}
