@@ -27,7 +27,6 @@ export default async function Home() {
     <div>
       <Hero />
       {Array.isArray(data) && data && (
-        // @ts-ignore
         <ComponentsList defaultComponents={data as ComponentItem[]} />
       )}
     </div>

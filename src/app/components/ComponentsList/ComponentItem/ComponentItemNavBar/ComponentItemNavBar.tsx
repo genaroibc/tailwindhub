@@ -16,11 +16,16 @@ type Props = {
   componentId: string;
 };
 
-export function ComponentItemNavBar({ textToCopy, likes, componentId }: Props) {
+export function ComponentItemNavBar({
+  textToCopy,
+  likes: initialLikes,
+  componentId,
+}: Props) {
   const { supabase } = useSupabase();
 
   const [copied, setCopied] = useState(false);
-  const [liked, setLiked] = useState(false);
+  const [likes, setLikes] = useState<ComponentItem["likes"]>(initialLikes);
+  const [userLiked, setUserLiked] = useState(false);
 
   useEffect(() => {
     if (!copied) return;
@@ -33,8 +38,7 @@ export function ComponentItemNavBar({ textToCopy, likes, componentId }: Props) {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       const username = session?.user?.user_metadata.user_name;
-
-      setLiked(likes.some((like) => like.author_username === username));
+      setUserLiked(likes.some((like) => like.author_username === username));
     });
   }, [supabase, likes]);
 
@@ -43,20 +47,26 @@ export function ComponentItemNavBar({ textToCopy, likes, componentId }: Props) {
   };
 
   const handleLike = async () => {
-    const { session } = await supabase.auth
-      .getSession()
-      .then(({ data }) => data);
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
 
     const username = session?.user?.user_metadata.user_name;
 
-    if (liked) {
+    if (!username) return;
+
+    if (userLiked) {
       supabase
         .from("likes")
         .delete()
         .eq("author_username", username)
         .eq("component_id", componentId)
         .then(({ error }) => {
-          if (!error) setLiked(false);
+          if (!error) {
+            setLikes((currentLikes) =>
+              currentLikes.filter((like) => like.author_username !== username)
+            );
+          }
         });
     } else {
       supabase
@@ -65,8 +75,13 @@ export function ComponentItemNavBar({ textToCopy, likes, componentId }: Props) {
           author_username: username,
           component_id: componentId,
         })
-        .then(({ error }) => {
-          if (!error) setLiked(true);
+        .select("*")
+        .then(({ data, error }) => {
+          if (!error) {
+            setLikes((currentLikes) => {
+              return [...currentLikes, data[0]];
+            });
+          }
         });
     }
   };
@@ -87,8 +102,8 @@ export function ComponentItemNavBar({ textToCopy, likes, componentId }: Props) {
         onClick={handleLike}
         className="flex place-items-center gap-1 p-2 md:p-3 bg-secondary-color hover:bg-tertiary-color"
       >
-        {liked ? (
-          <HeartSolidIcon fill="#f00" width={20} height={20} />
+        {userLiked ? (
+          <HeartSolidIcon fill="#e00" width={20} height={20} />
         ) : (
           <HeartOutlinedIcon width={20} height={20} />
         )}
