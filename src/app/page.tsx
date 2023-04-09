@@ -5,6 +5,7 @@ import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-next
 import { cookies, headers } from "next/headers";
 import { Database } from "@/types/db";
 import { ComponentItem } from "@/types";
+import { Header } from "@/app/components/Header/Header";
 
 export const metadata: Metadata = {
   title: "TailwindHub - UI components",
@@ -25,6 +26,8 @@ export default async function Home() {
 
   return (
     <div>
+      <Header />
+
       <Hero />
       {Array.isArray(data) && data && (
         <ComponentsList defaultComponents={data as ComponentItem[]} />
