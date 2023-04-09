@@ -73,7 +73,7 @@ export function EditorSection() {
   };
 
   return (
-    <section className="w-screen h-screen max-w-full flex flex-col items-stretch justify-stretch relative">
+    <section className="h-full w-full flex flex-col items-stretch justify-stretch relative">
       <CodeEditor
         codeEditorRef={codeEditorRef}
         codePreviewRef={codePreviewRef}

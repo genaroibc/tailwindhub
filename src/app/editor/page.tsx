@@ -9,8 +9,11 @@ export const metadata: Metadata = {
 
 function HomePage() {
   return (
-    <div className="bg-dimmed-black text-primary-color">
-      <main className="max-w-page-max-width my-0 mx-auto">
+    <div className="grid grid-rows-[3rem,100vh] bg-dimmed-black text-primary-color w-screen h-screen max-w-screen">
+      <header className="flex gap-4 p-2 items-center justify-center">
+        <span className="font-bold text-lg">TailwindHub - Editor</span>
+      </header>
+      <main className="max-h-[calc(100vh-3rem)] h-full">
         <TailwindScript />
         <EditorSection />
       </main>
