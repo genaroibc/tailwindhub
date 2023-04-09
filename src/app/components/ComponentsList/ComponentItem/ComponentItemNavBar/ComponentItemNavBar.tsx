@@ -72,9 +72,9 @@ export function ComponentItemNavBar({ textToCopy, likes, componentId }: Props) {
   };
 
   return (
-    <nav className="flex flex-wrap justify-end gap-2 align-center">
+    <nav className="flex flex-wrap justify-end gap-2 self-end align-center">
       <button
-        className="flex place-items-center gap-1 p-3 bg-secondary-color hover:bg-tertiary-color"
+        className="flex place-items-center gap-1 p-2 md:p-3 bg-secondary-color hover:bg-tertiary-color"
         onClick={handleCopyCode}
       >
         {copied ? (
@@ -85,7 +85,7 @@ export function ComponentItemNavBar({ textToCopy, likes, componentId }: Props) {
       </button>
       <button
         onClick={handleLike}
-        className="flex place-items-center gap-1 p-3 bg-secondary-color hover:bg-tertiary-color"
+        className="flex place-items-center gap-1 p-2 md:p-3 bg-secondary-color hover:bg-tertiary-color"
       >
         {liked ? (
           <HeartSolidIcon fill="#f00" width={20} height={20} />

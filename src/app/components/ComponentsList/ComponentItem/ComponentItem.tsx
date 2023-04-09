@@ -25,9 +25,9 @@ export function ComponentItem({
           alt={title}
         />
 
-        <footer className="bottom-0 w-full absolute opacity-0 duration-300 transition-opacity group-hover:opacity-100 bg-gradient-to-t from-black to-black/0 min-h-[6rem] rounded-bl-2xl rounded-br-2xl flex flex-col justify-end">
+        <footer className="pt-4 bottom-0 w-full absolute opacity-0 duration-300 transition-opacity group-hover:opacity-100 bg-gradient-to-t from-black/60 to-black/0 min-h-[4rem] rounded-bl-2xl rounded-br-2xl flex flex-col justify-end">
           <div className="opacity-0 invisible duration-300 transition-[transform,visibility,opacity] translate-y-2 flex justify-between items-end gap-2 p-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0">
-            <ul className="flex gap-x-1 gap-y-2 items-center justify-between flex-wrap-reverse text-xs">
+            <ul className="hidden md:flex gap-x-1 gap-y-2 items-center justify-start flex-wrap-reverse text-xs">
               {tags.map((tag) => (
                 <li
                   key={tag}
