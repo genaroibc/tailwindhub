@@ -19,7 +19,10 @@ export function EditorLayout({ editor, preview }: Props) {
 
   return (
     <>
-      <EditorLayoutSelector handleLayoutChange={handleLayoutChange} />
+      <EditorLayoutSelector
+        handleLayoutChange={handleLayoutChange}
+        selectedLayout={layout}
+      />
       {layout === "preview-and-editor-columns" && (
         <ResizableSection className="overflow-hidden w-full h-full grid-cols-1 grid-rows-2 md:grid-rows-1 grid md:grid-cols-2">
           <ResizableSection.LeftSide>{editor}</ResizableSection.LeftSide>
