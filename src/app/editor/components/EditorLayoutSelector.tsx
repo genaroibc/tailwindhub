@@ -36,12 +36,12 @@ export function EditorLayoutSelector({
   selectedLayout,
 }: Props) {
   return (
-    <nav className="flex items-center">
+    <nav className="flex items-center p-2 gap-2 justify-end">
       {LAYOUT_OPTIONS.map(({ icon, layoutName }) => (
         <button
           className={`${
             selectedLayout === layoutName ? "text-blue-400" : ""
-          } bg-slate-950 p-2 hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 rounded-md mr-2`}
+          } bg-slate-950 p-2 hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 rounded-md`}
           key={layoutName}
           onClick={() => handleLayoutChange(layoutName)}
         >
