@@ -18,7 +18,7 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
       preview={
         <div
           ref={codePreviewRef}
-          className="w-full h-full overflow-auto bg-white text-dimmed-black"
+          className="w-full relative h-full overflow-auto bg-white text-dimmed-black"
           dangerouslySetInnerHTML={{ __html: code }}
         ></div>
       }
