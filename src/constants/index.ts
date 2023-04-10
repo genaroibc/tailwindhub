@@ -10,13 +10,15 @@ export const SEARCH_FILTERS: Array<{ value: SearchFilter; title: string }> = [
   { value: "image", title: "Images" },
 ];
 
-export const DEFAULT_CODE_EDITOR_VALUE = `<div class='bg--200 p-8 rounded shadow-2xl flex flex-col gap-2 text-center'>
-<span class="font-semibold text-lg text-gray-800">Welcome to TailwindHub code editor</span>
+export const DEFAULT_CODE_EDITOR_VALUE = `<article class="auto px-8 py-12 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-cyan-500 to-blue-500 rounded-md text-white shadow-2xl">
+    <h1 class="text-2xl font-bold mb-4">Welcome to <span class="text-2xl">TailwindHub</span></h1>
+    <p class="text-xl font-medium mb-8">The best place to share Tailwind components</p>
 
-<span class="font-semibold text-gray-800">Happy coding!</span>
+    <p class="mb-2 font-medium">Start by creating your component</p>
+    <p class="mb-2 font-medium">When you're ready, sign in with GitHub and share it.</p>
 
-<a href="https://github.com/genaroibc/tailwindhub" target="_blank" class="bg-yellow-300 w-fit mx-auto px-4 py-2 rounded-full mt-4">Visit on GitHub</a>
-</div>`;
+    <a class="underline mt-6 block text-right cursor-pointer">Visit this project on GitHub</button>
+</article>`;
 
 export const COMPONENT_TAGS = [
   "form",
