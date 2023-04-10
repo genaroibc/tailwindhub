@@ -9,6 +9,7 @@ interface Props
   children: React.ReactElement[];
 }
 
+const MIN_RESIZABLE_SECTION_WIDTH = 300;
 export function ResizableSection({ children }: Props) {
   const resizerX = useRef<HTMLDivElement>(null);
   const leftSideRef = useRef<HTMLDivElement>(null);
@@ -36,15 +37,19 @@ export function ResizableSection({ children }: Props) {
       const w = Math.round(
         parseInt(getComputedStyle(leftSideRef.current).width) + deltaX
       );
-      rightSideRef.current.style.flex = `0 ${w < 10 ? 0 : w}px`;
-      leftSideRef.current.style.flex = "1 0";
+
+      if (w <= MIN_RESIZABLE_SECTION_WIDTH) return;
+      leftSideRef.current.style.flex = `0 ${w < 100 ? 0 : w}px`;
+      rightSideRef.current.style.flex = "1 0";
     }
     // RIGHT
     if (deltaX > 0) {
       const w = Math.round(
         parseInt(getComputedStyle(rightSideRef.current).width) - deltaX
       );
-      rightSideRef.current.style.flex = `0 ${w < 10 ? 0 : w}px`;
+
+      if (w <= MIN_RESIZABLE_SECTION_WIDTH) return;
+      rightSideRef.current.style.flex = `0 ${w < 100 ? 0 : w}px`;
       leftSideRef.current.style.flex = "1 0";
     }
   }
@@ -74,7 +79,10 @@ export function ResizableSection({ children }: Props) {
       const w = Math.round(
         parseInt(getComputedStyle(leftSideRef.current).width) + deltaX
       );
-      leftSideRef.current.style.flex = `0 ${w < 10 ? 0 : w}px`;
+
+      if (w <= MIN_RESIZABLE_SECTION_WIDTH) return;
+
+      leftSideRef.current.style.flex = `0 ${w < 100 ? 0 : w}px`;
       rightSideRef.current.style.flex = "1 0";
     }
     // RIGHT
@@ -82,7 +90,10 @@ export function ResizableSection({ children }: Props) {
       const w = Math.round(
         parseInt(getComputedStyle(rightSideRef.current).width) - deltaX
       );
-      rightSideRef.current.style.flex = `0 ${w < 10 ? 0 : w}px`;
+
+      if (w <= MIN_RESIZABLE_SECTION_WIDTH) return;
+
+      rightSideRef.current.style.flex = `0 ${w < 100 ? 0 : w}px`;
       leftSideRef.current.style.flex = "1 0";
     }
   }
@@ -95,7 +106,7 @@ export function ResizableSection({ children }: Props) {
 
   return (
     <section className="h-full flex overflow-hidden">
-      <div ref={leftSideRef} className="w-full overflow-hidden">
+      <div ref={leftSideRef} className="w-full max-w-full overflow-hidden">
         {Children.map(
           children,
           (child) =>
@@ -103,13 +114,15 @@ export function ResizableSection({ children }: Props) {
               "ResizableLeftSide" && child
         )}
       </div>
+
       <div
         ref={resizerX}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
         className="relative flex w-6 justify-center items-center bg-black p-1 z-[2] cursor-col-resize before:content-[''] before:w-[2px] before:h-4 before:m-[2px] before:bg-gray-200 after:content-[''] after:w-[2px] after:h-4 after:m-[2px] after:bg-gray-200"
-      ></div>
-      <div ref={rightSideRef} className="w-full overflow-hidden">
+      />
+
+      <div ref={rightSideRef} className="w-full max-w-full overflow-hidden">
         {Children.map(
           children,
           (child) =>
