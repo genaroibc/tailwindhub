@@ -18,7 +18,7 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
       preview={
         <div
           ref={codePreviewRef}
-          className="w-full h-1/2 md:h-full overflow-scroll bg-white text-dimmed-black"
+          className="w-full h-full overflow-auto bg-white text-dimmed-black"
           dangerouslySetInnerHTML={{ __html: code }}
         ></div>
       }
@@ -28,7 +28,7 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
             codeEditorRef.current = editor;
             emmetHTML(monaco);
           }}
-          className="w-full h-1/2 md:h-full"
+          className="w-full h-full"
           theme="vs-dark"
           defaultLanguage="html"
           defaultValue={code}
