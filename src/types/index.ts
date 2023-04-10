@@ -23,3 +23,8 @@ export type ComponentItem =
   Database["public"]["Tables"]["components"]["Row"] & {
     likes: Array<Database["public"]["Tables"]["likes"]["Row"]>;
   };
+
+export type EditorLayout =
+  | "preview-and-editor-columns"
+  | "editor-only"
+  | "preview-only";
