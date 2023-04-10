@@ -1,7 +1,6 @@
 // this component is inspired in [THIS CODEPEN](https://codepen.io/1isten/pen/mdVNqvK)
 // I refactored it to use React and Typescript
 
-"use client";
 import { useRef, Children, HTMLAttributes } from "react";
 
 interface Props
