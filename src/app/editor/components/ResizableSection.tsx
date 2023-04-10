@@ -109,8 +109,8 @@ export function ResizableSection({ children }: Props) {
         {Children.map(
           children,
           (child) =>
-            (typeof child?.type === "string" ? child.type : child.type.name) ===
-              "ResizableLeftSide" && child
+            (typeof child.type === "string" ? child.type : child.type.name) ===
+              ResizableLeftSide.name && child
         )}
       </div>
 
@@ -125,8 +125,8 @@ export function ResizableSection({ children }: Props) {
         {Children.map(
           children,
           (child) =>
-            (typeof child?.type === "string" ? child.type : child.type.name) ===
-              "ResizableRightSide" && child
+            (typeof child.type === "string" ? child.type : child.type.name) ===
+              ResizableRightSide.name && child
         )}
       </div>
     </section>
