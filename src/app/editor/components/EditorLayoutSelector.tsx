@@ -6,7 +6,6 @@ import {
   LayoutColumnsIcon,
 } from "@/app/components/shared/Icons";
 import { EditorLayout } from "@/types";
-import { useEditorLayout } from "../context/EditorLayoutContext";
 
 const LAYOUT_OPTIONS: Array<{
   layoutName: EditorLayout;
@@ -17,12 +16,15 @@ const LAYOUT_OPTIONS: Array<{
   { layoutName: "preview-only", icon: <EyeIcon /> },
 ];
 
-export function EditorLayoutSelector() {
-  const { setLayout } = useEditorLayout();
+type Props = {
+  // eslint-disable-next-line no-unused-vars
+  handleLayoutChange: (layout: EditorLayout) => void;
+};
+export function EditorLayoutSelector({ handleLayoutChange }: Props) {
   return (
     <nav className="flex items-center">
       {LAYOUT_OPTIONS.map(({ icon, layoutName }) => (
-        <button key={layoutName} onClick={() => setLayout(layoutName)}>
+        <button key={layoutName} onClick={() => handleLayoutChange(layoutName)}>
           {icon}
         </button>
       ))}
