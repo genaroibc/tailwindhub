@@ -1,69 +1,110 @@
 import { Button } from "@/app/components/shared/Button";
 import { CloseIcon } from "@/app/components/shared/Icons";
-import { useSupabase } from "@/hooks/useSupabase";
-import { useId, useRef, useState } from "react";
+import { Loader } from "@/app/components/shared/Loader/Loader";
+import { useEffect, useId, useRef, useState } from "react";
 import { TagsInput } from "../TagsInput/TagsInput";
 
 type Props = {
   // eslint-disable-next-line no-unused-vars
   onSubmit: (data: { title: string; tags: string[] }) => void;
+  error: string;
+  loading: boolean;
 };
 
-export function CodeEditorForm({ onSubmit }: Props) {
-  const { supabase } = useSupabase();
-  const [error, setError] = useState("");
+const modalBackdropID = "modal-backdrop";
+
+export function CodeEditorForm({ onSubmit, error, loading }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [componentTitle, setComponentTitle] = useState("");
   const componentTitleInputID = useId();
   const tagsRef = useRef<string[]>([]);
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
+  useEffect(() => {
+    if (!isOpen) return;
 
-    if (!session?.user) return setError("you must be logged in to publish");
+    const listener = (event: KeyboardEvent) => {
+      if (event.target instanceof HTMLInputElement) return;
 
-    onSubmit({ title: componentTitle, tags: tagsRef.current });
+      if (event.key === "Escape") {
+        event.stopPropagation();
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", listener);
+
+    return () => document.removeEventListener("keydown", listener);
+  }, [isOpen]);
+
+  const handleBackdropClick = (event: React.MouseEvent) => {
+    const clickedElementIsBackdrop = (event.target as HTMLDivElement).matches(
+      `#${modalBackdropID}`
+    );
+    console.log("click in backdrop");
+
+    setIsOpen(!clickedElementIsBackdrop);
   };
 
   return (
-    <form
-      className="flex items-center justify-center gap-4 bg-primary-color text-dimmed-black p-4 rounded-md"
-      onSubmit={handleSubmit}
-    >
-      {isOpen ? (
-        <>
-          <label className="text-base" htmlFor={componentTitleInputID}>
-            Title
-          </label>
-          <input
-            onChange={(event) => setComponentTitle(event.target.value)}
-            className="flex flex-col gap-2 py-2 px-4 rounded-md"
-            type="text"
-            name={componentTitleInputID}
-            id={componentTitleInputID}
-            placeholder="my awesome component"
-            required
-            minLength={5}
-            maxLength={40}
-          />
+    <>
+      {isOpen && (
+        <div
+          id={modalBackdropID}
+          onClick={handleBackdropClick}
+          className="absolute top-0 left-0 right-0 bottom-0 z-20 bg-black/60 backdrop-blur-sm shadow-2xl"
+        >
+          <form
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 bg-dimmed-black text-primary-color -translate-y-1/2 flex flex-col p-8 items-center gap-4 rounded-md z-40"
+            onSubmit={(event) => {
+              event.preventDefault();
+              onSubmit({ title: componentTitle, tags: tagsRef.current });
+            }}
+          >
+            <label className="text-base" htmlFor={componentTitleInputID}>
+              Title
+            </label>
+            <input
+              onChange={(event) => setComponentTitle(event.target.value)}
+              className="flex flex-col gap-2 py-2 px-4 rounded-md"
+              type="text"
+              autoFocus
+              name={componentTitleInputID}
+              id={componentTitleInputID}
+              placeholder="my awesome component"
+              required
+              minLength={5}
+              maxLength={40}
+            />
 
-          <TagsInput onChange={({ tags }) => (tagsRef.current = tags)} />
+            <TagsInput onChange={({ tags }) => (tagsRef.current = tags)} />
 
-          <Button variant="solid">Publish</Button>
-          <Button variant="outlined" onClick={() => setIsOpen(false)}>
-            <CloseIcon width="1rem" />
-          </Button>
+            <button
+              onClick={(event) => {
+                event.stopPropagation();
+                setIsOpen(false);
+              }}
+              className="absolute top-4 right-4 bg-transparent"
+            >
+              <CloseIcon width="1rem" fill={"var(--primary-color, white)"} />
+            </button>
 
-          {error && <p>{error}</p>}
-        </>
-      ) : (
-        <Button variant="solid" onClick={() => setIsOpen(true)}>
-          Publish
-        </Button>
+            {error && <p>{error}</p>}
+            {loading && <Loader />}
+
+            <Button type="submit" variant="solid">
+              Publish
+            </Button>
+          </form>
+        </div>
       )}
-    </form>
+
+      <Button
+        className="w-fit fixed bottom-4 right-4 z-10"
+        variant="solid"
+        onClick={() => setIsOpen(true)}
+      >
+        Publish
+      </Button>
+    </>
   );
 }

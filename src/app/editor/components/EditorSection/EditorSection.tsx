@@ -4,7 +4,6 @@ import { useSupabase } from "@/hooks/useSupabase";
 import { CodeEditor } from "@/app/editor/components/CodeEditor/CodeEditor";
 import { useRef, useState } from "react";
 import { uploadImageToCloudinary } from "@/services/upload-image-to-cloudinary";
-import { Loader } from "@/app/components/shared/Loader/Loader";
 import { CodeEditorForm } from "../CodeEditorForm/CodeEditorForm";
 import { getImageDataURL } from "@/utils/get-image-data-url";
 
@@ -74,18 +73,16 @@ export function EditorSection() {
 
   return (
     <section className="h-full w-full flex flex-col items-stretch justify-stretch relative">
+      <CodeEditorForm
+        onSubmit={({ title, tags }) => handleCreateComponent({ title, tags })}
+        error={error}
+        loading={loading}
+      />
+
       <CodeEditor
         codeEditorRef={codeEditorRef}
         codePreviewRef={codePreviewRef}
       />
-
-      <section className="flex flex-col items-center justify-center fixed bottom-4 right-4">
-        <CodeEditorForm
-          onSubmit={({ title, tags }) => handleCreateComponent({ title, tags })}
-        />
-        {error && <p>{error}</p>}
-        {loading && <Loader />}
-      </section>
     </section>
   );
 }
