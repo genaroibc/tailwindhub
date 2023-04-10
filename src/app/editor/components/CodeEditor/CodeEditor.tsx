@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
 import { DEFAULT_CODE_EDITOR_VALUE } from "@/constants";
 import { emmetHTML } from "emmet-monaco-es";
@@ -12,6 +12,19 @@ type Props = {
 
 export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
   const [code, setCode] = useState(DEFAULT_CODE_EDITOR_VALUE);
+  const [wordWrap, setWordWrap] = useState(true);
+
+  useEffect(() => {
+    const listenKeyboard = (e: KeyboardEvent) => {
+      if (e.altKey && e.key === "z") {
+        setWordWrap((currentWordWrap) => !currentWordWrap);
+      }
+    };
+
+    document.addEventListener("keydown", listenKeyboard);
+
+    return () => document.removeEventListener("keydown", listenKeyboard);
+  }, [setWordWrap]);
 
   return (
     <EditorLayout
@@ -37,6 +50,7 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
           loading={<Loader color="var(--primary-color, #fff)" />}
           options={{
             minimap: { enabled: false },
+            wordWrap,
           }}
         />
       }
