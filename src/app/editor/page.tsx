@@ -1,23 +1,29 @@
-import { type Metadata } from "next";
+"use client";
+
+// import { type Metadata } from "next";
 import { EditorSection } from "@/app/editor/components/EditorSection/EditorSection";
 import { TailwindScript } from "@/app/components/shared/TailwindScript";
+import { EditorLayoutContextProvider } from "./context/EditorLayoutContext";
+import { EditorLayoutSelector } from "./components/EditorLayoutSelector";
 
-export const metadata: Metadata = {
-  title: "Editor - TailwindHub",
-  description: "Create and publish your own Tailwind components",
-};
+// export const metadata: Metadata = {
+//   title: "Editor - TailwindHub",
+//   description: "Create and publish your own Tailwind components",
+// };
 
 function HomePage() {
   return (
-    <div className="grid grid-rows-[3rem,100vh] bg-dimmed-black text-primary-color w-screen h-screen max-w-screen">
-      <header className="flex gap-4 p-2 items-center justify-center">
-        <span className="font-bold text-lg">TailwindHub - Editor</span>
-      </header>
-      <main className="max-h-[calc(100vh-3rem)] h-full">
-        <TailwindScript />
-        <EditorSection />
-      </main>
-    </div>
+    <EditorLayoutContextProvider>
+      <div className="grid grid-rows-[3rem,100vh] bg-dimmed-black text-primary-color w-screen h-screen max-w-screen">
+        <header className="flex gap-4 p-2 items-center justify-center">
+          <EditorLayoutSelector />
+        </header>
+        <main className="max-h-[calc(100vh-3rem)] h-full">
+          <TailwindScript />
+          <EditorSection />
+        </main>
+      </div>
+    </EditorLayoutContextProvider>
   );
 }
 
