@@ -5,13 +5,9 @@
 
 import { useRef, Children, useEffect, useState } from "react";
 
-interface Props
-  extends React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLElement>,
-    HTMLElement
-  > {
+type Props = {
   children: React.ReactElement[];
-}
+};
 
 const RESIZABLE_SECTION_MIN_SIZE = 100;
 // const MIN_RESIZABLE_SECTION_WIDTH = 300;
