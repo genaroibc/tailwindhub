@@ -26,5 +26,6 @@ export type ComponentItem =
 
 export type EditorLayout =
   | "preview-and-editor-columns"
+  | "preview-and-editor-rows"
   | "editor-only"
   | "preview-only";

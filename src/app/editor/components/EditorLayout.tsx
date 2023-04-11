@@ -23,8 +23,13 @@ export function EditorLayout({ editor, preview }: Props) {
         handleLayoutChange={handleLayoutChange}
         selectedLayout={layout}
       />
-      {layout === "preview-and-editor-columns" && (
-        <ResizableSection>
+      {(layout === "preview-and-editor-columns" ||
+        layout === "preview-and-editor-rows") && (
+        <ResizableSection
+          desktopLayout={
+            layout === "preview-and-editor-columns" ? "columns" : "rows"
+          }
+        >
           <ResizableSection.LeftSide>{editor}</ResizableSection.LeftSide>
           <ResizableSection.RightSide>{preview}</ResizableSection.RightSide>
         </ResizableSection>

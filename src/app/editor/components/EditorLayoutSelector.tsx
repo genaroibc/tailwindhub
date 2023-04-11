@@ -2,6 +2,7 @@ import {
   CodeIcon,
   EyeIcon,
   LayoutColumnsIcon,
+  LayoutRowsIcon,
 } from "@/app/components/shared/Icons";
 import { EditorLayout } from "@/types";
 
@@ -12,6 +13,10 @@ const LAYOUT_OPTIONS: Array<{
   {
     layoutName: "preview-and-editor-columns",
     icon: <LayoutColumnsIcon width="1.5rem" height="1.5rem" />,
+  },
+  {
+    layoutName: "preview-and-editor-rows",
+    icon: <LayoutRowsIcon width="1.5rem" height="1.5rem" />,
   },
   {
     layoutName: "editor-only",

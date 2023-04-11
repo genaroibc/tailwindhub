@@ -7,15 +7,19 @@ import { useRef, Children, useEffect, useState } from "react";
 
 type Props = {
   children: React.ReactElement[];
+  desktopLayout?: "rows" | "columns";
 };
 
 const RESIZABLE_SECTION_MIN_SIZE = 100;
 // const MIN_RESIZABLE_SECTION_WIDTH = 300;
 // const MIN_RESIZABLE_SECTION_HEIGHT = 300;
 
-export function ResizableSection({ children }: Props) {
-  const [isMobileScreen, setIsMobileScreen] = useState(
-    window.matchMedia("(max-width:1000px)").matches
+export function ResizableSection({
+  children,
+  desktopLayout = "columns",
+}: Props) {
+  const [layout, setLayout] = useState(
+    window.matchMedia("(max-width:1000px)").matches ? "rows" : "columns"
   );
   const resizerX = useRef<HTMLDivElement>(null);
   const resizerY = useRef<HTMLDivElement>(null);
@@ -27,16 +31,18 @@ export function ResizableSection({ children }: Props) {
   const clientYRef = useRef<number | null>(0);
 
   useEffect(() => {
-    const handleResize = () => {
+    const updateLayoutOnDesktop = () => {
       const isMobileScreen = window.matchMedia("(max-width:1000px)").matches;
 
-      setIsMobileScreen(isMobileScreen);
+      setLayout(isMobileScreen ? "rows" : desktopLayout);
     };
 
-    window.addEventListener("resize", handleResize);
+    updateLayoutOnDesktop();
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, [setIsMobileScreen]);
+    window.addEventListener("resize", updateLayoutOnDesktop);
+
+    return () => window.removeEventListener("resize", updateLayoutOnDesktop);
+  }, [setLayout, desktopLayout]);
 
   // for mobile
   function handleTouchStart(e: React.TouchEvent) {
@@ -221,7 +227,7 @@ export function ResizableSection({ children }: Props) {
 
   return (
     <section className="h-full flex overflow-hidden">
-      {isMobileScreen ? (
+      {layout === "rows" ? (
         <div className="flex flex-col flex-1 h-full">
           <div ref={aboveSideRef} className="h-full overflow-hidden">
             {Children.map(
