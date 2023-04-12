@@ -224,9 +224,9 @@ export function ResizableSection({
   }
 
   return (
-    <section className="h-full flex overflow-hidden">
+    <section className="h-full flex overflow-hidden max-w-[100vw]">
       {layout === "rows" ? (
-        <div className="flex flex-col flex-1 h-full">
+        <div className="flex max-w-[100vw] flex-col flex-1 h-full">
           <div ref={aboveSideRef} className="h-full overflow-hidden">
             {Children.map(
               children,
