@@ -37,10 +37,9 @@ export function CodeEditorForm({ onSubmit, error, loading }: Props) {
   }, [isOpen]);
 
   const handleBackdropClick = (event: React.MouseEvent) => {
-    const clickedElementIsBackdrop = (event.target as HTMLDivElement).matches(
-      `#${modalBackdropID}`
-    );
-    console.log("click in backdrop");
+    const clickedElementIsBackdrop = (
+      event.target as HTMLDivElement
+    )?.matches?.(`#${modalBackdropID}`);
 
     setIsOpen(!clickedElementIsBackdrop);
   };

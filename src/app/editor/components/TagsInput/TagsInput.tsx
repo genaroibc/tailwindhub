@@ -78,10 +78,7 @@ export function TagsInput({ onChange }: Props) {
           placeholder="Add tags"
         />
 
-        <ul
-          onClick={() => console.log("propagation")}
-          className="absolute max-h-[80vh] overflow-auto bottom-full left-0 right-0 bg-primary-color text-dimmed-black rounded-md"
-        >
+        <ul className="absolute max-h-[80vh] overflow-auto bottom-full left-0 right-0 bg-primary-color text-dimmed-black rounded-md">
           {suggestions.map((tag) => (
             <li
               key={tag}
