@@ -221,8 +221,11 @@ export function ResizableSection({
             ref={resizerY}
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
-            className="relative flex-col w-full h-6 justify-center items-center bg-black p-1 z-[2] cursor-row-resize after:block before:block before:content-[''] before:w-4 before:h-[2px] before:mx-auto before:my-1 before:bg-gray-200 after:content-[''] after:w-4 after:h-[2px] after:mx-auto after:my-1 after:bg-gray-200"
-          />
+            className="flex flex-col gap-1 h-[1.8rem] w-full justify-center items-center bg-black p-0 z-[2] cursor-row-resize"
+          >
+            <span className="w-6 h-[2px] bg-white" />
+            <span className="w-6 h-[2px] bg-white" />
+          </div>
 
           <div ref={belowSideRef} className="h-full overflow-hidden">
             {Children.map(
@@ -250,8 +253,11 @@ export function ResizableSection({
             ref={resizerX}
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
-            className="relative flex w-6 justify-center items-center bg-black p-1 z-[2] cursor-col-resize before:content-[''] before:w-[2px] before:h-4 before:m-[2px] before:bg-gray-200 after:content-[''] after:w-[2px] after:h-4 after:m-[2px] after:bg-gray-200"
-          />
+            className="flex flex-grow-0 flex-row gap-1 w-[1.8rem] h-full justify-center items-center bg-black p-0 z-[2] cursor-col-resize"
+          >
+            <span className="w-[2px] h-6 bg-white" />
+            <span className="w-[2px] h-6 bg-white" />
+          </div>
 
           <div ref={rightSideRef} className="w-full max-w-full overflow-hidden">
             {Children.map(
