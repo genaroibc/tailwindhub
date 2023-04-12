@@ -18,9 +18,7 @@ export function ResizableSection({
   children,
   desktopLayout = "columns",
 }: Props) {
-  const [layout, setLayout] = useState(
-    window.matchMedia("(max-width:1000px)").matches ? "rows" : "columns"
-  );
+  const [layout, setLayout] = useState(desktopLayout);
   const resizerX = useRef<HTMLDivElement>(null);
   const resizerY = useRef<HTMLDivElement>(null);
   const leftSideRef = useRef<HTMLDivElement>(null);
