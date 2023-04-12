@@ -51,12 +51,7 @@ export function ResizableSection({
   function handleTouchMove(e: TouchEvent) {
     e.preventDefault();
 
-    if (
-      e.target === resizerX.current &&
-      resizerX.current &&
-      leftSideRef.current &&
-      rightSideRef.current
-    ) {
+    if (resizerX.current && leftSideRef.current && rightSideRef.current) {
       const clientX = e.touches[0].clientX;
       const deltaX = clientX - (clientXRef.current || clientX);
       clientXRef.current = clientX;
@@ -85,12 +80,7 @@ export function ResizableSection({
         leftSideRef.current.style.flex = "1 0";
       }
     }
-    if (
-      e.target === resizerY.current &&
-      resizerY.current &&
-      aboveSideRef.current &&
-      belowSideRef.current
-    ) {
+    if (resizerY.current && aboveSideRef.current && belowSideRef.current) {
       const clientY = e.touches[0].clientY;
       const deltaY = clientY - (clientYRef.current || clientY);
       clientYRef.current = clientY;
@@ -140,12 +130,7 @@ export function ResizableSection({
   function handleMouseMove(e: MouseEvent) {
     e.preventDefault();
 
-    if (
-      e.target === resizerX.current &&
-      resizerX.current &&
-      leftSideRef.current &&
-      rightSideRef.current
-    ) {
+    if (resizerX.current && leftSideRef.current && rightSideRef.current) {
       const clientX = e.clientX;
       const deltaX = clientX - (clientXRef.current || clientX);
       clientXRef.current = clientX;
@@ -177,12 +162,7 @@ export function ResizableSection({
         leftSideRef.current.style.flex = "1 0";
       }
     }
-    if (
-      e.target === resizerY.current &&
-      resizerY.current &&
-      aboveSideRef.current &&
-      belowSideRef.current
-    ) {
+    if (resizerY.current && aboveSideRef.current && belowSideRef.current) {
       const clientY = e.clientY;
       const deltaY = clientY - (clientYRef.current || clientY);
       clientYRef.current = clientY;
