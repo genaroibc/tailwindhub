@@ -11,6 +11,7 @@ type Props = {
 };
 
 const RESIZABLE_SECTION_MIN_SIZE = 100;
+const MOBILE_MEDIA_QUERY = "(max-width: 1024px)";
 // const MIN_RESIZABLE_SECTION_WIDTH = 300;
 // const MIN_RESIZABLE_SECTION_HEIGHT = 300;
 
@@ -30,7 +31,7 @@ export function ResizableSection({
 
   useEffect(() => {
     const updateLayoutOnDesktop = () => {
-      const isMobileScreen = window.matchMedia("(max-width:1000px)").matches;
+      const isMobileScreen = window.matchMedia(MOBILE_MEDIA_QUERY).matches;
 
       setLayout(isMobileScreen ? "rows" : desktopLayout);
     };
