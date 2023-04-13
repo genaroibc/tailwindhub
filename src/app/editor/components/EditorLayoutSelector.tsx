@@ -43,8 +43,16 @@ export function EditorLayoutSelector({
       {LAYOUT_OPTIONS.map(({ icon, layoutName }) => (
         <button
           className={`${
-            selectedLayout === layoutName ? "text-blue-400" : ""
-          } bg-slate-950 p-2 hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 rounded-md`}
+            selectedLayout === layoutName
+              ? "text-blue-400 bg-blue-950"
+              : "bg-transparent"
+          } p-2 hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 rounded-md
+              ${
+                layoutName === "preview-and-editor-columns"
+                  ? "hidden lg:block"
+                  : ""
+              }
+            `}
           key={layoutName}
           onClick={() => handleLayoutChange(layoutName)}
         >

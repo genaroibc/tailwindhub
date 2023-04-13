@@ -1,10 +1,10 @@
-export function TailwindHubLogo() {
+export function TailwindHubLogo({ width = "2rem", height = "2rem" }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      width="50"
-      height="50"
+      width={width}
+      height={height}
       xmlSpace="preserve"
       version="1.1"
       viewBox="0 0 500 500"
