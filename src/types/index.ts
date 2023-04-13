@@ -29,3 +29,8 @@ export type EditorLayout =
   | "preview-and-editor-rows"
   | "editor-only"
   | "preview-only";
+
+export type SearchData = {
+  query: string;
+  selectedTag: string;
+};
