@@ -52,6 +52,10 @@ button {
   background-color: var(--dark-brown);
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 textarea:focus,
 input:focus,
 button:focus {
@@ -60,11 +64,8 @@ button:focus {
 
 input {
   max-width: 100%;
-  border: none;
 
   padding: 0.5rem 1rem;
-  background-color: #fff !important;
-  color: var(--dimmed-black) !important;
 }
 
 input:-webkit-autofill,
