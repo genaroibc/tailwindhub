@@ -57,7 +57,7 @@ export function TagsInput({ onChange }: Props) {
   };
 
   return (
-    <section className="flex w-full">
+    <section className="w-full flex flex-col gap-4 items-center justify-center">
       <div className="relative w-full">
         <input
           onFocus={(event) =>
@@ -94,7 +94,7 @@ export function TagsInput({ onChange }: Props) {
         {selectedTags.map((tag) => (
           <li key={tag}>
             <button
-              className="bg-dimmed-black text-primary-color rounded-full py-2 px-4 w-fit"
+              className="text-dimmed-black bg-white/80 text-xs rounded-full py-1.5 px-3 w-fit"
               onClick={() => removeTag(tag)}
             >
               {tag}

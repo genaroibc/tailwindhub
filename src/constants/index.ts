@@ -51,3 +51,7 @@ export const COMPONENT_TAGS = [
   "datepicker",
   "dropdown",
 ];
+
+export const SUPABASE_ERRORS: Record<string, string> = {
+  "23505": "Component already exists, choose a different title",
+};
