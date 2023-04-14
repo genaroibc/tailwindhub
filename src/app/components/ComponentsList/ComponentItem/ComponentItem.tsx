@@ -31,7 +31,7 @@ export function ComponentItem({
               {tags.map((tag) => (
                 <li
                   key={tag}
-                  className="bg-primary-color py-1 px-2 rounded-full"
+                  className="bg-primary-color text-dimmed-black py-1 px-2 rounded-full"
                 >
                   {tag}
                 </li>
@@ -48,7 +48,7 @@ export function ComponentItem({
 
       <footer className="flex flex-row gap-2 py-4 px-0 bg-transparent text-primary-color items-center">
         <img
-          className="rounded-full w-full max-w-[2rem] max-h-[2rem] h-full aspect-square bg-pink-200 font-normal"
+          className="rounded-full w-full max-w-[2.5rem] max-h-[2.5rem] h-full aspect-square bg-pink-200 font-normal"
           src={author_avatar_url}
           alt={`${author_username} avatar`}
           width={30}

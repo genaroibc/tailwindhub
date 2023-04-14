@@ -36,7 +36,7 @@ export function Search({ onSearch }: Props) {
   };
 
   return (
-    <form className="flex flex-wrap items-center justify-center bg-white p-2 max-w-full my-0 mx-auto rounded-lg">
+    <form className="flex flex-wrap items-center justify-center bg-white text-black p-2 max-w-full my-0 mx-auto rounded-lg">
       <input
         onChange={handleQueryChange}
         type="text"
