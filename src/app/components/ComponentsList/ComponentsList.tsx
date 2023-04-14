@@ -7,6 +7,7 @@ import { useSupabase } from "@/hooks/useSupabase";
 import { useCallback, useState } from "react";
 import { SearchData } from "@/types";
 import { ComponentItemSkeleton } from "./ComponentItem/ComponentItemSkeleton";
+import Link from "next/link";
 
 type Props = {
   defaultComponents: TComponentItem[];
@@ -64,6 +65,20 @@ export function ComponentsList({ defaultComponents }: Props) {
     <section className="flex flex-col gap-8 py-20 px-2 md:px-4 bg-dimmed-black text-primary-color">
       <Search onSearch={handleSearch} />
       {error && <p className="text-red-500">{error}</p>}
+
+      {!loading && !error && !components.length && (
+        <div className="flex flex-col gap-4 mx-auto text-center">
+          <p>We didn&apos;t find any component that matches your search</p>
+          <p>Why don&apos;t you create it?</p>
+
+          <Link
+            href="/editor"
+            className="bg-primary-color text-dimmed-black max-w-fit mx-auto font-semibold py-2 px-4 rounded-md"
+          >
+            Go to editor
+          </Link>
+        </div>
+      )}
 
       <section className="grid grid-cols-[repeat(auto-fit,minmax(min(150px,100%),1fr))] md:grid-cols-[repeat(auto-fill,minmax(min(250px,100%),1fr))] gap-8 w-full max-w-page-max-width my-0 mx-auto">
         {loading
