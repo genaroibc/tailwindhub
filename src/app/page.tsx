@@ -6,6 +6,7 @@ import { cookies, headers } from "next/headers";
 import { Database } from "@/types/db";
 import { ComponentItem } from "@/types";
 import { Header } from "@/app/components/Header/Header";
+import { PageFooter } from "./components/PageFooter";
 
 export const metadata: Metadata = {
   title: "TailwindHub - UI components",
@@ -32,6 +33,8 @@ export default async function Home() {
       {Array.isArray(data) && data && (
         <ComponentsList defaultComponents={data as ComponentItem[]} />
       )}
+
+      <PageFooter />
     </div>
   );
 }
