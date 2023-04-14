@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Editor from "@monaco-editor/react";
+import Editor, { useMonaco } from "@monaco-editor/react";
 import { DEFAULT_CODE_EDITOR_VALUE } from "@/constants";
 import { emmetHTML } from "emmet-monaco-es";
 import { Loader } from "@/app/components/shared/Loader/Loader";
@@ -13,6 +13,7 @@ type Props = {
 export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
   const [code, setCode] = useState(DEFAULT_CODE_EDITOR_VALUE);
   const [wordWrap, setWordWrap] = useState(true);
+  const monaco = useMonaco();
 
   useEffect(() => {
     const listenKeyboard = (e: KeyboardEvent) => {
@@ -26,6 +27,17 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
     return () => document.removeEventListener("keydown", listenKeyboard);
   }, [setWordWrap]);
 
+  useEffect(() => {
+    if (monaco) {
+      import("@/themes/Blackboard.json")
+        .then((theme) => {
+          // @ts-ignore
+          monaco.editor.defineTheme("Blackboard", theme.default);
+        })
+        .then(() => monaco.editor.setTheme("Blackboard"));
+    }
+  }, [monaco]);
+
   return (
     <EditorLayout
       preview={
@@ -38,6 +50,7 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
       editor={
         <Editor
           onMount={(editor, monaco) => {
+            // @ts-ignore
             codeEditorRef.current = editor;
             emmetHTML(monaco);
           }}
@@ -50,7 +63,8 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
           loading={<Loader color="var(--primary-color, #fff)" />}
           options={{
             minimap: { enabled: false },
-            wordWrap,
+            // automaticLayout: true,
+            wordWrap: wordWrap ? "on" : "off",
           }}
         />
       }
