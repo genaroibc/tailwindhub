@@ -28,10 +28,6 @@ export function CodeEditorForm({
   const tagsRef = useRef<string[]>([]);
 
   useEffect(() => {
-    if (!isOpen) return;
-
-    onUserOpenedForm();
-
     const listener = (event: KeyboardEvent) => {
       if (event.target instanceof HTMLInputElement) return;
 
@@ -44,7 +40,7 @@ export function CodeEditorForm({
     document.addEventListener("keydown", listener);
 
     return () => document.removeEventListener("keydown", listener);
-  }, [isOpen, onUserOpenedForm]);
+  }, []);
 
   const handleBackdropClick = (event: React.MouseEvent) => {
     const clickedElementIsBackdrop = (
@@ -152,7 +148,10 @@ export function CodeEditorForm({
       <Button
         className="w-fit fixed bottom-4 right-4 z-10"
         variant="solid"
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsOpen(true);
+          onUserOpenedForm();
+        }}
       >
         Publish
       </Button>
