@@ -10,7 +10,7 @@ export const SEARCH_FILTERS: Array<{ value: SearchFilter; title: string }> = [
   { value: "image", title: "Images" },
 ];
 
-export const DEFAULT_CODE_EDITOR_VALUE = `<article class="auto px-8 py-12 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-cyan-500 to-blue-500 rounded-md text-white shadow-2xl">
+export const DEFAULT_CODE_EDITOR_VALUE = `<article class="auto px-8 py-12 bg-gradient-to-b from-cyan-500 to-blue-500 rounded-md text-white shadow-2xl">
     <h1 class="text-2xl font-bold mb-4">Welcome to <span class="text-2xl">TailwindHub</span></h1>
     <p class="text-xl font-medium mb-8">The best place to share Tailwind components</p>
 
