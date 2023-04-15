@@ -1,31 +1,77 @@
 import { Button } from "@/app/components/shared/Button";
 import { CloseIcon } from "@/app/components/shared/Icons";
 import { Loader } from "@/app/components/shared/Loader/Loader";
+import { createComponent } from "@/services/create-component";
+import { getImageDataURL } from "@/utils/get-image-data-url";
 import { useEffect, useId, useRef, useState } from "react";
 import { TagsInput } from "../TagsInput/TagsInput";
 
 type Props = {
-  // eslint-disable-next-line no-unused-vars
-  onSubmit: (data: { title: string; tags: string[] }) => void;
-  error: string | null;
-  loading: boolean;
-  onUserOpenedForm: () => void;
-  previewImageURL: string | null;
+  codeEditorRef: React.RefObject<HTMLDivElement> | null;
+  codePreviewRef: React.RefObject<HTMLDivElement> | null;
 };
 
 const modalBackdropID = "modal-backdrop";
 
-export function CodeEditorForm({
-  onSubmit,
-  error,
-  loading,
-  onUserOpenedForm,
-  previewImageURL,
-}: Props) {
+export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [componentTitle, setComponentTitle] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [previewImageURL, setPreviewImageURL] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const componentTitleInputID = useId();
   const tagsRef = useRef<string[]>([]);
+
+  const handleOpenForm = async () => {
+    setIsOpen(true);
+
+    const codePreview = codePreviewRef?.current;
+
+    if (!codePreview) {
+      return setError(
+        "There was an error generating the preview of your component"
+      );
+    }
+
+    const imageDataURLResponse = await getImageDataURL(codePreview);
+
+    if (!imageDataURLResponse.ok) return setError(imageDataURLResponse.error);
+
+    const { imageDataURL } = imageDataURLResponse.data;
+
+    setPreviewImageURL(imageDataURL);
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    // @ts-ignore
+    const code = codeEditorRef?.current?.getValue();
+
+    if (!previewImageURL) {
+      return setError(
+        "There was an error generating the preview of your component"
+      );
+    }
+
+    if (!code) {
+      return setError("There was an error retrieving the component code");
+    }
+
+    setLoading(true);
+    const response = await createComponent({
+      title: componentTitle,
+      tags: tagsRef.current,
+      html_code: code,
+      preview_img: previewImageURL,
+    });
+
+    if (!response.ok) {
+      return setError(response.error);
+    }
+
+    setLoading(false);
+  };
 
   useEffect(() => {
     const listener = (event: KeyboardEvent) => {
@@ -93,10 +139,7 @@ export function CodeEditorForm({
             </div>
             <form
               className="flex flex-col items-center gap-4 py-8 px-4"
-              onSubmit={(event) => {
-                event.preventDefault();
-                onSubmit({ title: componentTitle, tags: tagsRef.current });
-              }}
+              onSubmit={handleSubmit}
             >
               <label className="text-base" htmlFor={componentTitleInputID}>
                 Title
@@ -148,10 +191,7 @@ export function CodeEditorForm({
       <Button
         className="w-fit fixed bottom-4 right-4 z-10"
         variant="solid"
-        onClick={() => {
-          setIsOpen(true);
-          onUserOpenedForm();
-        }}
+        onClick={handleOpenForm}
       >
         Publish
       </Button>
