@@ -94,25 +94,28 @@ export function ImageCropper({
   );
 
   return (
-    <section className="flex items-center justify-between gap-2 bg-slate-900 text-white max-h-screen max-w-xl p-4">
+    <section className="grid place-content-center grid-cols-2 gap-2 bg-slate-900 text-white max-h-screen max-w-xl mx-auto p-4">
       {imageToCrop && (
-        <ReactCrop
-          crop={crop}
-          onChange={(_, percentCrop) => setCrop(percentCrop)}
-          onComplete={(c) => setCompletedCrop(c)}
-          aspect={aspect}
-          className="w-full max-w-xs h-auto"
-        >
-          <img
-            ref={imgRef}
-            alt="Crop me"
-            src={imageToCrop}
-            onLoad={onImageLoad}
-          />
-        </ReactCrop>
+        <div className="flex-1">
+          <ReactCrop
+            crop={crop}
+            onChange={(_, percentCrop) => setCrop(percentCrop)}
+            onComplete={(c) => setCompletedCrop(c)}
+            aspect={aspect}
+            className="w-full max-w-xs h-auto"
+          >
+            <img
+              ref={imgRef}
+              alt="Crop me"
+              src={imageToCrop}
+              onLoad={onImageLoad}
+              className="ẁ-full h-full"
+            />
+          </ReactCrop>
+        </div>
       )}
       {completedCrop && (
-        <section className="flex flex-col gap-2 items-center justify-between h-full max-w-full relative">
+        <section className="flex flex-col gap-2 items-center justify-between flex-grow-0 relative">
           <canvas
             ref={previewCanvasRef}
             className="object-contain mx-auto my-0 w-full"

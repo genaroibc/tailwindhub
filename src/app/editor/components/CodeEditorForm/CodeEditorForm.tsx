@@ -224,6 +224,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
               <TagsInput onChange={({ tags }) => (tagsRef.current = tags)} />
 
               <button
+                type="button"
                 onClick={(event) => {
                   event.stopPropagation();
                   handleCloseForm();
@@ -234,7 +235,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
               </button>
 
               {error && (
-                <p className="px-4 py-2 rounded border-red-700 bg-red-200 text-red-700">
+                <p className="text-sm p-2 rounded border-2 border-red-300 bg-red-900 text-red-50">
                   {error}
                 </p>
               )}
