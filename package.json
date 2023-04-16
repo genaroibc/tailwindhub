@@ -18,7 +18,8 @@
     "html2canvas": "1.4.1",
     "next": "13.3.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-image-crop": "10.0.9"
   },
   "devDependencies": {
     "@types/node": "18.15.1",
