@@ -87,9 +87,10 @@ export function ComponentItemNavBar({
   };
 
   return (
-    <nav className="flex flex-wrap justify-end gap-2 self-end align-center text-dimmed-black">
+    <nav className="flex justify-end gap-2 self-end align-center text-dimmed-black">
       <button
         className="flex place-items-center gap-1 p-2 md:p-3 bg-secondary-color hover:bg-tertiary-color"
+        title="Copy code"
         onClick={handleCopyCode}
       >
         {copied ? (
@@ -100,6 +101,7 @@ export function ComponentItemNavBar({
       </button>
       <button
         onClick={handleLike}
+        title="Like this component"
         className="flex place-items-center gap-1 p-2 md:p-3 bg-secondary-color hover:bg-tertiary-color"
       >
         {userLiked ? (
