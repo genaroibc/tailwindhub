@@ -4,6 +4,7 @@ import { Loader } from "@/app/components/shared/Loader/Loader";
 import { createComponent } from "@/services/create-component";
 import { getImageDataURL } from "@/utils/get-image-data-url";
 import { useEffect, useId, useRef, useState } from "react";
+import { ImageCropper } from "../ImageCropper";
 import { TagsInput } from "../TagsInput/TagsInput";
 
 type Props = {
@@ -17,14 +18,14 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [componentTitle, setComponentTitle] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isGeneratingCodePreview, setIsGeneratingCodePreview] = useState(false);
   const [previewImageURL, setPreviewImageURL] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const componentTitleInputID = useId();
   const tagsRef = useRef<string[]>([]);
+  const [imageToCrop, setImageToCrop] = useState<string | null>(null);
 
-  const handleOpenForm = async () => {
-    setIsOpen(true);
-
+  const generateCodePreview = async () => {
     const codePreview = codePreviewRef?.current;
 
     if (!codePreview) {
@@ -33,13 +34,20 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
       );
     }
 
+    setIsGeneratingCodePreview(true);
     const imageDataURLResponse = await getImageDataURL(codePreview);
+    setIsGeneratingCodePreview(false);
 
     if (!imageDataURLResponse.ok) return setError(imageDataURLResponse.error);
 
     const { imageDataURL } = imageDataURLResponse.data;
 
     setPreviewImageURL(imageDataURL);
+  };
+
+  const handleOpenForm = async () => {
+    setIsOpen(true);
+    generateCodePreview();
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -65,12 +73,11 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
       html_code: code,
       preview_img: previewImageURL,
     });
+    setLoading(false);
 
     if (!response.ok) {
       return setError(response.error);
     }
-
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -79,7 +86,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
 
       if (event.key === "Escape") {
         event.stopPropagation();
-        setIsOpen(false);
+        handleCloseForm();
       }
     };
 
@@ -93,7 +100,46 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
       event.target as HTMLDivElement
     )?.matches?.(`#${modalBackdropID}`);
 
-    setIsOpen(!clickedElementIsBackdrop);
+    if (clickedElementIsBackdrop) {
+      handleCloseForm();
+    }
+  };
+
+  const handleEditPreviewImage = async () => {
+    const clonedCodePreview = codePreviewRef?.current?.cloneNode(true);
+
+    if (!clonedCodePreview || !(clonedCodePreview instanceof HTMLElement)) {
+      return setError("There was an error cloning the code preview");
+    }
+
+    clonedCodePreview.style.position = "absolute";
+    clonedCodePreview.style.zIndex = "500";
+    clonedCodePreview.style.top = "2rem";
+    clonedCodePreview.style.left = "2rem";
+    clonedCodePreview.style.right = "2rem";
+    clonedCodePreview.style.bottom = "2rem";
+    clonedCodePreview.style.width = "100%";
+    clonedCodePreview.style.height = "100%";
+
+    document.body.appendChild(clonedCodePreview);
+
+    const previewImg = await getImageDataURL(clonedCodePreview);
+
+    if (!previewImg.ok) return setError(previewImg.error);
+
+    setImageToCrop(previewImg.data.imageDataURL);
+    document.body.removeChild(clonedCodePreview);
+  };
+
+  const handleCropComplete = (croppedImageURL: string) => {
+    setImageToCrop(null);
+    setPreviewImageURL(croppedImageURL);
+  };
+
+  const handleCloseForm = () => {
+    setIsOpen(false);
+    setImageToCrop(null);
+    setError(null);
   };
 
   return (
@@ -104,14 +150,33 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
           onClick={handleBackdropClick}
           className="absolute top-0 left-0 right-0 bottom-0 z-20 bg-black/60 backdrop-blur-sm shadow-2xl grid place-content-center"
         >
+          {imageToCrop && (
+            <ImageCropper
+              onCropComplete={handleCropComplete}
+              imageToCrop={imageToCrop}
+            />
+          )}
+
           <section className="relative max-w-[100vw] bg-dimmed-black text-primary-color z-40 flex gap-4 rounded-md overflow-hidden">
             <div className="flex items-center justify-center w-64 aspect-square">
-              {previewImageURL ? (
-                <img
-                  src={previewImageURL}
-                  alt="Your component preview"
-                  className="aspect-square object-cover h-full"
-                />
+              {isGeneratingCodePreview ? (
+                <Loader />
+              ) : previewImageURL ? (
+                <div className="group relative">
+                  <img
+                    src={previewImageURL}
+                    alt="Your component preview"
+                    className="aspect-square object-cover h-full"
+                  />
+
+                  <Button
+                    onClick={handleEditPreviewImage}
+                    variant="solid"
+                    className="absolute bottom-2 right-2"
+                  >
+                    Edit
+                  </Button>
+                </div>
               ) : (
                 <div className="flex flex-col gap-2 justify-center items-center py-8 px-4 text-center">
                   {/* <svg
@@ -162,7 +227,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
               <button
                 onClick={(event) => {
                   event.stopPropagation();
-                  setIsOpen(false);
+                  handleCloseForm();
                 }}
                 className="absolute top-0 right-0 bg-transparent p-4"
               >
