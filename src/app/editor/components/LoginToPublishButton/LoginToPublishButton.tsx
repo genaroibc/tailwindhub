@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "@/app/components/shared/Button";
-import { GitHubIcon } from "@/app/components/shared/Icons";
 import { useSupabase } from "@/hooks/useSupabase";
+import { IconBrandGithub } from "@tabler/icons-react";
 
 export function LoginToPublishButton() {
   const { supabase } = useSupabase();
@@ -19,7 +19,7 @@ export function LoginToPublishButton() {
         })
       }
     >
-      <GitHubIcon width={30} height={30} />
+      <IconBrandGithub width={30} height={30} />
       Login to publish your component
     </Button>
   );

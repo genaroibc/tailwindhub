@@ -1,8 +1,8 @@
 import { Button } from "@/app/components/shared/Button";
-import { CloseIcon } from "@/app/components/shared/Icons";
 import { Loader } from "@/app/components/shared/Loader/Loader";
 import { createComponent } from "@/services/create-component";
 import { getImageDataURL } from "@/utils/get-image-data-url";
+import { IconError404, IconX } from "@tabler/icons-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { ImageCropper } from "../ImageCropper";
 import { TagsInput } from "../TagsInput/TagsInput";
@@ -180,20 +180,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
               ) : (
                 <div className="flex flex-col gap-2 justify-center items-center py-8 px-4 text-center">
                   <div className="max-w-[10rem]">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
-                      />
-                    </svg>
+                    <IconError404 />
                   </div>
                   <span className="text-sm text-gray-400">
                     There was an error generating the preview of your component
@@ -231,7 +218,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
                 }}
                 className="absolute top-0 right-0 bg-transparent p-4"
               >
-                <CloseIcon width="1rem" fill={"var(--primary-color, white)"} />
+                <IconX size="1rem" />
               </button>
 
               {error && (
@@ -245,7 +232,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
                 className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 disabled:brightness-75"
               >
                 <span className="relative px-6 py-3 transition-all ease-in duration-75 bg-gray-900 rounded-md group-hover:bg-opacity-0 text-white">
-                  {loading ? <Loader color="#fff" /> : "Publish"}
+                  {loading ? <Loader color="#fff" /> : <span>Publish</span>}
                 </span>
               </button>
             </form>

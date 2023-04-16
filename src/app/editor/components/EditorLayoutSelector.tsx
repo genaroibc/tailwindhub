@@ -1,10 +1,11 @@
-import {
-  CodeIcon,
-  EyeIcon,
-  LayoutColumnsIcon,
-  LayoutRowsIcon,
-} from "@/app/components/shared/Icons";
 import { EditorLayout } from "@/types";
+import {
+  IconCode,
+  IconEye,
+  IconLayoutColumns,
+  IconLayoutRows,
+  IconLogout,
+} from "@tabler/icons-react";
 
 const LAYOUT_OPTIONS: Array<{
   layoutName: EditorLayout;
@@ -12,19 +13,19 @@ const LAYOUT_OPTIONS: Array<{
 }> = [
   {
     layoutName: "preview-and-editor-columns",
-    icon: <LayoutColumnsIcon width="1.5rem" height="1.5rem" />,
+    icon: <IconLayoutColumns width="1.5rem" height="1.5rem" />,
   },
   {
     layoutName: "preview-and-editor-rows",
-    icon: <LayoutRowsIcon width="1.5rem" height="1.5rem" />,
+    icon: <IconLayoutRows width="1.5rem" height="1.5rem" />,
   },
   {
     layoutName: "editor-only",
-    icon: <CodeIcon width="1.5rem" height="1.5rem" />,
+    icon: <IconCode size="1.5rem" />,
   },
   {
     layoutName: "preview-only",
-    icon: <EyeIcon width="1.5rem" height="1.5rem" />,
+    icon: <IconEye size="1.5rem" />,
   },
 ];
 
@@ -59,6 +60,7 @@ export function EditorLayoutSelector({
           {icon}
         </button>
       ))}
+      <IconLogout />
     </nav>
   );
 }

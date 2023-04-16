@@ -1,13 +1,8 @@
 "use client";
 
-import {
-  CopyIcon,
-  DoneIcon,
-  HeartOutlinedIcon,
-  HeartSolidIcon,
-} from "@/app/components/shared/Icons";
 import { useSupabase } from "@/hooks/useSupabase";
 import { ComponentItem } from "@/types";
+import { IconCheck, IconCopy, IconHeart } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -93,11 +88,7 @@ export function ComponentItemNavBar({
         title="Copy code"
         onClick={handleCopyCode}
       >
-        {copied ? (
-          <DoneIcon width={20} height={20} />
-        ) : (
-          <CopyIcon width={20} height={20} />
-        )}
+        {copied ? <IconCheck size="20" /> : <IconCopy size="20" />}
       </button>
       <button
         onClick={handleLike}
@@ -105,9 +96,9 @@ export function ComponentItemNavBar({
         className="flex place-items-center gap-1 p-2 md:p-3 bg-secondary-color hover:bg-tertiary-color"
       >
         {userLiked ? (
-          <HeartSolidIcon fill="#e00" width={20} height={20} />
+          <IconHeart fill="red" size="20" />
         ) : (
-          <HeartOutlinedIcon width={20} height={20} />
+          <IconHeart size="20" />
         )}
         {likes.length}
       </button>

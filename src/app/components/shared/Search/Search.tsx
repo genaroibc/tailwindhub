@@ -1,7 +1,7 @@
 import { SEARCH_FILTERS } from "@/constants";
-import { SearchIcon } from "../Icons";
 import { useEffect, useState } from "react";
 import { SearchData } from "@/types";
+import { IconSearch } from "@tabler/icons-react";
 
 type Props = {
   // eslint-disable-next-line no-unused-vars
@@ -57,7 +57,7 @@ export function Search({ onSearch }: Props) {
           className="py-2 px-4 text-base min-w-0 flex-grow-0"
         />
         <button className="p-2 rounded-0 rounded-tr-lg rounded-br-lg bg-transparent border-transparent hover:bg-transparent">
-          <SearchIcon width="20" fill="#333" />
+          <IconSearch size="20" color="#333" />
         </button>
       </div>
     </form>

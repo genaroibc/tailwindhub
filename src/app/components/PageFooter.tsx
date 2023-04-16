@@ -1,5 +1,5 @@
+import { IconBrandGithub } from "@tabler/icons-react";
 import Link from "next/link";
-import { GitHubIcon } from "./shared/Icons";
 
 export function PageFooter() {
   return (
@@ -10,7 +10,7 @@ export function PageFooter() {
           className="flex gap-2 items-center justify-center"
           href="https://github.com/genaroibc/tailwindhub"
         >
-          Collaborate on GitHub <GitHubIcon />
+          Collaborate on GitHub <IconBrandGithub />
         </Link>
       </section>
     </footer>

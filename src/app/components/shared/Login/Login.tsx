@@ -3,8 +3,8 @@
 import { useSupabase } from "@/hooks/useSupabase";
 import { useEffect, useState } from "react";
 import { Button } from "@/app/components/shared/Button";
-import { LogoutIcon } from "../Icons";
 import { AuthSession } from "@supabase/supabase-js";
+import { IconLogout } from "@tabler/icons-react";
 
 export function Login() {
   const { supabase } = useSupabase();
@@ -63,11 +63,7 @@ export function Login() {
             />
           </div>
           <Button variant="outlined" onClick={signOut}>
-            <LogoutIcon
-              width="1rem"
-              height="1rem"
-              fill="var(--dimmed-black, #000)"
-            />
+            <IconLogout size="1rem" />
           </Button>
         </>
       ) : (
