@@ -10,6 +10,7 @@ import ReactCrop, {
 import { getCanvasPreview } from "@/utils/get-canvas-preview";
 import "react-image-crop/dist/ReactCrop.css";
 import { useDebounceEffect } from "@/hooks/useDebounceEffect";
+import { IconCheck } from "@tabler/icons-react";
 
 function centerAspectCrop(
   mediaWidth: number,
@@ -124,7 +125,7 @@ export function ImageCropper({
             className="w-fit absolute bottom-4 right-4"
             onClick={onDownloadCropClick}
           >
-            Ok
+            <IconCheck />
           </button>
         </section>
       )}

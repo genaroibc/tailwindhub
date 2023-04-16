@@ -2,7 +2,12 @@ import { Button } from "@/app/components/shared/Button";
 import { Loader } from "@/app/components/shared/Loader/Loader";
 import { createComponent } from "@/services/create-component";
 import { getImageDataURL } from "@/utils/get-image-data-url";
-import { IconError404, IconX } from "@tabler/icons-react";
+import {
+  IconCrop,
+  IconError404,
+  IconExclamationCircle,
+  IconX,
+} from "@tabler/icons-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { ImageCropper } from "../ImageCropper";
 import { TagsInput } from "../TagsInput/TagsInput";
@@ -174,7 +179,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
                     variant="solid"
                     className="absolute bottom-2 right-2"
                   >
-                    Edit
+                    <IconCrop />
                   </Button>
                 </div>
               ) : (
@@ -222,7 +227,8 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
               </button>
 
               {error && (
-                <p className="text-sm p-2 rounded border-2 border-red-300 bg-red-900 text-red-50">
+                <p className="flex items-center gap-1 text-sm p-2 rounded border-2 border-red-300 bg-red-900 text-red-50">
+                  <IconExclamationCircle size="1.2rem" />
                   {error}
                 </p>
               )}
