@@ -29,7 +29,8 @@ export function TagsInput({ onChange }: Props) {
       (event.target as HTMLInputElement).blur();
       return setSuggestions([]);
     }
-    if (event.key === "Tab" && inputValue) {
+    if (event.key === "Tab") {
+      if (!inputValue) return setSuggestions([]);
       event.preventDefault();
 
       suggestions.some((tag) => {
@@ -69,7 +70,6 @@ export function TagsInput({ onChange }: Props) {
               )
             )
           }
-          // onBlur={() => setSuggestions([])}
           type="text"
           className="rounded-md bg-primary-color text-dimmed-black py-2 px-4"
           value={inputValue}
@@ -94,7 +94,7 @@ export function TagsInput({ onChange }: Props) {
         {selectedTags.map((tag) => (
           <li key={tag}>
             <button
-              className="text-dimmed-black bg-white/80 text-xs rounded-full py-1.5 px-3 w-fit"
+              className="text-dimmed-black outline-2 focus:outline-blue-500 bg-white/80 text-xs rounded-full py-1.5 px-3 w-fit"
               onClick={() => removeTag(tag)}
             >
               {tag}
