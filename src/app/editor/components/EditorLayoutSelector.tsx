@@ -4,7 +4,6 @@ import {
   IconEye,
   IconLayoutColumns,
   IconLayoutRows,
-  IconLogout,
 } from "@tabler/icons-react";
 
 const LAYOUT_OPTIONS: Array<{
@@ -60,7 +59,6 @@ export function EditorLayoutSelector({
           {icon}
         </button>
       ))}
-      <IconLogout />
     </nav>
   );
 }
