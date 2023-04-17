@@ -95,34 +95,34 @@ export function ImageCropper({
   );
 
   return (
-    <section className="grid place-content-center grid-cols-2 gap-2 bg-slate-900 text-white max-h-screen max-w-xl mx-auto p-4">
+    <section className="grid grid-cols-2 grid-rows-1 place-content-center gap-2 bg-slate-900 text-white max-w-3xl max-h-screen mx-auto p-4">
       {imageToCrop && (
-        <div className="flex-1">
+        <div className="w-full h-full aspect-square flex items-center justify-center">
           <ReactCrop
             crop={crop}
             onChange={(_, percentCrop) => setCrop(percentCrop)}
             onComplete={(c) => setCompletedCrop(c)}
             aspect={aspect}
-            className="w-full max-w-xs h-auto"
+            className="w-full"
           >
             <img
               ref={imgRef}
               alt="Crop me"
               src={imageToCrop}
               onLoad={onImageLoad}
-              className="ẁ-full h-full"
+              className="ẁ-full h-full object-contain"
             />
           </ReactCrop>
         </div>
       )}
       {completedCrop && (
-        <section className="flex flex-col gap-2 items-center justify-between flex-grow-0 relative">
+        <section className="w-full h-full aspect-square relative">
           <canvas
             ref={previewCanvasRef}
-            className="object-contain mx-auto my-0 w-full"
+            className="w-full m-0 h-full object-contain"
           />
           <button
-            className="w-fit absolute bottom-4 right-4"
+            className="w-fit aspect-square shadow-2xl absolute bottom-4 right-4 rounded-full bg-green-500 hover:bg-green-600 active:bg-green-700"
             onClick={onDownloadCropClick}
           >
             <IconCheck />
