@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 type Props = {
   // eslint-disable-next-line no-unused-vars
   onChange: (data: { tags: string[] }) => void;
+  inputName: string;
 };
 
-export function TagsInput({ onChange }: Props) {
+export function TagsInput({ onChange, inputName }: Props) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -61,6 +62,8 @@ export function TagsInput({ onChange }: Props) {
     <section className="w-full flex flex-col gap-4 items-center justify-center">
       <div className="relative w-full">
         <input
+          id={inputName}
+          name={inputName}
           onFocus={(event) =>
             setSuggestions(
               COMPONENT_TAGS.filter(

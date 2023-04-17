@@ -27,6 +27,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
   const [previewImageURL, setPreviewImageURL] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const componentTitleInputID = useId();
+  const componentTagsInputID = useId();
   const tagsRef = useRef<string[]>([]);
   const [imageToCrop, setImageToCrop] = useState<string | null>(null);
 
@@ -153,25 +154,27 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
         <div
           id={modalBackdropID}
           onClick={handleBackdropClick}
-          className="absolute top-0 left-0 right-0 bottom-0 z-20 bg-black/60 backdrop-blur-sm shadow-2xl grid place-content-center"
+          className="absolute top-0 left-0 right-0 bottom-0 z-20 bg-black/70 backdrop-blur-sm shadow-2xl grid place-content-center"
         >
           {imageToCrop && (
-            <ImageCropper
-              onCropComplete={handleCropComplete}
-              imageToCrop={imageToCrop}
-            />
+            <div className="absolute top-0 left-0 right-0 bottom-0 z-50 bg-black/70 backdrop-blur-sm shadow-2xl grid place-content-center">
+              <ImageCropper
+                onCropComplete={handleCropComplete}
+                imageToCrop={imageToCrop}
+              />
+            </div>
           )}
 
-          <section className="relative max-w-[100vw] bg-dimmed-black text-primary-color z-40 flex gap-4 rounded-md overflow-hidden">
-            <div className="flex items-center justify-center w-64 aspect-square">
+          <section className="relative max-w-[100vw] bg-dimmed-black text-primary-color z-40 flex gap-4 rounded-md overflow-hidden shadow-2xl">
+            <div className="flex flex-1 items-center justify-center w-64 aspect-square">
               {isGeneratingCodePreview ? (
                 <Loader />
               ) : previewImageURL ? (
-                <div className="group relative">
+                <div className="group relative w-full flex items-center justify-center">
                   <img
                     src={previewImageURL}
                     alt="Your component preview"
-                    className="aspect-square object-cover h-full"
+                    className="aspect-square object-contain w-full"
                   />
 
                   <Button
@@ -197,24 +200,6 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
               className="flex flex-col items-center gap-4 py-8 px-4"
               onSubmit={handleSubmit}
             >
-              <label className="text-base" htmlFor={componentTitleInputID}>
-                Title
-              </label>
-              <input
-                onChange={(event) => setComponentTitle(event.target.value)}
-                className="bg-red-100 border invalid:border-red-500 invalid:text-red-900 invalid:placeholder-red-700 placeholder:opacity-60 text-sm rounded-lg invalid:focus:ring-red-500 invalid:focus:border-red-500 invalid:dark:bg-red-100 invalid:dark:border-red-400 valid:bg-green-100 valid:border-green-500 valid:text-green-900 valid:placeholder-green-700 valid:focus:ring-green-500 valid:focus:border-green-500 block w-full p-2.5 valid:dark:bg-green-100 valid:dark:border-green-400"
-                type="text"
-                autoFocus
-                name={componentTitleInputID}
-                id={componentTitleInputID}
-                placeholder="my awesome component"
-                required
-                minLength={5}
-                maxLength={40}
-              />
-
-              <TagsInput onChange={({ tags }) => (tagsRef.current = tags)} />
-
               <button
                 type="button"
                 onClick={(event) => {
@@ -225,6 +210,36 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
               >
                 <IconX size="1rem" />
               </button>
+
+              <label
+                className="w-full text-base"
+                htmlFor={componentTitleInputID}
+              >
+                Title
+              </label>
+              <input
+                onChange={(event) => setComponentTitle(event.target.value)}
+                className="bg-red-100 border invalid:border-red-500 invalid:text-red-900 invalid:placeholder-red-700 placeholder:opacity-60 text-sm rounded-lg invalid:focus:ring-red-500 invalid:focus:border-red-500 invalid:dark:bg-red-100 invalid:dark:border-red-400 valid:bg-green-100 valid:border-green-500 valid:text-green-900 valid:placeholder-green-700 valid:focus:ring-green-500 valid:focus:border-green-500 block w-full p-2.5 valid:dark:bg-green-100 valid:dark:border-green-400 mb-4"
+                type="text"
+                autoFocus
+                name={componentTitleInputID}
+                id={componentTitleInputID}
+                placeholder="my awesome component"
+                required
+                minLength={5}
+                maxLength={40}
+              />
+
+              <label
+                className="w-full text-base"
+                htmlFor={componentTagsInputID}
+              >
+                Tags
+              </label>
+              <TagsInput
+                inputName={componentTagsInputID}
+                onChange={({ tags }) => (tagsRef.current = tags)}
+              />
 
               {error && (
                 <p className="flex items-center gap-1 text-sm p-2 rounded border-2 border-red-300 bg-red-900 text-red-50">
