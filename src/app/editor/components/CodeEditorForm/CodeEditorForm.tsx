@@ -83,7 +83,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
       preview_img: previewImageURL,
       supabase,
     });
-    console.log({ response });
+
     setLoading(false);
 
     if (!response.ok) {
