@@ -1,5 +1,6 @@
 import { Button } from "@/app/components/shared/Button";
 import { Loader } from "@/app/components/shared/Loader/Loader";
+import { useSupabase } from "@/hooks/useSupabase";
 import { createComponent } from "@/services/create-component";
 import { getImageDataURL } from "@/utils/get-image-data-url";
 import {
@@ -21,6 +22,7 @@ type Props = {
 const modalBackdropID = "modal-backdrop";
 
 export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
+  const { supabase } = useSupabase();
   const [isOpen, setIsOpen] = useState(false);
   const [componentTitle, setComponentTitle] = useState("");
   const [loading, setLoading] = useState(false);
@@ -79,6 +81,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
       tags: tagsRef.current,
       html_code: code,
       preview_img: previewImageURL,
+      supabase,
     });
     console.log({ response });
     setLoading(false);

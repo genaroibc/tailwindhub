@@ -1,19 +1,20 @@
 import { SUPABASE_ERRORS } from "@/constants";
-import { supabase } from "@/lib/supabase";
 import { KnownResult } from "@/types";
 import { Database } from "@/types/db";
+import { SupabaseClient } from "@supabase/supabase-js";
 import { uploadImageToCloudinary } from "./upload-image-to-cloudinary";
 
 type ComponentData = Pick<
   Database["public"]["Tables"]["components"]["Insert"],
   "html_code" | "title" | "preview_img" | "tags"
->;
+> & { supabase: SupabaseClient };
 
 export async function createComponent({
   title,
   tags,
   preview_img,
   html_code,
+  supabase,
 }: ComponentData): Promise<KnownResult<string>> {
   const {
     data: { session },
