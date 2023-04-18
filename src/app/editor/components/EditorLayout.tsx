@@ -1,5 +1,6 @@
 import { TailwindHubLogo } from "@/app/components/shared/Icons";
 import { EditorLayout } from "@/types";
+import { IconDeviceFloppy } from "@tabler/icons-react";
 import Link from "next/link";
 import { useState } from "react";
 import { EditorLayoutSelector } from "./EditorLayoutSelector";
@@ -10,9 +11,16 @@ const DEFAULT_LAYOUT: EditorLayout = "preview-and-editor-columns";
 type Props = {
   editor: React.ReactNode;
   preview: React.ReactNode;
+  handleSaveCode: () => void;
+  hasUnsavedProgress: boolean;
 };
 
-export function EditorLayout({ editor, preview }: Props) {
+export function EditorLayout({
+  editor,
+  preview,
+  hasUnsavedProgress,
+  handleSaveCode,
+}: Props) {
   const [layout, setLayout] = useState(DEFAULT_LAYOUT);
 
   const handleLayoutChange = (layout: EditorLayout) => {
@@ -22,18 +30,32 @@ export function EditorLayout({ editor, preview }: Props) {
   return (
     <>
       <header className="bg-slate-950 flex flex-wrap items-center justify-between gap-2 px-4">
-        <nav className="flex gap-2 items-center">
+        <nav className="flex gap-2 justify-between items-center w-full">
           <Link href="/">
             <span className="font-bold flex items-center justify-center gap-2">
               <TailwindHubLogo />
               <span className="hidden sm:block">TailwindHub</span>
             </span>
           </Link>
+          <button
+            onClick={handleSaveCode}
+            className={`
+            bg-blue-500 text-white px-2 py-1 rounded-md flex items-center justify-center gap-1
+            ${
+              hasUnsavedProgress
+                ? "opacity-100 hover:bg-blue-600 active:bg-blue-700"
+                : "opacity-70"
+            }`}
+            disabled={!hasUnsavedProgress}
+          >
+            Save <IconDeviceFloppy />
+          </button>
+
+          <EditorLayoutSelector
+            handleLayoutChange={handleLayoutChange}
+            selectedLayout={layout}
+          />
         </nav>
-        <EditorLayoutSelector
-          handleLayoutChange={handleLayoutChange}
-          selectedLayout={layout}
-        />
       </header>
       {(layout === "preview-and-editor-columns" ||
         layout === "preview-and-editor-rows") && (
@@ -46,7 +68,7 @@ export function EditorLayout({ editor, preview }: Props) {
           <ResizableSection.RightSide>{preview}</ResizableSection.RightSide>
         </ResizableSection>
       )}
-      {layout === "preview-only" && <> {preview}</>}
+      {layout === "preview-only" && <>{preview}</>}
       {layout === "editor-only" && <>{editor}</>}
     </>
   );

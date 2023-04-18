@@ -55,3 +55,5 @@ export const COMPONENT_TAGS = [
 export const SUPABASE_ERRORS: Record<string, string> = {
   "23505": "Component already exists, choose a different title",
 };
+
+export const LOCAL_STORAGE_HTML_CODE_KEY = "__tailwindhub_html_code__";
