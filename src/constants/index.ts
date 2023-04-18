@@ -56,4 +56,7 @@ export const SUPABASE_ERRORS: Record<string, string> = {
   "23505": "Component already exists, choose a different title",
 };
 
-export const LOCAL_STORAGE_HTML_CODE_KEY = "__tailwindhub_html_code__";
+export enum LOCAL_STORAGE_KEYS {
+  // eslint-disable-next-line no-unused-vars
+  HTML_CODE = "__tailwindhub_html_code__",
+}

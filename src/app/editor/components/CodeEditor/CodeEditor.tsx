@@ -1,9 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
-import {
-  DEFAULT_CODE_EDITOR_VALUE,
-  LOCAL_STORAGE_HTML_CODE_KEY,
-} from "@/constants";
+import { DEFAULT_CODE_EDITOR_VALUE, LOCAL_STORAGE_KEYS } from "@/constants";
 import { emmetHTML } from "emmet-monaco-es";
 import { Loader } from "@/app/components/shared/Loader/Loader";
 import { EditorLayout } from "../EditorLayout";
@@ -15,7 +12,7 @@ type Props = {
 };
 
 const { html_code: INITIAL_CODE_EDITOR_VALUE = DEFAULT_CODE_EDITOR_VALUE } =
-  JSON.parse(localStorage.getItem(LOCAL_STORAGE_HTML_CODE_KEY) ?? "{}");
+  JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.HTML_CODE) ?? "{}");
 
 export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
   const [code, setCode] = useState(INITIAL_CODE_EDITOR_VALUE);
@@ -28,7 +25,7 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
 
     if (codeToSave) {
       localStorage.setItem(
-        LOCAL_STORAGE_HTML_CODE_KEY,
+        LOCAL_STORAGE_KEYS.HTML_CODE,
         JSON.stringify({ html_code: codeToSave })
       );
       setHasUnsavedProgress(false);
