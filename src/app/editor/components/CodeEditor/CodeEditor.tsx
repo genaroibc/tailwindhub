@@ -11,11 +11,8 @@ type Props = {
   codeEditorRef: React.MutableRefObject<null>;
 };
 
-const { html_code: INITIAL_CODE_EDITOR_VALUE = DEFAULT_CODE_EDITOR_VALUE } =
-  JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.HTML_CODE) ?? "{}");
-
 export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
-  const [code, setCode] = useState(INITIAL_CODE_EDITOR_VALUE);
+  const [code, setCode] = useState(DEFAULT_CODE_EDITOR_VALUE);
   const [wordWrap, setWordWrap] = useState(true);
   const [hasUnsavedProgress, setHasUnsavedProgress] = useState(false);
 
@@ -62,6 +59,14 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
       window.removeEventListener("beforeunload", checkForUnsavedProgress);
     };
   }, [hasUnsavedProgress]);
+
+  useEffect(() => {
+    const { html_code: INITIAL_CODE_EDITOR_VALUE } = JSON.parse(
+      localStorage.getItem(LOCAL_STORAGE_KEYS.HTML_CODE) ?? "{}"
+    );
+
+    if (INITIAL_CODE_EDITOR_VALUE) setCode(INITIAL_CODE_EDITOR_VALUE);
+  }, []);
 
   return (
     <EditorLayout
