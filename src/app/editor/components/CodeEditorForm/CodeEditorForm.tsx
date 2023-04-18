@@ -10,6 +10,7 @@ import {
 } from "@tabler/icons-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { ImageCropper } from "../ImageCropper";
+import { LoginToPublishButton } from "../LoginToPublishButton/LoginToPublishButton";
 import { TagsInput } from "../TagsInput/TagsInput";
 
 type Props = {
@@ -260,14 +261,11 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
           </section>
         </div>
       )}
-
-      <Button
-        className="w-fit fixed bottom-4 right-4 z-10"
-        variant="solid"
-        onClick={handleOpenForm}
-      >
-        Publish
-      </Button>
+      <div className="w-fit fixed bottom-4 right-4 z-10">
+        <LoginToPublishButton onClick={handleOpenForm}>
+          Publish
+        </LoginToPublishButton>
+      </div>
     </>
   );
 }
