@@ -80,6 +80,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
       html_code: code,
       preview_img: previewImageURL,
     });
+    console.log({ response });
     setLoading(false);
 
     if (!response.ok) {
