@@ -11,6 +11,7 @@ import { getCanvasPreview } from "@/utils/get-canvas-preview";
 import "react-image-crop/dist/ReactCrop.css";
 import { useDebounceEffect } from "@/hooks/useDebounceEffect";
 import { IconCheck } from "@tabler/icons-react";
+import { getImageDataURL } from "@/utils/get-image-data-url";
 
 function centerAspectCrop(
   mediaWidth: number,
@@ -46,7 +47,6 @@ export function ImageCropper({
 }: Props) {
   const previewCanvasRef = useRef<HTMLCanvasElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
-  const blobUrlRef = useRef<string>("");
   const [crop, setCrop] = useState<Crop>();
   const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
 
@@ -62,15 +62,12 @@ export function ImageCropper({
       throw new Error("Crop canvas does not exist");
     }
 
-    previewCanvasRef.current.toBlob((blob) => {
-      if (!blob) {
-        throw new Error("Failed to create blob");
+    getImageDataURL(previewCanvasRef.current).then((response) => {
+      if (!response.ok) {
+        return response.error;
       }
-      if (blobUrlRef.current) {
-        URL.revokeObjectURL(blobUrlRef.current);
-      }
-      blobUrlRef.current = URL.createObjectURL(blob);
-      onCropComplete(blobUrlRef.current);
+
+      onCropComplete(response.data.imageDataURL);
     });
   }
 
