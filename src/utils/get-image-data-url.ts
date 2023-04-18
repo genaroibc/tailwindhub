@@ -5,7 +5,9 @@ export async function getImageDataURL(
   DOMElement: HTMLElement
 ): Promise<KnownResult<{ imageDataURL: string }>> {
   try {
-    const canvas = await html2canvas(DOMElement);
+    const canvas = await html2canvas(DOMElement, {
+      useCORS: true,
+    });
 
     if (!canvas) return { ok: false, error: "Failed to create image" };
 
