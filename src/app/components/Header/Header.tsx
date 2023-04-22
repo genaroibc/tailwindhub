@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Login } from "@/app/components/shared/Login/Login";
+import { Login } from "@/app/components/shared/Login";
 import styles from "./Header.module.css";
 import { useRef } from "react";
 import { TailwindHubLogo } from "@/app/components/shared/Icons";

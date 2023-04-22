@@ -10,9 +10,9 @@ import {
   IconX,
 } from "@tabler/icons-react";
 import { useEffect, useId, useRef, useState } from "react";
-import { ImageCropper } from "../ImageCropper";
-import { LoginToPublishButton } from "../LoginToPublishButton/LoginToPublishButton";
-import { TagsInput } from "../TagsInput/TagsInput";
+import { ImageCropper } from "@/app/editor/components/ImageCropper";
+import { LoginToPublishButton } from "@/app/editor/components/LoginToPublishButton";
+import { TagsInput } from "@/app/editor/components/TagsInput";
 
 type Props = {
   codeEditorRef: React.RefObject<HTMLDivElement> | null;

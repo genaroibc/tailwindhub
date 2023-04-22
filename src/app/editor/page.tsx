@@ -1,5 +1,5 @@
 import { type Metadata } from "next";
-import { EditorSection } from "@/app/editor/components/EditorSection/EditorSection";
+import { EditorSection } from "@/app/editor/components/EditorSection";
 import { TailwindScript } from "@/app/components/shared/TailwindScript";
 
 export const metadata: Metadata = {

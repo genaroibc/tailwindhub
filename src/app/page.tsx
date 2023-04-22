@@ -1,4 +1,4 @@
-import { Hero } from "@/app/components/Hero/Hero";
+import { Hero } from "@/app/components/Hero";
 import { ComponentsList } from "@/app/components/ComponentsList/ComponentsList";
 import { type Metadata } from "next";
 import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";

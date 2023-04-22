@@ -1,8 +1,8 @@
 "use client";
 
-import { CodeEditor } from "@/app/editor/components/CodeEditor/CodeEditor";
+import { CodeEditor } from "@/app/editor/components/CodeEditor";
 import { useRef } from "react";
-import { CodeEditorForm } from "@/app/editor/components/CodeEditorForm/CodeEditorForm";
+import { CodeEditorForm } from "@/app/editor/components/CodeEditorForm";
 
 export function EditorSection() {
   const codePreviewRef = useRef(null);
