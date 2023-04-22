@@ -2,7 +2,7 @@ import { SUPABASE_ERRORS } from "@/constants";
 import { KnownResult } from "@/types";
 import { Database } from "@/types/db";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { uploadImageToCloudinary } from "./upload-image-to-cloudinary";
+import { uploadImageToCloudinary } from "@/services/upload-image-to-cloudinary";
 
 type ComponentData = Pick<
   Database["public"]["Tables"]["components"]["Insert"],

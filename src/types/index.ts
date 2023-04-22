@@ -1,4 +1,4 @@
-import { Database } from "./db";
+import { Database } from "@/types/db";
 
 export type SearchFilter =
   | "all"

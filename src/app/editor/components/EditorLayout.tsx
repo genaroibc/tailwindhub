@@ -3,8 +3,8 @@ import { EditorLayout } from "@/types";
 import { IconDeviceFloppy } from "@tabler/icons-react";
 import Link from "next/link";
 import { useState } from "react";
-import { EditorLayoutSelector } from "./EditorLayoutSelector";
-import { ResizableSection } from "./ResizableSection";
+import { EditorLayoutSelector } from "@/app/editor/components/EditorLayoutSelector";
+import { ResizableSection } from "@/app/editor/components/ResizableSection";
 
 const DEFAULT_LAYOUT: EditorLayout = "preview-and-editor-columns";
 

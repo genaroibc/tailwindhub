@@ -1,12 +1,12 @@
-import { Hero } from "./components/Hero/Hero";
-import { ComponentsList } from "./components/ComponentsList/ComponentsList";
+import { Hero } from "@/app/components/Hero/Hero";
+import { ComponentsList } from "@/app/components/ComponentsList/ComponentsList";
 import { type Metadata } from "next";
 import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { cookies, headers } from "next/headers";
 import { Database } from "@/types/db";
 import { ComponentItem } from "@/types";
 import { Header } from "@/app/components/Header/Header";
-import { PageFooter } from "./components/PageFooter";
+import { PageFooter } from "@/app/components/PageFooter";
 
 export const metadata: Metadata = {
   title: "TailwindHub - UI components",

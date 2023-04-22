@@ -1,12 +1,12 @@
 "use client";
 
-import { ComponentItem } from "./ComponentItem/ComponentItem";
+import { ComponentItem } from "@/app/components/ComponentsList/ComponentItem/ComponentItem";
 import { Search } from "@/app/components/shared/Search/Search";
 import { type ComponentItem as TComponentItem } from "@/types";
 import { useSupabase } from "@/hooks/useSupabase";
 import { useCallback, useState } from "react";
 import { SearchData } from "@/types";
-import { ComponentItemSkeleton } from "./ComponentItem/ComponentItemSkeleton";
+import { ComponentItemSkeleton } from "@/app/components/ComponentsList/ComponentItem/ComponentItemSkeleton";
 import Link from "next/link";
 
 type Props = {

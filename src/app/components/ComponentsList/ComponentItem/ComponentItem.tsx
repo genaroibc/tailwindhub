@@ -1,5 +1,5 @@
 import { type ComponentItem as TComponentItem } from "@/types";
-import { ComponentItemNavBar } from "./ComponentItemNavBar/ComponentItemNavBar";
+import { ComponentItemNavBar } from "@/app/components/ComponentsList/ComponentItem/ComponentItemNavBar/ComponentItemNavBar";
 
 type Props = TComponentItem;
 

@@ -2,7 +2,7 @@
 
 import { CodeEditor } from "@/app/editor/components/CodeEditor/CodeEditor";
 import { useRef } from "react";
-import { CodeEditorForm } from "../CodeEditorForm/CodeEditorForm";
+import { CodeEditorForm } from "@/app/editor/components/CodeEditorForm/CodeEditorForm";
 
 export function EditorSection() {
   const codePreviewRef = useRef(null);

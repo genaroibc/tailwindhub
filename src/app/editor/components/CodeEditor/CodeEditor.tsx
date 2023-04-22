@@ -3,7 +3,7 @@ import Editor from "@monaco-editor/react";
 import { DEFAULT_CODE_EDITOR_VALUE, LOCAL_STORAGE_KEYS } from "@/constants";
 import { emmetHTML } from "emmet-monaco-es";
 import { Loader } from "@/app/components/shared/Loader/Loader";
-import { EditorLayout } from "../EditorLayout";
+import { EditorLayout } from "@/app/editor/components/EditorLayout";
 import BlackboardTheme from "@/themes/Blackboard.json";
 
 type Props = {
