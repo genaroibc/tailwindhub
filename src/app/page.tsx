@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "The best place to share Tailwind components",
 };
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function Home() {
   const supabase = createServerComponentSupabaseClient<Database>({
