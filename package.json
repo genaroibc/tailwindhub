@@ -17,6 +17,8 @@
     "emmet-monaco-es": "5.2.1",
     "encoding": "0.1.13",
     "html2canvas": "1.4.1",
+    "monaco-editor": "0.37.1",
+    "monaco-tailwindcss": "0.6.0",
     "next": "13.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
