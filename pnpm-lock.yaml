@@ -8,6 +8,7 @@ specifiers:
   '@types/node': 18.15.1
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
+  '@vercel/analytics': 1.0.0
   autoprefixer: 10.4.14
   emmet-monaco-es: 5.2.1
   encoding: 0.1.13
@@ -30,6 +31,7 @@ dependencies:
   '@supabase/auth-helpers-nextjs': 0.6.0_ypztp6i5fvglqz434oq632tfli
   '@supabase/supabase-js': 2.17.0_encoding@0.1.13
   '@tabler/icons-react': 2.16.0_react@18.2.0
+  '@vercel/analytics': 1.0.0_react@18.2.0
   emmet-monaco-es: 5.2.1_monaco-editor@0.37.1
   encoding: 0.1.13
   html2canvas: 1.4.1
@@ -508,6 +510,14 @@ packages:
       '@typescript-eslint/types': 5.59.0
       eslint-visitor-keys: 3.4.0
     dev: true
+
+  /@vercel/analytics/1.0.0_react@18.2.0:
+    resolution: {integrity: sha512-RQmj7pv82JwGDHrnKeRc6TtSw2U7rWNubc2IH0ernTzWTj02yr9zvIYiYJeztsBzrJtWv7m8Nz6vxxb+cdEtJw==}
+    peerDependencies:
+      react: ^16.8||^17||^18
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /acorn-jsx/5.3.2_acorn@8.8.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
