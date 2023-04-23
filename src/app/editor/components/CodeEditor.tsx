@@ -5,6 +5,13 @@ import { emmetHTML } from "emmet-monaco-es";
 import { Loader } from "@/app/components/shared/Loader/Loader";
 import { EditorLayout } from "@/app/editor/components/EditorLayout";
 import BlackboardTheme from "@/themes/Blackboard.json";
+import {
+  configureMonacoTailwindcss,
+  tailwindcssData,
+} from "monaco-tailwindcss";
+import { registerTailwindCSSWorker } from "@/utils/register-tailwindcss-worker";
+
+registerTailwindCSSWorker();
 
 type Props = {
   codePreviewRef: React.MutableRefObject<null>;
@@ -79,8 +86,21 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
       }
       editor={
         <Editor
+          beforeMount={(monaco) => {
+            monaco.languages.css.cssDefaults.setOptions({
+              data: {
+                dataProviders: {
+                  tailwindcssData,
+                },
+              },
+            });
+
+            configureMonacoTailwindcss(monaco, {});
+          }}
           onMount={(editor, monaco) => {
+            // @ts-ignore
             codeEditorRef.current = editor;
+            // @ts-ignore
             monaco.editor?.defineTheme?.("Blackboard", BlackboardTheme);
             monaco.editor?.setTheme?.("Blackboard");
             emmetHTML(monaco);
