@@ -1,6 +1,5 @@
-import { SEARCH_FILTERS } from "@/constants";
 import { useEffect, useState } from "react";
-import { SearchData } from "@/types";
+import { COMPONENT_TAGS_LIST, SearchData } from "@/types";
 import { IconSearch } from "@tabler/icons-react";
 
 type Props = {
@@ -10,7 +9,7 @@ type Props = {
 
 export function Search({ onSearch }: Props) {
   const [selectedTag, setSelectedTag] = useState<string>(
-    SEARCH_FILTERS[0].value
+    COMPONENT_TAGS_LIST[0]
   );
   const [query, setQuery] = useState<string>("");
 
@@ -41,9 +40,9 @@ export function Search({ onSearch }: Props) {
         value={selectedTag}
         className="rounded-0 rounded-tl-lg rounded-bl-lg py-2 px-4 text-base bg-transparent text-dimmed-black"
       >
-        {SEARCH_FILTERS.map(({ title, value }) => (
-          <option key={value} value={value}>
-            {title}
+        {COMPONENT_TAGS_LIST.map((tag) => (
+          <option key={tag} value={tag}>
+            {tag}
           </option>
         ))}
       </select>

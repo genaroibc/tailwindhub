@@ -1,13 +1,45 @@
 import { Database } from "@/types/db";
 
-export type SearchFilter =
-  | "all"
-  | "button"
-  | "card"
-  | "form"
-  | "navbar"
-  | "input"
-  | "image";
+export const COMPONENT_TAGS_LIST = [
+  "all",
+  "button",
+  "card",
+  "form",
+  "navbar",
+  "input",
+  "timeline",
+  "timeline",
+  "image",
+  "form",
+  "menu",
+  "table",
+  "modal",
+  "badge",
+  "widget",
+  "alert",
+  "login",
+  "input",
+  "layout",
+  "card",
+  "navbar",
+  "header",
+  "sidebar",
+  "select",
+  "tooltip",
+  "button",
+  "footer",
+  "carousel",
+  "navigation",
+  "dashboard",
+  "accordion",
+  "breadcrumb",
+  "pagination",
+  "timeline",
+  "datepicker",
+  "dropdown",
+] as const;
+
+export type ComponentTag = (typeof COMPONENT_TAGS_LIST)[number];
 
 export type KnownError = { ok: false; error: string };
 export type KnownResponse<T> = { ok: true; data: T };

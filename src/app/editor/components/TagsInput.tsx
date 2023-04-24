@@ -1,4 +1,4 @@
-import { COMPONENT_TAGS } from "@/constants";
+import { COMPONENT_TAGS_LIST } from "@/types";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -19,7 +19,9 @@ export function TagsInput({ onChange, inputName }: Props) {
   const handleInputChange = (event: React.ChangeEvent) => {
     const value = (event.target as HTMLInputElement).value.toLowerCase();
 
-    const suggestions = COMPONENT_TAGS.filter((tag) => tag.indexOf(value) > -1);
+    const suggestions = COMPONENT_TAGS_LIST.filter(
+      (tag) => tag.indexOf(value) > -1
+    );
 
     setInputValue(value);
     setSuggestions(suggestions.filter((tag) => !selectedTags.includes(tag)));
@@ -66,7 +68,7 @@ export function TagsInput({ onChange, inputName }: Props) {
           name={inputName}
           onFocus={(event) =>
             setSuggestions(
-              COMPONENT_TAGS.filter(
+              COMPONENT_TAGS_LIST.filter(
                 (tag) =>
                   !selectedTags.includes(tag) &&
                   tag.includes(event.target.value.toLowerCase())
