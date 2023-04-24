@@ -2,24 +2,7 @@
 
 import { useRef } from "react";
 import { CodeEditorForm } from "@/app/editor/components/CodeEditorForm";
-import dynamic from "next/dynamic";
-
-const CodeEditor = dynamic(
-  () =>
-    import("@/app/editor/components/CodeEditor").then(
-      (module) => module.CodeEditor
-    ),
-  {
-    ssr: false,
-    loading() {
-      return (
-        <p className="flex justify-center items-center w-full h-full">
-          Loading...
-        </p>
-      );
-    },
-  }
-);
+import { CodeEditor } from "@/app/editor/components/CodeEditor";
 
 export function EditorSection() {
   const codePreviewRef = useRef(null);

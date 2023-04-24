@@ -5,13 +5,7 @@ import { emmetHTML } from "emmet-monaco-es";
 import { Loader } from "@/app/components/shared/Loader/Loader";
 import { EditorLayout } from "@/app/editor/components/EditorLayout";
 import BlackboardTheme from "@/themes/Blackboard.json";
-import {
-  configureMonacoTailwindcss,
-  tailwindcssData,
-} from "monaco-tailwindcss";
 import { registerTailwindCSSWorker } from "@/utils/register-tailwindcss-worker";
-
-registerTailwindCSSWorker();
 
 type Props = {
   codePreviewRef: React.MutableRefObject<null>;
@@ -68,6 +62,7 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
   }, [hasUnsavedProgress]);
 
   useEffect(() => {
+    registerTailwindCSSWorker();
     const { html_code: INITIAL_CODE_EDITOR_VALUE } = JSON.parse(
       localStorage.getItem(LOCAL_STORAGE_KEYS.HTML_CODE) ?? "{}"
     );
@@ -86,7 +81,9 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
       }
       editor={
         <Editor
-          beforeMount={(monaco) => {
+          beforeMount={async (monaco) => {
+            const { configureMonacoTailwindcss, tailwindcssData } =
+              await import("monaco-tailwindcss");
             monaco.languages.css.cssDefaults.setOptions({
               data: {
                 dataProviders: {
