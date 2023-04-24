@@ -33,6 +33,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
   const componentTagsInputID = useId();
   const tagsRef = useRef<string[]>([]);
   const [imageToCrop, setImageToCrop] = useState<string | null>(null);
+  const [isCloningCodePreview, setIsCloningCodePreview] = useState(false);
 
   const generateCodePreview = async () => {
     const codePreview = codePreviewRef?.current;
@@ -117,27 +118,31 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
   };
 
   const handleEditPreviewImage = async () => {
+    setIsCloningCodePreview(true);
     const clonedCodePreview = codePreviewRef?.current?.cloneNode(true);
 
     if (!clonedCodePreview || !(clonedCodePreview instanceof HTMLElement)) {
+      setIsCloningCodePreview(false);
       return setError("There was an error cloning the code preview");
     }
 
     clonedCodePreview.style.position = "absolute";
     clonedCodePreview.style.zIndex = "500";
-    clonedCodePreview.style.top = "2rem";
-    clonedCodePreview.style.left = "2rem";
-    clonedCodePreview.style.right = "2rem";
-    clonedCodePreview.style.bottom = "2rem";
     clonedCodePreview.style.width = "100%";
-    clonedCodePreview.style.height = "100%";
+    clonedCodePreview.style.maxWidth = "800px";
+    clonedCodePreview.style.height = "auto";
+    clonedCodePreview.style.aspectRatio = "1";
 
     document.body.appendChild(clonedCodePreview);
 
     const previewImg = await getImageDataURL(clonedCodePreview);
 
-    if (!previewImg.ok) return setError(previewImg.error);
+    if (!previewImg.ok) {
+      setIsCloningCodePreview(false);
+      return setError(previewImg.error);
+    }
 
+    setIsCloningCodePreview(false);
     setImageToCrop(previewImg.data.imageDataURL);
     document.body.removeChild(clonedCodePreview);
   };
@@ -154,7 +159,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
   };
 
   return (
-    <>
+    <div className={isCloningCodePreview ? "overflow-hidden" : ""}>
       {isOpen && (
         <div
           id={modalBackdropID}
@@ -170,6 +175,12 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
             </div>
           )}
 
+          {isCloningCodePreview && (
+            <div className="absolute top-0 left-0 right-0 bottom-0 z-50 bg-black/70 backdrop-blur-sm shadow-2xl grid place-content-center">
+              <p>Cloning code preview...</p>{" "}
+            </div>
+          )}
+
           <section className="relative max-w-[100vw] bg-dimmed-black text-primary-color z-40 flex gap-4 rounded-md overflow-hidden shadow-2xl">
             <div className="flex flex-1 items-center justify-center w-64 aspect-square">
               {isGeneratingCodePreview ? (
@@ -179,7 +190,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
                   <img
                     src={previewImageURL}
                     alt="Your component preview"
-                    className="aspect-square object-contain w-full"
+                    className="aspect-square w-full"
                   />
 
                   <Button
@@ -270,6 +281,6 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
           Publish
         </LoginToPublishButton>
       </div>
-    </>
+    </div>
   );
 }
