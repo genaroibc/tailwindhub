@@ -8,8 +8,6 @@ export const COMPONENT_TAGS_LIST = [
   "navbar",
   "input",
   "timeline",
-  "timeline",
-  "image",
   "form",
   "menu",
   "table",
