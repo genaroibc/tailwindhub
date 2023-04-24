@@ -3,6 +3,7 @@ import { KnownResult } from "@/types";
 import { Database } from "@/types/db";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { uploadImageToCloudinary } from "@/services/upload-image-to-cloudinary";
+import { getCroppedCloudinaryImageURL } from "./get-cropped-cloudinary-image-url";
 
 type ComponentData = Pick<
   Database["public"]["Tables"]["components"]["Insert"],
@@ -46,7 +47,9 @@ export async function createComponent({
       tags,
       author_username: user_name,
       author_avatar_url: avatar_url,
-      preview_img: uploadedImageResponse.data?.url,
+      preview_img: getCroppedCloudinaryImageURL({
+        imageURL: uploadedImageResponse.data.url,
+      }),
     });
 
     if (error) {
