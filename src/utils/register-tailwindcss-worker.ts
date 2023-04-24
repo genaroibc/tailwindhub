@@ -1,7 +1,10 @@
 export function registerTailwindCSSWorker() {
+  if (typeof window === "undefined") return;
+  // @ts-ignore
   if (window.MonacoEnvironment) return;
+  // @ts-ignore
   window.MonacoEnvironment = {
-    getWorker(moduleId, label) {
+    getWorker(moduleId: string, label: string) {
       switch (label) {
         case "editorWorkerService":
           return new Worker(
@@ -19,7 +22,7 @@ export function registerTailwindCSSWorker() {
           );
         case "tailwindcss":
           return new Worker(
-            new URL("monaco-tailwindcss/tailwindcss.worker", import.meta.url)
+            new URL("./tailwindcss.worker.js", import.meta.url)
           );
         default:
           throw new Error(`Unknown label ${label}`);
