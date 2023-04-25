@@ -21,7 +21,7 @@ git clone https://github.com/GenaroIBC/tailwindhub.git && cd tailwindhub
 2. Install dependencies and start the development server:
 
 ```bash
-cd tailwindhub && pnpm install
+pnpm install && pnpm dev
 ```
 
 The env variables for development are in `.env.development`. No additional config is required.
