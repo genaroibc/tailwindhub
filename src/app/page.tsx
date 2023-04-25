@@ -9,8 +9,35 @@ import { Header } from "@/app/components/Header/Header";
 import { PageFooter } from "@/app/components/PageFooter";
 
 export const metadata: Metadata = {
+  applicationName: "TailwindHub",
+  colorScheme: "dark",
   title: "TailwindHub - UI components",
-  description: "The best place to share Tailwind components",
+  description: "Free, open-source platform to share Tailwind components",
+  keywords: [
+    "tailwind",
+    "tailwindcss",
+    "components",
+    "ui",
+    "tailwind components",
+    "tailwind playground",
+    "components kit",
+    "components library",
+    "tailwind library",
+    "tailwind kit",
+    "tailwind ui",
+    "tailwind open-source",
+    "tailwind editor",
+  ],
+  openGraph: {
+    title: "TailwindHub - open-source Tailwind components",
+    type: "website",
+    description: "Free, open-source platform to share Tailwind components",
+    images: {
+      url: "https://tailwindhub.dev/tailwindhub.png",
+      width: 1200,
+      height: 630,
+    },
+  },
 };
 
 export const revalidate = 60;
