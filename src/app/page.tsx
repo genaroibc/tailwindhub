@@ -32,11 +32,14 @@ export const metadata: Metadata = {
     title: "TailwindHub - open-source Tailwind components",
     type: "website",
     description: "Free, open-source platform to share Tailwind components",
-    images: {
-      url: "https://tailwindhub.dev/tailwindhub.png",
-      width: 1200,
-      height: 630,
-    },
+    images: "https://tailwindhub.dev/tailwindhub.png",
+    url: "https://tailwindhub.dev/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TailwindHub - open-source Tailwind components",
+    description: "Free, open-source platform to share Tailwind components",
+    images: ["https://tailwindhub.dev/tailwindhub.png"],
   },
 };
 
