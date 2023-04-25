@@ -53,7 +53,7 @@ export function Search({ onSearch }: Props) {
           type="search"
           name="search"
           placeholder="Login form, user card"
-          className="py-2 px-4 text-base min-w-0 flex-grow-0"
+          className="bg-transparent py-2 px-4 text-base min-w-0 flex-grow-0"
         />
         <button className="p-2 rounded-0 rounded-tr-lg rounded-br-lg bg-transparent border-transparent hover:bg-transparent">
           <IconSearch size="20" color="#333" />
