@@ -1,6 +1,6 @@
 export const DEFAULT_CODE_EDITOR_VALUE = `<article class="auto px-8 py-12 bg-gradient-to-b from-cyan-500 to-blue-500 rounded-md text-white shadow-2xl">
     <h1 class="text-2xl font-bold mb-4">Welcome to <span class="text-2xl">TailwindHub</span></h1>
-    <p class="text-xl font-medium mb-8">The best place to share Tailwind components</p>
+    <p class="text-xl font-medium mb-8">Free, open-source platform to share Tailwind components</p>
 
     <p class="mb-2 font-medium">Start by creating your component</p>
     <p class="mb-2 font-medium">When you're ready, sign in with GitHub and share it.</p>

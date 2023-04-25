@@ -1,6 +1,6 @@
 # TailwindHub
 
-The best place to share Tailwind components.
+Free, open-source platform to share Tailwind components.
 
 Here you can upload yours and download and like the community ones.
 

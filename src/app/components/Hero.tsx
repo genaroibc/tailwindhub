@@ -6,7 +6,7 @@ export function Hero() {
       <div className="w-full text-center p-0 md:p-4 md:w-3/5 md:text-left">
         <h1 className="text-4xl font-bold md:text-6xl">TailwindHub</h1>
         <p className="text-base mt-4 mx-auto mb-8 md:text-2xl">
-          The best place to share Tailwind components
+          Free, open-source platform to share Tailwind components
         </p>
         <Link
           href="/editor"
