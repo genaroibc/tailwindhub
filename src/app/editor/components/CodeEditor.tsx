@@ -1,15 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
-import Editor, { Monaco } from "@monaco-editor/react";
+import MonacoEditor, { Monaco } from "@monaco-editor/react";
 import { DEFAULT_CODE_EDITOR_VALUE, LOCAL_STORAGE_KEYS } from "@/constants";
 import { emmetHTML } from "emmet-monaco-es";
 import { Loader } from "@/app/components/shared/Loader/Loader";
 import { EditorLayout } from "@/app/editor/components/EditorLayout";
 import BlackboardTheme from "@/themes/Blackboard.json";
 import { registerTailwindCSSWorker } from "@/utils/register-tailwindcss-worker";
+import { CodeEditorRef, CodePreviewRef } from "@/app/editor/types";
 
 type Props = {
-  codePreviewRef: React.MutableRefObject<null>;
-  codeEditorRef: React.MutableRefObject<null>;
+  codePreviewRef: CodePreviewRef;
+  codeEditorRef: CodeEditorRef;
 };
 
 export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
@@ -18,8 +19,7 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
   const [hasUnsavedProgress, setHasUnsavedProgress] = useState(false);
 
   const handleSaveCode = useCallback(() => {
-    // @ts-ignore
-    const codeToSave = codeEditorRef?.current?.getValue();
+    const codeToSave = codeEditorRef.current?.getValue();
 
     if (codeToSave) {
       localStorage.setItem(
@@ -58,9 +58,8 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
         e.preventDefault();
 
         codeEditorRef.current
-          // @ts-ignore
           ?.getAction?.("editor.action.formatDocument")
-          .run?.();
+          ?.run?.();
 
         handleSaveCode();
       }
@@ -105,10 +104,9 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
         />
       }
       editor={
-        <Editor
+        <MonacoEditor
           beforeMount={(monaco) => handleConfigureIntellisense(monaco)}
           onMount={(editor, monaco) => {
-            // @ts-ignore
             codeEditorRef.current = editor;
             // @ts-ignore
             monaco.editor?.defineTheme?.("Blackboard", BlackboardTheme);

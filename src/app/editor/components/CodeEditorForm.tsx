@@ -13,10 +13,11 @@ import { useEffect, useId, useRef, useState } from "react";
 import { ImageCropper } from "@/app/editor/components/ImageCropper";
 import { LoginToPublishButton } from "@/app/editor/components/LoginToPublishButton";
 import { TagsInput } from "@/app/editor/components/TagsInput";
+import { CodePreviewRef, CodeEditorRef } from "@/app/editor/types";
 
 type Props = {
-  codeEditorRef: React.RefObject<HTMLDivElement> | null;
-  codePreviewRef: React.RefObject<HTMLDivElement> | null;
+  codeEditorRef: CodeEditorRef;
+  codePreviewRef: CodePreviewRef;
 };
 
 const modalBackdropID = "modal-backdrop";
@@ -63,8 +64,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    // @ts-ignore
-    const code = codeEditorRef?.current?.getValue();
+    const code = codeEditorRef.current?.getValue();
 
     if (!previewImageURL) {
       return setError(
