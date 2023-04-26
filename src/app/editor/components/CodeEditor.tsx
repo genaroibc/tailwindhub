@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import Editor from "@monaco-editor/react";
+import Editor, { Monaco } from "@monaco-editor/react";
 import { DEFAULT_CODE_EDITOR_VALUE, LOCAL_STORAGE_KEYS } from "@/constants";
 import { emmetHTML } from "emmet-monaco-es";
 import { Loader } from "@/app/components/shared/Loader/Loader";
@@ -29,6 +29,25 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
       setHasUnsavedProgress(false);
     }
   }, [codeEditorRef]);
+
+  const handleConfigureIntellisense = useCallback(async (monaco: Monaco) => {
+    const { cssDefaults } = monaco.languages.css;
+
+    if (cssDefaults.options.data?.dataProviders?.tailwindcssData) return;
+
+    const { configureMonacoTailwindcss, tailwindcssData } = await import(
+      "monaco-tailwindcss"
+    );
+
+    cssDefaults.setOptions({
+      data: {
+        dataProviders: {
+          tailwindcssData,
+        },
+      },
+    });
+    configureMonacoTailwindcss(monaco, {});
+  }, []);
 
   useEffect(() => {
     const listenKeyboard = (e: KeyboardEvent) => {
@@ -87,19 +106,7 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
       }
       editor={
         <Editor
-          beforeMount={async (monaco) => {
-            const { configureMonacoTailwindcss, tailwindcssData } =
-              await import("monaco-tailwindcss");
-            monaco.languages.css.cssDefaults.setOptions({
-              data: {
-                dataProviders: {
-                  tailwindcssData,
-                },
-              },
-            });
-
-            configureMonacoTailwindcss(monaco, {});
-          }}
+          beforeMount={(monaco) => handleConfigureIntellisense(monaco)}
           onMount={(editor, monaco) => {
             // @ts-ignore
             codeEditorRef.current = editor;
