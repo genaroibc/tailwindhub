@@ -37,6 +37,12 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
       }
       if (e.ctrlKey && e.key === "s") {
         e.preventDefault();
+
+        codeEditorRef.current
+          // @ts-ignore
+          ?.getAction?.("editor.action.formatDocument")
+          .run?.();
+
         handleSaveCode();
       }
     };
@@ -44,7 +50,7 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
     document.addEventListener("keydown", listenKeyboard);
 
     return () => document.removeEventListener("keydown", listenKeyboard);
-  }, [handleSaveCode]);
+  }, [codeEditorRef, handleSaveCode]);
 
   useEffect(() => {
     const checkForUnsavedProgress = (e: BeforeUnloadEvent) => {
