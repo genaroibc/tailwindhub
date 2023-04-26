@@ -32,7 +32,6 @@ export const COMPONENT_TAGS_LIST = [
   "accordion",
   "breadcrumb",
   "pagination",
-  "timeline",
   "datepicker",
   "dropdown",
 ] as const;
