@@ -19,23 +19,23 @@ export function Hero() {
       <div className="w-full grid gap-6 grid-cols-2 grid-rows-2 md:w-2/5 [&>img]:w-4/5 [&>img]:h-4/5 [&>img]:rounded-lg [&>img]:max-w-[100px] [&>img]:md:max-w-[200px]">
         <img
           className="justify-self-end self-end"
-          src="https://picsum.photos/200"
-          alt="a login form component"
+          src="https://res.cloudinary.com/shape-snap/image/upload/v1682357375/myjakklmgr7ul1f0l7hd.png"
+          alt="Timeline component preview"
         />
         <img
           className="translate-y-1/4 justify-self-start self-end"
-          src="https://picsum.photos/200"
-          alt="a user card component"
+          src="https://res.cloudinary.com/shape-snap/image/upload/v1682362688/mjf2vot4s6r4iplkq3m1.png"
+          alt="Product card component preview"
         />
         <img
           className="justify-self-end self-start"
-          src="https://picsum.photos/200"
-          alt="a fancy button component"
+          src="https://res.cloudinary.com/shape-snap/image/upload/w_400,h_400,ar_1,c_fill/v1682535061/f8zw37cnl8n45ukux9tj.png"
+          alt="Button component preview"
         />
         <img
           className="translate-y-1/4 justify-self-start self-start"
-          src="https://picsum.photos/200"
-          alt="a unordered list component"
+          src="https://res.cloudinary.com/shape-snap/image/upload/w_400,h_400,ar_1,c_fill/v1682533754/zvzjjl7lvfpsps9qf4ch.png"
+          alt="SignUp form component preview"
         />
       </div>
     </div>
