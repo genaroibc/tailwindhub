@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <div className="flex-col gap-4 px-2 flex justify-center items-center py-20 max-w-[1200px] my-0 mx-auto md:gap-8 md:px-4 md:flex-row">
+    <div className="flex-col gap-12 px-2 flex justify-center items-center py-20 max-w-[1200px] my-0 mx-auto md:gap-8 md:px-4 md:flex-row">
       <div className="w-full text-center p-0 md:p-4 md:w-3/5 md:text-left">
         <h1 className="text-4xl font-bold md:text-6xl">TailwindHub</h1>
         <p className="text-base mt-4 mx-auto mb-8 md:text-2xl">
@@ -16,7 +16,7 @@ export function Hero() {
         </Link>
       </div>
 
-      <div className="w-full grid gap-6 grid-cols-2 grid-rows-2 md:w-2/5 [&>img]:w-4/5 [&>img]:h-4/5 [&>img]:rounded-lg [&>img]:max-w-[100px] [&>img]:md:max-w-[200px]">
+      <div className="w-full bg-dimmed-black rounded-full grid gap-6 grid-cols-2 grid-rows-2 md:w-2/5 [&>img]:w-full [&>img]:h-full [&>img]:rounded-lg [&>img]:max-w-[150px] [&>img]:md:max-w-[250px]">
         <img
           className="justify-self-end self-end"
           src="https://res.cloudinary.com/shape-snap/image/upload/v1682357375/myjakklmgr7ul1f0l7hd.png"
