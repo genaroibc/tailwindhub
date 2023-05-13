@@ -9,6 +9,7 @@ import { Header } from "@/app/components/Header/Header";
 import { PageFooter } from "@/app/components/PageFooter";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://tailwindhub.dev/"),
   applicationName: "TailwindHub",
   colorScheme: "dark",
   title: "TailwindHub - UI components",
