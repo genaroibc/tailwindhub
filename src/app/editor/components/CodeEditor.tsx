@@ -7,13 +7,16 @@ import { EditorLayout } from "@/app/editor/components/EditorLayout";
 import BlackboardTheme from "@/themes/Blackboard.json";
 import { registerTailwindCSSWorker } from "@/utils/register-tailwindcss-worker";
 import { CodeEditorRef, CodePreviewRef } from "@/app/editor/types";
+import { Preview } from "@/app/editor/components/Preview/Preview";
 
 type Props = {
+  // eslint-disable-next-line react/no-unused-prop-types
   codePreviewRef: CodePreviewRef;
   codeEditorRef: CodeEditorRef;
+  isResizable?: boolean;
 };
 
-export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
+export function CodeEditor({ codeEditorRef, isResizable }: Props) {
   const [code, setCode] = useState(DEFAULT_CODE_EDITOR_VALUE);
   const [wordWrap, setWordWrap] = useState(true);
   const [hasUnsavedProgress, setHasUnsavedProgress] = useState(false);
@@ -96,13 +99,7 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
 
   return (
     <EditorLayout
-      preview={
-        <div
-          ref={codePreviewRef}
-          className="flex items-center justify-center w-full relative h-full overflow-auto bg-white text-dimmed-black ![&_img]:inline-block"
-          dangerouslySetInnerHTML={{ __html: code }}
-        />
-      }
+      preview={<Preview isResizable={isResizable} code={code} />}
       editor={
         <MonacoEditor
           beforeMount={(monaco) => handleConfigureIntellisense(monaco)}

@@ -19,13 +19,13 @@ import { constrainSize } from "@/utils/constrain-size";
 
 const DEFAULT_RESPONSIVE_SIZE = { width: 540, height: 720 };
 
-const responsiveDesignMode = true;
-
 type Props = {
   code: string;
+  isResizable?: boolean;
 };
 
-export const Preview = ({ code }: Props) => {
+export const Preview = ({ code, isResizable: a = false }: Props) => {
+  const [isResizable, setIsResizable] = useState(a);
   const containerRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState<Size>({
     width: 0,
@@ -200,7 +200,7 @@ export const Preview = ({ code }: Props) => {
     >
       <TailwindScript />
 
-      {responsiveDesignMode && (
+      {isResizable && (
         <div className="flex-none text-center text-xs leading-4 tabular-nums whitespace-pre py-3 text-gray-900 dark:text-gray-400">
           {constrainedResponsiveSize.width}
           {"  "}×{"  "}
@@ -215,7 +215,7 @@ export const Preview = ({ code }: Props) => {
       <div
         className="flex-auto grid justify-center"
         style={
-          responsiveDesignMode
+          isResizable
             ? {
                 gridTemplateColumns: "1.0625rem min-content 1.0625rem",
                 gridTemplateRows: "min-content 1.0625rem",
@@ -223,7 +223,7 @@ export const Preview = ({ code }: Props) => {
             : { gridTemplateColumns: "100%" }
         }
       >
-        {responsiveDesignMode && (
+        {isResizable && (
           <span
             className="cursor-ew-resize select-none bg-black dark:bg-gray-800 text-gray-400 dark:text-gray-600 hover:text-gray-700 dark:hover:text-gray-400 transition-colors duration-150 flex items-center justify-center"
             onMouseDown={dragFromLeft}
@@ -234,12 +234,12 @@ export const Preview = ({ code }: Props) => {
         )}
         <div
           className={`relative ${
-            responsiveDesignMode
+            isResizable
               ? "border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden"
               : ""
           }`}
           style={
-            responsiveDesignMode
+            isResizable
               ? {
                   width: Math.round(
                     constrainedResponsiveSize.width *
@@ -256,7 +256,7 @@ export const Preview = ({ code }: Props) => {
           <div
             dangerouslySetInnerHTML={{ __html: code }}
             style={
-              responsiveDesignMode
+              isResizable
                 ? {
                     width: constrainedResponsiveSize.width,
                     height: constrainedResponsiveSize.height,
@@ -272,12 +272,12 @@ export const Preview = ({ code }: Props) => {
                   }
                 : {}
             }
-            className={`absolute inset-0 w-full h-full bg-white ${
+            className={`flex items-center justify-center w-full relative h-full overflow-auto bg-white text-dimmed-black ![&_img]:inline-block inset-0 ${
               resizing ? "pointer-events-none select-none" : ""
             }`}
           />
         </div>
-        {responsiveDesignMode && (
+        {isResizable && (
           <>
             <Resizer className="cursor-ew-resize" resizeHandler={dragFromRight}>
               <IconResizeRight />
@@ -303,6 +303,13 @@ export const Preview = ({ code }: Props) => {
           </>
         )}
       </div>
+      <button
+        type="button"
+        className="absolute "
+        onClick={() => setIsResizable((current) => !current)}
+      >
+        Is Resizable: {isResizable ? "true" : "false"}
+      </button>
     </section>
   );
 };

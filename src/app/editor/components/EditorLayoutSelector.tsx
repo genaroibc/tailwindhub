@@ -4,6 +4,7 @@ import {
   IconEye,
   IconLayoutColumns,
   IconLayoutRows,
+  IconTextResize,
 } from "@tabler/icons-react";
 
 const LAYOUT_OPTIONS: Array<{
@@ -25,6 +26,10 @@ const LAYOUT_OPTIONS: Array<{
   {
     layoutName: "preview-only",
     icon: <IconEye size="1.5rem" />,
+  },
+  {
+    layoutName: "free-resize",
+    icon: <IconTextResize size="1.5rem" />,
   },
 ];
 
