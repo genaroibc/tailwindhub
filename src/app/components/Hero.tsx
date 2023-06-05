@@ -19,22 +19,30 @@ export function Hero() {
       <div className="w-full bg-dimmed-black rounded-full grid gap-6 grid-cols-2 grid-rows-2 md:w-2/5 [&>img]:w-full [&>img]:h-full [&>img]:rounded-lg [&>img]:max-w-[150px] [&>img]:md:max-w-[250px]">
         <img
           className="justify-self-end self-end"
-          src="https://res.cloudinary.com/shape-snap/image/upload/v1682357375/myjakklmgr7ul1f0l7hd.png"
+          width="200"
+          height="200"
+          src="https://res.cloudinary.com/shape-snap/image/upload/w_400,h_400,ar_1,c_fill/v1686001918/qjyoqs4bca56qoccgayn.png"
           alt="Timeline component preview"
         />
         <img
           className="translate-y-1/4 justify-self-start self-end"
-          src="https://res.cloudinary.com/shape-snap/image/upload/v1682362688/mjf2vot4s6r4iplkq3m1.png"
+          width="200"
+          height="200"
+          src="https://res.cloudinary.com/shape-snap/image/upload/w_400,h_400,ar_1,c_fill/v1686002391/aowxw2jn1opalqj9crwi.png"
           alt="Product card component preview"
         />
         <img
           className="justify-self-end self-start"
-          src="https://res.cloudinary.com/shape-snap/image/upload/w_400,h_400,ar_1,c_fill/v1682535061/f8zw37cnl8n45ukux9tj.png"
+          width="200"
+          height="200"
+          src="https://res.cloudinary.com/shape-snap/image/upload/w_400,h_400,ar_1,c_fill/v1686000874/le7owgocnv9ofvtzzwcn.png"
           alt="Button component preview"
         />
         <img
           className="translate-y-1/4 justify-self-start self-start"
-          src="https://res.cloudinary.com/shape-snap/image/upload/w_400,h_400,ar_1,c_fill/v1682533754/zvzjjl7lvfpsps9qf4ch.png"
+          width="200"
+          height="200"
+          src="https://res.cloudinary.com/shape-snap/image/upload/w_400,h_400,ar_1,c_fill/v1686001762/hzovyl8x16e6cbreyg0j.png"
           alt="SignUp form component preview"
         />
       </div>
