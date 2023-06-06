@@ -14,7 +14,7 @@ import {
   IconResizeRight,
 } from "@/app/editor/components/Preview/ResizeIcons";
 import { Resizer } from "@/app/editor/components/Preview/Resizer";
-import { Size } from "@/app/editor/types";
+import { CodePreviewRef, Size } from "@/app/editor/types";
 import { constrainSize } from "@/utils/constrain-size";
 
 const DEFAULT_RESPONSIVE_SIZE = { width: 540, height: 720 };
@@ -22,10 +22,10 @@ const DEFAULT_RESPONSIVE_SIZE = { width: 540, height: 720 };
 type Props = {
   code: string;
   isResizable?: boolean;
+  codePreviewRef: CodePreviewRef;
 };
 
-export const Preview = ({ code, isResizable: a = false }: Props) => {
-  const [isResizable, setIsResizable] = useState(a);
+export const Preview = ({ code, isResizable, codePreviewRef }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState<Size>({
     width: 0,
@@ -205,11 +205,6 @@ export const Preview = ({ code, isResizable: a = false }: Props) => {
           {constrainedResponsiveSize.width}
           {"  "}×{"  "}
           {constrainedResponsiveSize.height}
-          {"  "}
-          <span className="text-gray-500">
-            ({Math.round(constrainedResponsiveSize.zoom * 100)}
-            %)
-          </span>
         </div>
       )}
       <div
@@ -254,6 +249,7 @@ export const Preview = ({ code, isResizable: a = false }: Props) => {
           }
         >
           <div
+            ref={codePreviewRef}
             dangerouslySetInnerHTML={{ __html: code }}
             style={
               isResizable
@@ -303,13 +299,6 @@ export const Preview = ({ code, isResizable: a = false }: Props) => {
           </>
         )}
       </div>
-      <button
-        type="button"
-        className="absolute "
-        onClick={() => setIsResizable((current) => !current)}
-      >
-        Is Resizable: {isResizable ? "true" : "false"}
-      </button>
     </section>
   );
 };

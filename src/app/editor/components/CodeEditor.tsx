@@ -3,23 +3,35 @@ import MonacoEditor, { Monaco } from "@monaco-editor/react";
 import { DEFAULT_CODE_EDITOR_VALUE, LOCAL_STORAGE_KEYS } from "@/constants";
 import { emmetHTML } from "emmet-monaco-es";
 import { Loader } from "@/app/components/shared/Loader/Loader";
-import { EditorLayout } from "@/app/editor/components/EditorLayout";
 import BlackboardTheme from "@/themes/Blackboard.json";
 import { registerTailwindCSSWorker } from "@/utils/register-tailwindcss-worker";
 import { CodeEditorRef, CodePreviewRef } from "@/app/editor/types";
 import { Preview } from "@/app/editor/components/Preview/Preview";
+import { EditorLayout } from "@/types";
+import Link from "next/link";
+import { TailwindHubLogo } from "@/app/components/shared/Icons";
+import { EditorLayoutSelector } from "./EditorLayoutSelector";
+import { IconDeviceFloppy } from "@tabler/icons-react";
+import { ResizableSection } from "./ResizableSection";
+
+const DEFAULT_LAYOUT: EditorLayout = "preview-and-editor-columns";
 
 type Props = {
   // eslint-disable-next-line react/no-unused-prop-types
   codePreviewRef: CodePreviewRef;
   codeEditorRef: CodeEditorRef;
-  isResizable?: boolean;
 };
 
-export function CodeEditor({ codeEditorRef, isResizable }: Props) {
+export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
   const [code, setCode] = useState(DEFAULT_CODE_EDITOR_VALUE);
   const [wordWrap, setWordWrap] = useState(true);
   const [hasUnsavedProgress, setHasUnsavedProgress] = useState(false);
+  const [layout, setLayout] = useState(DEFAULT_LAYOUT);
+  const [isResizable, setIsResizable] = useState(false);
+
+  const handleLayoutChange = (layout: EditorLayout) => {
+    setLayout(layout);
+  };
 
   const handleSaveCode = useCallback(() => {
     const codeToSave = codeEditorRef.current?.getValue();
@@ -98,36 +110,124 @@ export function CodeEditor({ codeEditorRef, isResizable }: Props) {
   }, []);
 
   return (
-    <EditorLayout
-      preview={<Preview isResizable={isResizable} code={code} />}
-      editor={
-        <MonacoEditor
-          beforeMount={(monaco) => handleConfigureIntellisense(monaco)}
-          onMount={(editor, monaco) => {
-            codeEditorRef.current = editor;
-            // @ts-ignore
-            monaco.editor?.defineTheme?.("Blackboard", BlackboardTheme);
-            monaco.editor?.setTheme?.("Blackboard");
-            emmetHTML(monaco);
-          }}
-          className="w-full h-full"
-          theme="vs-dark"
-          defaultLanguage="html"
-          defaultValue={code}
-          onChange={(code) => {
-            setCode(code ?? "");
-            setHasUnsavedProgress(true);
-          }}
-          line={2}
-          loading={<Loader color="var(--primary-color, #fff)" />}
-          options={{
-            minimap: { enabled: false },
-            wordWrap: wordWrap ? "on" : "off",
-          }}
-        />
-      }
-      hasUnsavedProgress={hasUnsavedProgress}
-      handleSaveCode={handleSaveCode}
-    />
+    <>
+      <header className="bg-slate-950 flex flex-wrap items-center justify-between gap-2 px-4">
+        <nav className="flex gap-2 justify-between items-center w-full">
+          <Link href="/">
+            <span className="font-bold flex items-center justify-center gap-2">
+              <TailwindHubLogo />
+              <span className="hidden sm:block">TailwindHub</span>
+            </span>
+          </Link>
+          <button
+            onClick={handleSaveCode}
+            className={`
+            bg-blue-500 text-white px-2 py-1 rounded-md flex items-center justify-center gap-1
+            ${
+              hasUnsavedProgress
+                ? "opacity-100 hover:bg-blue-600 active:bg-blue-700"
+                : "opacity-70"
+            }`}
+            disabled={!hasUnsavedProgress}
+          >
+            Save <IconDeviceFloppy />
+          </button>
+
+          <EditorLayoutSelector
+            handleLayoutChange={handleLayoutChange}
+            selectedLayout={layout}
+            onIsResizableChange={(isResizable) => setIsResizable(isResizable)}
+          />
+        </nav>
+      </header>
+
+      {(layout === "preview-and-editor-columns" ||
+        layout === "preview-and-editor-rows") && (
+        <ResizableSection
+          desktopLayout={
+            layout === "preview-and-editor-columns" ? "columns" : "rows"
+          }
+        >
+          <ResizableSection.LeftSide>
+            {
+              <MonacoEditor
+                beforeMount={(monaco) => handleConfigureIntellisense(monaco)}
+                onMount={(editor, monaco) => {
+                  codeEditorRef.current = editor;
+                  // @ts-ignore
+                  monaco.editor?.defineTheme?.("Blackboard", BlackboardTheme);
+                  monaco.editor?.setTheme?.("Blackboard");
+                  emmetHTML(monaco);
+                }}
+                className="w-full h-full"
+                theme="vs-dark"
+                defaultLanguage="html"
+                defaultValue={code}
+                onChange={(code) => {
+                  setCode(code ?? "");
+                  setHasUnsavedProgress(true);
+                }}
+                line={2}
+                loading={<Loader color="var(--primary-color, #fff)" />}
+                options={{
+                  minimap: { enabled: false },
+                  wordWrap: wordWrap ? "on" : "off",
+                }}
+              />
+            }
+          </ResizableSection.LeftSide>
+          <ResizableSection.RightSide>
+            {
+              <Preview
+                codePreviewRef={codePreviewRef}
+                isResizable={isResizable}
+                code={code}
+              />
+            }
+          </ResizableSection.RightSide>
+        </ResizableSection>
+      )}
+      {layout === "preview-only" && (
+        <>
+          {
+            <Preview
+              codePreviewRef={codePreviewRef}
+              isResizable={isResizable}
+              code={code}
+            />
+          }
+        </>
+      )}
+      {layout === "editor-only" && (
+        <>
+          {
+            <MonacoEditor
+              beforeMount={(monaco) => handleConfigureIntellisense(monaco)}
+              onMount={(editor, monaco) => {
+                codeEditorRef.current = editor;
+                // @ts-ignore
+                monaco.editor?.defineTheme?.("Blackboard", BlackboardTheme);
+                monaco.editor?.setTheme?.("Blackboard");
+                emmetHTML(monaco);
+              }}
+              className="w-full h-full"
+              theme="vs-dark"
+              defaultLanguage="html"
+              defaultValue={code}
+              onChange={(code) => {
+                setCode(code ?? "");
+                setHasUnsavedProgress(true);
+              }}
+              line={2}
+              loading={<Loader color="var(--primary-color, #fff)" />}
+              options={{
+                minimap: { enabled: false },
+                wordWrap: wordWrap ? "on" : "off",
+              }}
+            />
+          }
+        </>
+      )}
+    </>
   );
 }
