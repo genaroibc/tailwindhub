@@ -93,6 +93,7 @@ img {
   max-width: 100%;
   height: auto;
   object-fit: cover;
+  display: inline-block !important;
 }
 
 @media screen and (max-width: 768px) {
