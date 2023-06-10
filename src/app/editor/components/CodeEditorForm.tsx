@@ -31,7 +31,6 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
   const [previewImageURL, setPreviewImageURL] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const componentTitleInputID = useId();
-  const componentTagsInputID = useId();
   const tagsRef = useRef<string[]>([]);
   const [imageToCrop, setImageToCrop] = useState<string | null>(null);
   const [isCloningCodePreview, setIsCloningCodePreview] = useState(false);
@@ -246,16 +245,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
                 maxLength={40}
               />
 
-              <label
-                className="w-full text-base"
-                htmlFor={componentTagsInputID}
-              >
-                Tags
-              </label>
-              <TagsInput
-                inputName={componentTagsInputID}
-                onChange={({ tags }) => (tagsRef.current = tags)}
-              />
+              <TagsInput onNewTags={({ tags }) => (tagsRef.current = tags)} />
 
               {error && (
                 <p className="flex items-center gap-1 text-sm p-2 rounded border-2 border-red-300 bg-red-900 text-red-50">
