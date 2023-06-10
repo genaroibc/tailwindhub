@@ -13,10 +13,11 @@ export function TagsInput({ onNewTags: onNewTag }: Props) {
       onChange={(selectedTags) => {
         onNewTag({ tags: selectedTags.map((tag) => tag.value) });
       }}
+      className="text-black w-full"
       classNames={{
-        menuList: () => "bg-red-500 z-50",
+        option: () => "bg-slate-700 text-white hover:bg-slate-600",
+        menuList: () => "bg-slate-700 rounded",
       }}
-      className="text-black w-full z-[500]"
       options={COMPONENT_TAGS_LIST.map((tag) => ({ value: tag, label: tag }))}
     />
   );
