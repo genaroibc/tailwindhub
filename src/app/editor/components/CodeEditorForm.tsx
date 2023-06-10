@@ -159,11 +159,17 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
 
   return (
     <div className={isCloningCodePreview ? "overflow-hidden" : ""}>
-      {isOpen && (
+      <div
+        id={modalBackdropID}
+        onClick={handleBackdropClick}
+        className={`${
+          isOpen
+            ? "translate-x-0 bg-black/70 backdrop-blur-sm"
+            : "translate-x-full"
+        } transition-all absolute top-0 left-0 right-0 bottom-0 z-10 shadow-2xl bg-black p-4`}
+      >
         <div
-          id={modalBackdropID}
-          onClick={handleBackdropClick}
-          className="absolute top-0 left-0 right-0 bottom-0 z-20 bg-black/70 backdrop-blur-sm shadow-2xl grid place-content-center"
+          className={`absolute top-0 right-0 bottom-0 z-10 shadow-2xl bg-dimmed-black p-4`}
         >
           {imageToCrop && (
             <div className="absolute top-0 left-0 right-0 bottom-0 z-50 bg-black/70 backdrop-blur-sm shadow-2xl grid place-content-center">
@@ -180,12 +186,12 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
             </div>
           )}
 
-          <section className="relative max-w-[100vw] bg-dimmed-black text-primary-color z-40 flex gap-4 rounded-md overflow-hidden shadow-2xl">
+          <section className="text-primary-color flex flex-col gap-4 rounded-md shadow-2xl">
             <div className="flex flex-1 items-center justify-center w-64 aspect-square">
               {isGeneratingCodePreview ? (
                 <Loader />
               ) : previewImageURL ? (
-                <div className="group relative w-full flex items-center justify-center">
+                <div className="group relative w-full">
                   <img
                     src={previewImageURL}
                     alt="Your component preview"
@@ -212,7 +218,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
               )}
             </div>
             <form
-              className="flex flex-col items-center gap-4 py-8 px-4"
+              className="flex flex-col items-center gap-4 max-w-xs"
               onSubmit={handleSubmit}
             >
               <button
@@ -265,7 +271,8 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
             </form>
           </section>
         </div>
-      )}
+      </div>
+
       <div className="w-fit fixed bottom-4 right-4 z-10">
         <LoginToPublishButton onClick={handleOpenForm}>
           Publish

@@ -10,7 +10,7 @@ export function EditorSection() {
   const codeEditorRef: CodeEditorRef = useRef(null);
 
   return (
-    <section className="h-full w-full flex flex-col items-stretch justify-stretch relative">
+    <section className="h-full w-full flex flex-col items-stretch justify-stretch relative overflow-hidden">
       <CodeEditorForm
         codeEditorRef={codeEditorRef}
         codePreviewRef={codePreviewRef}
