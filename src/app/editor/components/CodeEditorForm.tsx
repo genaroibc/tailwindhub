@@ -164,12 +164,14 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
         onClick={handleBackdropClick}
         className={`${
           isOpen
-            ? "translate-x-0 bg-black/70 backdrop-blur-sm"
-            : "translate-x-full"
-        } transition-all absolute top-0 left-0 right-0 bottom-0 z-10 shadow-2xl bg-black p-4`}
+            ? "bg-black/70 backdrop-blur-sm"
+            : "bg-black/30 pointer-events-none opacity-0 invisible"
+        } block transition-colors absolute top-0 left-0 right-0 bottom-0 z-10 shadow-2xl bg-black p-4`}
       >
         <div
-          className={`absolute top-0 right-0 bottom-0 z-10 shadow-2xl bg-dimmed-black p-4`}
+          className={`${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          } transition-transform absolute top-0 right-0 bottom-0 z-10 shadow-2xl bg-dimmed-black p-4`}
         >
           {imageToCrop && (
             <div className="absolute top-0 left-0 right-0 bottom-0 z-50 bg-black/70 backdrop-blur-sm shadow-2xl grid place-content-center">
