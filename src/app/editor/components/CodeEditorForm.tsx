@@ -3,12 +3,7 @@ import { Loader } from "@/app/components/shared/Loader/Loader";
 import { useSupabase } from "@/hooks/useSupabase";
 import { createComponent } from "@/services/create-component";
 import { getImageDataURL } from "@/utils/get-image-data-url";
-import {
-  IconCrop,
-  IconError404,
-  IconExclamationCircle,
-  IconX,
-} from "@tabler/icons-react";
+import { IconCrop, IconExclamationCircle, IconX } from "@tabler/icons-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { ImageCropper } from "@/app/editor/components/ImageCropper";
 import { LoginToPublishButton } from "@/app/editor/components/LoginToPublishButton";
@@ -164,14 +159,14 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
         onClick={handleBackdropClick}
         className={`${
           isOpen
-            ? "bg-black/70 backdrop-blur-sm"
-            : "bg-black/30 pointer-events-none opacity-0 invisible"
-        } block transition-colors absolute top-0 left-0 right-0 bottom-0 z-10 shadow-2xl bg-black p-4`}
+            ? "bg-black/70 backdrop-blur-sm pointer-events-auto opacity-1 visible"
+            : "bg-black/30 backdrop-blur-none pointer-events-none opacity-0 invisible"
+        } block transition-all absolute top-0 left-0 right-0 bottom-0 z-10 shadow-2xl bg-black p-4`}
       >
         <div
           className={`${
             isOpen ? "translate-x-0" : "translate-x-full"
-          } transition-transform absolute top-0 right-0 bottom-0 z-10 shadow-2xl bg-dimmed-black p-4`}
+          } transition-transform absolute top-0 right-0 bottom-0 left-0 sm:left-auto z-10 shadow-2xl bg-dimmed-black p-4 overflow-auto max-h-screen`}
         >
           {imageToCrop && (
             <div className="absolute top-0 left-0 right-0 bottom-0 z-50 bg-black/70 backdrop-blur-sm shadow-2xl grid place-content-center">
@@ -188,12 +183,12 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
             </div>
           )}
 
-          <section className="text-primary-color flex flex-col gap-4 rounded-md shadow-2xl">
-            <div className="flex flex-1 items-center justify-center w-64 aspect-square">
+          <section className="text-primary-color sm:items-center w-full flex flex-col items-center gap-4">
+            <div className="flex items-center justify-center w-64 aspect-square">
               {isGeneratingCodePreview ? (
                 <Loader />
               ) : previewImageURL ? (
-                <div className="group relative w-full">
+                <div className="group relative flex justify-center w-full">
                   <img
                     src={previewImageURL}
                     alt="Your component preview"
@@ -210,9 +205,60 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
                 </div>
               ) : (
                 <div className="flex flex-col gap-2 justify-center items-center py-8 px-4 text-center">
-                  <div className="max-w-[10rem]">
-                    <IconError404 />
-                  </div>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    There was an error generating the preview of your component
+                  </span>
                   <span className="text-sm text-gray-400">
                     There was an error generating the preview of your component
                   </span>
