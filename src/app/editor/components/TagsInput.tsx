@@ -1,4 +1,5 @@
 import { COMPONENT_TAGS_LIST } from "@/types";
+import { useId } from "react";
 import Select from "react-select";
 
 type Props = {
@@ -7,8 +8,11 @@ type Props = {
 };
 
 export function TagsInput({ onNewTags: onNewTag }: Props) {
+  const selectID = useId();
+
   return (
     <Select
+      instanceId={selectID}
       isMulti
       onChange={(selectedTags) => {
         onNewTag({ tags: selectedTags.map((tag) => tag.value) });
