@@ -275,24 +275,31 @@ export const Preview = ({ code, isResizable, codePreviewRef }: Props) => {
         </div>
         {isResizable && (
           <>
-            <Resizer className="cursor-ew-resize" resizeHandler={dragFromRight}>
+            <Resizer
+              className="cursor-ew-resize"
+              onMouseDown={dragFromRight}
+              onTouchStart={dragFromRight}
+            >
               <IconResizeRight />
             </Resizer>
             <Resizer
               className="cursor-nesw-resize"
-              resizeHandler={dragFromBottomLeft}
+              onMouseDown={dragFromBottomLeft}
+              onTouchStart={dragFromBottomLeft}
             >
               <IconResizeBottomLeft />
             </Resizer>
             <Resizer
               className="cursor-ns-resize"
-              resizeHandler={dragFromBottom}
+              onMouseDown={dragFromBottom}
+              onTouchStart={dragFromBottom}
             >
               <IconResizeBottom />
             </Resizer>
             <Resizer
               className="cursor-nwse-resize"
-              resizeHandler={dragFromBottomRight}
+              onMouseDown={dragFromBottomRight}
+              onTouchStart={dragFromBottomRight}
             >
               <IconResizeBottomRight />
             </Resizer>

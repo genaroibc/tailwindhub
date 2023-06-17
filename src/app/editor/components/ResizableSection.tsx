@@ -8,6 +8,7 @@ import {
   IconResizeBottom,
   IconResizeLeft,
 } from "@/app/editor/components/Preview/ResizeIcons";
+import { Resizer } from "./Preview/Resizer";
 
 type Props = {
   children: React.ReactElement[];
@@ -222,14 +223,14 @@ export function ResizableSection({
             )}
           </div>
 
-          <div
-            ref={resizerY}
+          <Resizer
+            resizerRef={resizerY}
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
             className="flex items-center justify-center min-h-[0.8rem] w-full bg-black p-0 z-[2] cursor-row-resize"
           >
             <IconResizeBottom />
-          </div>
+          </Resizer>
 
           <div ref={belowSideRef} className="h-full overflow-hidden">
             {Children.map(
@@ -253,14 +254,14 @@ export function ResizableSection({
             )}
           </div>
 
-          <div
-            ref={resizerX}
+          <Resizer
+            resizerRef={resizerX}
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
             className="flex items-center justify-center min-w-[0.8rem] h-full bg-black p-0 z-[2] cursor-col-resize"
           >
             <IconResizeLeft />
-          </div>
+          </Resizer>
 
           <div ref={rightSideRef} className="w-full max-w-full overflow-hidden">
             {Children.map(
