@@ -222,7 +222,7 @@ export function ResizableSection({
             ref={resizerY}
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
-            className="flex flex-col gap-1 h-[1.8rem] w-full justify-center items-center bg-black p-0 z-[2] cursor-row-resize"
+            className="flex flex-col gap-1 min-h-[1.3rem] w-full justify-center items-center bg-black p-0 z-[2] cursor-row-resize"
           >
             <span className="w-6 h-[2px] bg-white" />
             <span className="w-6 h-[2px] bg-white" />
@@ -254,7 +254,7 @@ export function ResizableSection({
             ref={resizerX}
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
-            className="flex flex-grow-0 flex-row gap-1 w-[1.8rem] h-full justify-center items-center bg-black p-0 z-[2] cursor-col-resize"
+            className="flex flex-grow-0 flex-row gap-1 min-w-[1.3rem] h-full justify-center items-center bg-black p-0 z-[2] cursor-col-resize"
           >
             <span className="w-[2px] h-6 bg-white" />
             <span className="w-[2px] h-6 bg-white" />
