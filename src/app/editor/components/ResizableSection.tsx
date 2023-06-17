@@ -4,6 +4,10 @@
 "use client";
 
 import { useRef, Children, useEffect, useState } from "react";
+import {
+  IconResizeBottom,
+  IconResizeLeft,
+} from "@/app/editor/components/Preview/ResizeIcons";
 
 type Props = {
   children: React.ReactElement[];
@@ -222,10 +226,9 @@ export function ResizableSection({
             ref={resizerY}
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
-            className="flex flex-col gap-1 min-h-[1.3rem] w-full justify-center items-center bg-black p-0 z-[2] cursor-row-resize"
+            className="flex items-center justify-center min-h-[0.8rem] w-full bg-black p-0 z-[2] cursor-row-resize"
           >
-            <span className="w-6 h-[2px] bg-white" />
-            <span className="w-6 h-[2px] bg-white" />
+            <IconResizeBottom />
           </div>
 
           <div ref={belowSideRef} className="h-full overflow-hidden">
@@ -254,10 +257,9 @@ export function ResizableSection({
             ref={resizerX}
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
-            className="flex flex-grow-0 flex-row gap-1 min-w-[1.3rem] h-full justify-center items-center bg-black p-0 z-[2] cursor-col-resize"
+            className="flex items-center justify-center min-w-[0.8rem] h-full bg-black p-0 z-[2] cursor-col-resize"
           >
-            <span className="w-[2px] h-6 bg-white" />
-            <span className="w-[2px] h-6 bg-white" />
+            <IconResizeLeft />
           </div>
 
           <div ref={rightSideRef} className="w-full max-w-full overflow-hidden">
