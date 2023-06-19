@@ -1,11 +1,13 @@
 import { ComponentItem } from "@/types";
-import { IconHeart } from "@tabler/icons-react";
+import { getRelativeTime } from "@/utils/get-relative-time";
+import { IconCalendarEvent, IconHeart } from "@tabler/icons-react";
 
 type ComponentPageProps = ComponentItem;
 
 export function ComponentPage({
   author_avatar_url,
   author_username,
+  created_at,
   html_code,
   likes,
   preview_img,
@@ -38,6 +40,19 @@ export function ComponentPage({
 
           <p className="flex items-center gap-2">
             <IconHeart /> {likes.length}
+          </p>
+
+          <p className="text-gray-300 flex gap-2 items-center">
+            <span>
+              <IconCalendarEvent />
+            </span>
+
+            <span>
+              created{" "}
+              <time dateTime={created_at}>
+                {getRelativeTime(new Date(created_at).getTime())}
+              </time>
+            </span>
           </p>
 
           <div className="mt-4">
