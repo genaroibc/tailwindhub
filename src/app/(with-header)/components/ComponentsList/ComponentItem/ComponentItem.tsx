@@ -1,5 +1,6 @@
 import { type ComponentItem as TComponentItem } from "@/types";
 import { ComponentItemNavBar } from "@/app/(with-header)/components/ComponentsList/ComponentItem/ComponentItemNavBar";
+import { sluglify } from "@/utils/url-formatting";
 
 type Props = TComponentItem;
 
@@ -18,7 +19,7 @@ export function ComponentItem({
       className="max-w-full self-stretch flex flex-col items-stretch justify-between bg-transparent"
       key={id}
     >
-      <a href={`/u/${author_username}/${title}`}>
+      <a href={`/u/${author_username}/${sluglify(title)}`}>
         <div className="relative group">
           <img
             className="block w-full aspect-square object-cover rounded-2xl relative"

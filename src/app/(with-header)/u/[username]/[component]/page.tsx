@@ -3,6 +3,7 @@ import { cookies, headers } from "next/headers";
 import { type Database } from "@/types/db";
 import { type ComponentItem } from "@/types";
 import { ComponentsList } from "@/app/(with-header)/components/ComponentsList/ComponentsList";
+import { unsluglify } from "@/utils/url-formatting";
 
 type PageProps = {
   params: { username: string; component: string };
@@ -18,7 +19,7 @@ export default async function ComponentPage({ params }: PageProps) {
     .from("components")
     .select("likes (author_username),*")
     .eq("author_username", params.username)
-    .eq("title", params.component);
+    .eq("title", unsluglify(params.component));
 
   return (
     <>
