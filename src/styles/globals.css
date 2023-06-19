@@ -15,8 +15,8 @@
 }
 
 :root {
-  background-color: var(--primary-color);
-  color: var(--dimmed-black);
+  background-color: var(--dimmed-black);
+  color: var(--primary-color);
 
   --primary-color: #f9f4ec;
   --secondary-color: #ebd5cf;
