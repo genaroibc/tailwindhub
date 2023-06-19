@@ -15,7 +15,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { username } = params;
 
-  const BASE_URL = ENV.NEXT_PUBLIC_VERCEL_URL;
+  const BASE_URL = `https://${ENV.NEXT_PUBLIC_VERCEL_URL}`;
   const USER_PROFILE_URL = `${BASE_URL}/u/${username}`;
   const TITLE = `${username} - TailwindHub`;
   const DESCRIPTION = `Visit ${username} profile on TailwindHub`;
