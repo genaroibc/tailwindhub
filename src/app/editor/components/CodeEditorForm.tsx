@@ -1,5 +1,5 @@
-import { Button } from "@/app/components/shared/Button";
-import { Loader } from "@/app/components/shared/Loader/Loader";
+import { Button } from "@/app/(with-header)/components/shared/Button";
+import { Loader } from "@/app/(with-header)/components/shared/Loader/Loader";
 import { useSupabase } from "@/hooks/useSupabase";
 import { createComponent } from "@/services/create-component";
 import { getImageDataURL } from "@/utils/get-image-data-url";

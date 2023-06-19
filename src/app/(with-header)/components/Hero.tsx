@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <div className="flex-col gap-12 px-2 flex justify-center items-center py-20 max-w-[1200px] my-0 mx-auto md:gap-8 md:px-4 md:flex-row">
+    <section className="flex-col gap-12 px-2 flex justify-center items-center py-20 max-w-[1200px] my-0 mx-auto md:gap-8 md:px-4 md:flex-row">
       <div className="w-full text-center p-0 md:p-4 md:w-3/5 md:text-left">
         <h1 className="text-4xl font-bold md:text-6xl">TailwindHub</h1>
         <p className="text-base mt-4 mx-auto mb-8 md:text-2xl">
@@ -10,13 +10,13 @@ export function Hero() {
         </p>
         <Link
           href="/editor"
-          className="my-0 mx-auto text-base block w-fit bg-light-brown text-white rounded-full py-3 px-6 font-bold border-none cursor-pointer transition-colors hover:bg-dark-brown md:m-0"
+          className="my-0 mx-auto text-base block w-fit hover:bg-secondary-color text-dimmed-black rounded-full py-3 px-6 font-bold border-none cursor-pointer transition-colors bg-primary-color md:m-0"
         >
           Go to editor
         </Link>
       </div>
 
-      <div className="w-full bg-dimmed-black rounded-full grid gap-6 grid-cols-2 grid-rows-2 md:w-2/5 [&>img]:w-full [&>img]:h-full [&>img]:rounded-lg [&>img]:max-w-[150px] [&>img]:md:max-w-[250px]">
+      <div className="w-full rounded-full grid gap-6 grid-cols-2 grid-rows-2 md:w-2/5 [&>img]:w-full [&>img]:h-full [&>img]:rounded-lg [&>img]:max-w-[150px] [&>img]:md:max-w-[250px]">
         <img
           className="justify-self-end self-end"
           width="200"
@@ -46,6 +46,6 @@ export function Hero() {
           alt="SignUp form component preview"
         />
       </div>
-    </div>
+    </section>
   );
 }

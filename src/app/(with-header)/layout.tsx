@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import { Lexend_Deca } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { Header } from "@/app/(with-header)/components/Header/Header";
 
 const lexendDeca = Lexend_Deca({
   weight: ["300", "600", "800"],
@@ -15,7 +16,10 @@ export default function RootLayout({ children }: Props) {
   return (
     <html className={lexendDeca.className} lang="en">
       <Analytics />
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

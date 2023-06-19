@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Login } from "@/app/components/shared/Login";
+import { Login } from "@/app/(with-header)/components/shared/Login";
 import styles from "./Header.module.css";
 import { useRef } from "react";
-import { TailwindHubLogo } from "@/app/components/shared/Icons";
+import { TailwindHubLogo } from "@/app/(with-header)/components/shared/Icons";
 
 export function Header() {
   const menuRef = useRef<HTMLHeadingElement>(null);
@@ -25,6 +25,9 @@ export function Header() {
         </Link>
         <Link className={styles.hamburger_menu_link} href="/">
           Home
+        </Link>
+        <Link className={styles.hamburger_menu_link} href="/u">
+          Users
         </Link>
       </nav>
       <Login />

@@ -2,7 +2,7 @@
 
 import { useSupabase } from "@/hooks/useSupabase";
 import { useEffect, useState } from "react";
-import { Button } from "@/app/components/shared/Button";
+import { Button } from "@/app/(with-header)/components/shared/Button";
 import { AuthSession } from "@supabase/supabase-js";
 import { IconLogout } from "@tabler/icons-react";
 

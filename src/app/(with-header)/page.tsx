@@ -1,12 +1,11 @@
-import { Hero } from "@/app/components/Hero";
-import { ComponentsList } from "@/app/components/ComponentsList/ComponentsList";
+import { Hero } from "@/app/(with-header)/components/Hero";
+import { ComponentsList } from "@/app/(with-header)/components/ComponentsList/ComponentsList";
 import { type Metadata } from "next";
 import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { cookies, headers } from "next/headers";
 import { Database } from "@/types/db";
 import { ComponentItem } from "@/types";
-import { Header } from "@/app/components/Header/Header";
-import { PageFooter } from "@/app/components/PageFooter";
+import { PageFooter } from "@/app/(with-header)/components/PageFooter";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tailwindhub.dev/"),
@@ -57,15 +56,13 @@ export default async function Home() {
     .select("likes (author_username),*");
 
   return (
-    <div>
-      <Header />
-
+    <>
       <Hero />
       {Array.isArray(data) && data && (
         <ComponentsList defaultComponents={data as ComponentItem[]} />
       )}
 
       <PageFooter />
-    </div>
+    </>
   );
 }

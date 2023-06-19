@@ -5,7 +5,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { getPointerPosition } from "@/utils/get-pointer-position";
-import { TailwindScript } from "@/app/components/shared/TailwindScript";
+import { TailwindScript } from "@/app/(with-header)/components/shared/TailwindScript";
 import {
   IconResizeBottom,
   IconResizeBottomLeft,

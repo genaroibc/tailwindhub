@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/app/components/shared/Button";
+import { Button } from "@/app/(with-header)/components/shared/Button";
 import { useSupabase } from "@/hooks/useSupabase";
 import { AuthSession } from "@supabase/supabase-js";
 import { IconBrandGithub } from "@tabler/icons-react";
