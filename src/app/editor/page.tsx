@@ -1,12 +1,17 @@
 import { type Metadata } from "next";
 import { EditorSection } from "@/app/editor/components/EditorSection";
 
+const EDITOR_PAGE_URL = "https://tailwindhub.dev/editor";
+const TITLE = "TailwindHub - Editor";
+const IMAGE_URL = "https://tailwindhub.dev/tailwindhub-editor.png";
+const DESCRIPTION = "Create and share your own Tailwind components";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tailwindhub.dev/editor"),
+  metadataBase: new URL(EDITOR_PAGE_URL),
   applicationName: "TailwindHub",
   colorScheme: "dark",
-  title: "TailwindHub - Editor",
-  description: "Create and share your own Tailwind components",
+  title: TITLE,
+  description: DESCRIPTION,
   keywords: [
     "tailwind",
     "tailwindcss",
@@ -23,17 +28,17 @@ export const metadata: Metadata = {
     "tailwind editor",
   ],
   openGraph: {
-    title: "TailwindHub - Code editor to create and share Tailwind components",
+    title: TITLE,
     type: "website",
-    description: "Create and share your own Tailwind components",
-    images: "https://tailwindhub.dev/tailwindhub-editor.png",
-    url: "https://tailwindhub.dev/editor",
+    description: DESCRIPTION,
+    images: IMAGE_URL,
+    url: EDITOR_PAGE_URL,
   },
   twitter: {
     card: "summary_large_image",
-    title: "TailwindHub - Code editor to create and share Tailwind components",
-    description: "Create and share your own Tailwind components",
-    images: ["https://tailwindhub.dev/tailwindhub-editor.png"],
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [IMAGE_URL],
   },
 };
 

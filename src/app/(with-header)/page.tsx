@@ -6,13 +6,18 @@ import { cookies, headers } from "next/headers";
 import { Database } from "@/types/db";
 import { ComponentItem } from "@/types";
 import { PageFooter } from "@/app/(with-header)/components/PageFooter";
+import { BASE_URL } from "@/constants";
+
+const TITLE = "TailwindHub - open-source Tailwind components";
+const DESCRIPTION = "Free, open-source platform to share Tailwind components";
+const IMAGE_URL = "https://tailwindhub.dev/tailwindhub.png";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tailwindhub.dev/"),
+  metadataBase: new URL(BASE_URL),
   applicationName: "TailwindHub",
   colorScheme: "dark",
-  title: "TailwindHub - UI components",
-  description: "Free, open-source platform to share Tailwind components",
+  title: TITLE,
+  description: DESCRIPTION,
   keywords: [
     "tailwind",
     "tailwindcss",
@@ -29,17 +34,17 @@ export const metadata: Metadata = {
     "tailwind editor",
   ],
   openGraph: {
-    title: "TailwindHub - open-source Tailwind components",
+    title: TITLE,
     type: "website",
-    description: "Free, open-source platform to share Tailwind components",
-    images: "https://tailwindhub.dev/tailwindhub.png",
-    url: "https://tailwindhub.dev/",
+    description: DESCRIPTION,
+    images: IMAGE_URL,
+    url: BASE_URL,
   },
   twitter: {
     card: "summary_large_image",
-    title: "TailwindHub - open-source Tailwind components",
-    description: "Free, open-source platform to share Tailwind components",
-    images: ["https://tailwindhub.dev/tailwindhub.png"],
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [IMAGE_URL],
   },
 };
 
