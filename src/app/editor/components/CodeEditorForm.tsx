@@ -58,6 +58,8 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
+    if (error) return;
+
     const code = codeEditorRef.current?.getValue();
 
     if (!previewImageURL) {
@@ -150,6 +152,17 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
     setIsOpen(false);
     setImageToCrop(null);
     setError(null);
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const componentTitle = event.target.value;
+
+    if (componentTitle.includes("-")) {
+      return setError("component title cannot contain hyphens");
+    }
+
+    setError(null);
+    setComponentTitle(componentTitle);
   };
 
   return (
@@ -287,8 +300,12 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
                 Title
               </label>
               <input
-                onChange={(event) => setComponentTitle(event.target.value)}
-                className="bg-red-100 border invalid:border-red-500 invalid:text-red-900 invalid:placeholder-red-700 placeholder:opacity-60 text-sm rounded-lg invalid:focus:ring-red-500 invalid:focus:border-red-500 invalid:dark:bg-red-100 invalid:dark:border-red-400 valid:bg-green-100 valid:border-green-500 valid:text-green-900 valid:placeholder-green-700 valid:focus:ring-green-500 valid:focus:border-green-500 block w-full p-2.5 valid:dark:bg-green-100 valid:dark:border-green-400 mb-4"
+                onChange={handleInputChange}
+                className={`bg-red-100 border invalid:border-red-500 invalid:text-red-900 invalid:placeholder-red-700 placeholder:opacity-60 text-sm rounded-lg invalid:focus:ring-red-500 invalid:focus:border-red-500 valid:bg-green-100 valid:border-green-500 valid:text-green-900 valid:placeholder-green-700 valid:focus:ring-green-500 valid:focus:border-green-500 block w-full p-2.5 mb-4 ${
+                  error != null
+                    ? "border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500"
+                    : ""
+                }`}
                 type="text"
                 autoFocus
                 name={componentTitleInputID}
@@ -310,7 +327,7 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
 
               <button
                 disabled={loading}
-                className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 disabled:brightness-75"
+                className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 disabled:brightness-75"
               >
                 <span className="relative px-6 py-3 transition-all ease-in duration-75 bg-gray-900 rounded-md group-hover:bg-opacity-0 text-white">
                   {loading ? <Loader color="#fff" /> : <span>Publish</span>}
