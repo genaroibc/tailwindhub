@@ -1,15 +1,15 @@
 import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { cookies, headers } from "next/headers";
 import { type Database } from "@/types/db";
-import { type ComponentItem } from "@/types";
-import { ComponentsList } from "@/app/(with-header)/components/ComponentsList/ComponentsList";
+import { type ComponentItem as TComponentItem } from "@/types";
 import { unsluglify } from "@/utils/url-formatting";
+import { ComponentPage } from "./components/ComponentPage";
 
 type PageProps = {
   params: { username: string; component: string };
 };
 
-export default async function ComponentPage({ params }: PageProps) {
+export default async function Page({ params }: PageProps) {
   const supabase = createServerComponentSupabaseClient<Database>({
     cookies,
     headers,
@@ -22,10 +22,10 @@ export default async function ComponentPage({ params }: PageProps) {
     .eq("title", unsluglify(params.component));
 
   return (
-    <>
-      {Array.isArray(data) && data && (
-        <ComponentsList defaultComponents={data as ComponentItem[]} />
+    <main className="max-w-page-max-width mx-auto">
+      {Array.isArray(data) && data != null && (
+        <ComponentPage {...(data[0] as TComponentItem)} />
       )}
-    </>
+    </main>
   );
 }
