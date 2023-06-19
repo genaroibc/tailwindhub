@@ -59,7 +59,7 @@ export function ComponentItem({
           <span className="text-base font-semibold w-full overflow-hidden text-ellipsis whitespace-nowrap">
             {title}
           </span>
-          <a className="text-xs" href={`https://github.com/${author_username}`}>
+          <a className="text-xs" href={`/u/${author_username}`}>
             @{author_username}
           </a>
         </div>
