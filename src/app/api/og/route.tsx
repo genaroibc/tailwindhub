@@ -20,6 +20,8 @@ export async function GET(req: Request) {
     (
       <article tw="h-screen flex items-center justify-center text-black w-full relative">
         <img
+          width={1200}
+          height={630}
           src={`${BASE_URL}/tailwindhub-empty.png`}
           alt=""
           className="absolute inset-0"
