@@ -4,7 +4,7 @@ import { type Database } from "@/types/db";
 import { type ComponentItem } from "@/types";
 import { ComponentsList } from "@/app/(with-header)/components/ComponentsList/ComponentsList";
 import { type Metadata } from "next";
-import ENV from "@/constants/env";
+import { BASE_URL } from "@/constants";
 
 type PageProps = {
   params: { username: string };
@@ -15,10 +15,9 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { username } = params;
 
-  const BASE_URL = `https://${ENV.NEXT_PUBLIC_VERCEL_URL}`;
   const USER_PROFILE_URL = `${BASE_URL}/u/${username}`;
   const TITLE = `${username} - TailwindHub`;
-  const DESCRIPTION = `Visit ${username} profile on TailwindHub`;
+  const DESCRIPTION = `Visit ${username}'s profile on TailwindHub`;
 
   const ogUrl = new URL(`${BASE_URL}/api/og`);
   ogUrl.searchParams.set("title", username || "");

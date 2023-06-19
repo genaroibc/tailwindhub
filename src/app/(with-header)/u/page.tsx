@@ -2,6 +2,49 @@ import { UserMetadata } from "@/types/user";
 import { createClient } from "@supabase/supabase-js";
 import { UserCard } from "./components/UserCard";
 import ENV from "@/constants/env";
+import { Metadata } from "next";
+import { BASE_URL } from "@/constants";
+
+const TITLE = "Users - TailwindHub";
+const DESCRIPTION =
+  "Visit user profiles and discover amazing creators on TailwindHub";
+const IMAGE_URL = `${BASE_URL}/tailwindhub-users.png`;
+
+export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
+  applicationName: "TailwindHub",
+  colorScheme: "dark",
+  title: TITLE,
+  description: DESCRIPTION,
+  keywords: [
+    "tailwind",
+    "tailwindcss",
+    "components",
+    "ui",
+    "tailwind components",
+    "tailwind playground",
+    "components kit",
+    "components library",
+    "tailwind library",
+    "tailwind kit",
+    "tailwind ui",
+    "tailwind open-source",
+    "tailwind editor",
+  ],
+  openGraph: {
+    title: TITLE,
+    type: "website",
+    description: DESCRIPTION,
+    images: IMAGE_URL,
+    url: BASE_URL,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [IMAGE_URL],
+  },
+};
 
 export default async function UPage() {
   const supabaseAdmin = createClient(
