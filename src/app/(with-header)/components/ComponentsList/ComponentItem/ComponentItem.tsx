@@ -19,35 +19,35 @@ export function ComponentItem({
       className="max-w-full self-stretch flex flex-col items-stretch justify-between bg-transparent"
       key={id}
     >
-      <a href={`/u/${author_username}/${sluglify(title)}`}>
-        <div className="relative group">
+      <div className="relative group">
+        <a href={`/u/${author_username}/${sluglify(title)}`}>
           <img
             className="block w-full aspect-square object-cover rounded-2xl relative"
             src={preview_img}
             alt={title}
           />
+        </a>
 
-          <footer className="pt-4 bottom-0 w-full absolute opacity-0 duration-300 transition-opacity group-hover:opacity-100 bg-gradient-to-t from-black/60 to-black/0 min-h-[4rem] rounded-bl-2xl rounded-br-2xl flex flex-col justify-end">
-            <div className="opacity-0 invisible duration-300 transition-[transform,visibility,opacity] translate-y-2 flex justify-between items-end gap-2 p-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0">
-              <ul className="hidden md:flex gap-x-1 gap-y-2 items-center justify-start flex-wrap-reverse text-xs">
-                {tags.map((tag) => (
-                  <li
-                    key={tag}
-                    className="bg-primary-color text-dimmed-black py-1 px-2 rounded-full"
-                  >
-                    {tag}
-                  </li>
-                ))}
-              </ul>
-              <ComponentItemNavBar
-                componentId={id}
-                likes={likes}
-                textToCopy={html_code}
-              />
-            </div>
-          </footer>
-        </div>
-      </a>
+        <footer className="pt-4 bottom-0 w-full absolute opacity-0 duration-300 transition-opacity group-hover:opacity-100 bg-gradient-to-t from-black/60 to-black/0 min-h-[4rem] rounded-bl-2xl rounded-br-2xl flex flex-col justify-end">
+          <div className="opacity-0 invisible duration-300 transition-[transform,visibility,opacity] translate-y-2 flex justify-between items-end gap-2 p-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0">
+            <ul className="hidden md:flex gap-x-1 gap-y-2 items-center justify-start flex-wrap-reverse text-xs">
+              {tags.map((tag) => (
+                <li
+                  key={tag}
+                  className="bg-primary-color text-dimmed-black py-1 px-2 rounded-full"
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
+            <ComponentItemNavBar
+              componentId={id}
+              likes={likes}
+              textToCopy={html_code}
+            />
+          </div>
+        </footer>
+      </div>
 
       <footer className="flex flex-row gap-2 py-4 px-0 bg-transparent text-primary-color items-center">
         <img
