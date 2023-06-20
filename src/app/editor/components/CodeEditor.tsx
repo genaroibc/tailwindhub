@@ -8,8 +8,7 @@ import { registerTailwindCSSWorker } from "@/utils/register-tailwindcss-worker";
 import { CodeEditorRef, CodePreviewRef } from "@/app/editor/types";
 import { Preview } from "@/app/editor/components/Preview/Preview";
 import { EditorLayout } from "@/types";
-import Link from "next/link";
-import { TailwindHubLogo } from "@/app/(with-header)/components/shared/Icons";
+import { HomeLink } from "@/app/components/shared/HomeLink";
 import { EditorLayoutSelector } from "./EditorLayoutSelector";
 import { IconDeviceFloppy } from "@tabler/icons-react";
 import { ResizableSection } from "./ResizableSection";
@@ -121,12 +120,8 @@ export function CodeEditor({
     <>
       <header className="bg-slate-950 flex flex-wrap items-center justify-between gap-2 px-4">
         <nav className="flex gap-2 justify-between items-center w-full">
-          <Link href="/">
-            <span className="font-bold flex items-center justify-center gap-2">
-              <TailwindHubLogo />
-              <span className="hidden sm:block">TailwindHub</span>
-            </span>
-          </Link>
+          <HomeLink />
+
           <button
             onClick={handleSaveCode}
             className={`

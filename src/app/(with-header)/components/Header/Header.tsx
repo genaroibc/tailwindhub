@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Login } from "@/app/(with-header)/components/shared/Login";
 import styles from "./Header.module.css";
 import { useRef } from "react";
-import { TailwindHubLogo } from "@/app/(with-header)/components/shared/Icons";
+import { HomeLink } from "@/app/components/shared/HomeLink";
 
 export function Header() {
   const menuRef = useRef<HTMLHeadingElement>(null);
@@ -16,15 +16,14 @@ export function Header() {
   return (
     <header className={styles.page_header}>
       <span className={styles.brand_name}>
-        <TailwindHubLogo />
-        <span>TailwindHub</span>
+        <HomeLink />
       </span>
       <nav onClick={toggleMenu} ref={menuRef} className={styles.hamburger_menu}>
-        <Link className={styles.hamburger_menu_link} href="/editor">
-          Editor
-        </Link>
         <Link className={styles.hamburger_menu_link} href="/">
           Home
+        </Link>
+        <Link className={styles.hamburger_menu_link} href="/editor">
+          Editor
         </Link>
         <Link className={styles.hamburger_menu_link} href="/u">
           Users
