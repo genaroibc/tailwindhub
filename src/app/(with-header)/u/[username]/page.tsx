@@ -78,10 +78,9 @@ export default async function UserPage({ params }: PageProps) {
   );
 
   const allUsers = await supabaseAdmin.auth.admin.listUsers();
-  const userData = allUsers.data.users.find((u) => {
-    console.log(u.user_metadata.user_name, params.username);
-    return u.user_metadata.user_name === params.username;
-  })?.user_metadata as UserMetadata | undefined;
+  const userData = allUsers.data.users.find(
+    (u) => u.user_metadata.user_name === params.username
+  )?.user_metadata as UserMetadata | undefined;
 
   if (userData == null) {
     return notFound();
@@ -113,7 +112,7 @@ export default async function UserPage({ params }: PageProps) {
         <nav>
           <ul className="flex gap-4 items-center">
             <li className="flex items-center gap-2">
-              55
+              0
               <IconHeart />
             </li>
             <li className="flex items-center gap-2">
