@@ -94,41 +94,45 @@ export default async function UserPage({ params }: PageProps) {
   const userComponents = data as ComponentItem[];
 
   return (
-    <main className="max-w-page-max-width mx-auto">
+    <main>
       <section className="relative bg-slate-950 px-4 py-20 flex flex-col gap-4 items-center">
-        <article className="flex flex-col items-center gap-2 mt-4 mb-8">
-          <img
-            className="bg-cover aspect-square rounded-full mb-4"
-            src={userData.avatar_url}
-            width={120}
-            height={120}
-            alt={userData.user_name}
-          />
+        <div className="max-w-page-max-width mx-auto">
+          <article className="flex flex-col items-center gap-2 mt-4 mb-8">
+            <img
+              className="bg-cover aspect-square rounded-full mb-4"
+              src={userData.avatar_url}
+              width={120}
+              height={120}
+              alt={userData.user_name}
+            />
 
-          <h1 className="text-3xl text-gray-100">{userData.name}</h1>
-          <h2 className="text-xl text-gray-400">@{userData.user_name}</h2>
-        </article>
+            <h1 className="text-3xl text-gray-100">{userData.name}</h1>
+            <h2 className="text-xl text-gray-400">@{userData.user_name}</h2>
+          </article>
 
-        <nav>
-          <ul className="flex gap-4 items-center">
-            <li className="flex items-center gap-2">
-              0
-              <IconHeart />
-            </li>
-            <li className="flex items-center gap-2">
-              {userComponents.length}
-              <Icon3dCubeSphere />
-            </li>
-          </ul>
-        </nav>
+          <nav className="mx-auto">
+            <ul className="flex gap-4 items-center justify-center">
+              <li className="flex items-center gap-2">
+                0
+                <IconHeart />
+              </li>
+              <li className="flex items-center gap-2">
+                {userComponents.length}
+                <Icon3dCubeSphere />
+              </li>
+            </ul>
+          </nav>
+        </div>
       </section>
 
-      {Array.isArray(data) && data && (
-        <ComponentsList
-          authorUsername={params.username}
-          defaultComponents={userComponents}
-        />
-      )}
+      <div>
+        {Array.isArray(data) && data && (
+          <ComponentsList
+            authorUsername={params.username}
+            defaultComponents={userComponents}
+          />
+        )}
+      </div>
     </main>
   );
 }
