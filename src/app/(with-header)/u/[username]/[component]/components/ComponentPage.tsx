@@ -1,6 +1,6 @@
 import { ComponentItem } from "@/types";
 import { getRelativeTime } from "@/utils/get-relative-time";
-import { IconCalendarEvent, IconHeart } from "@tabler/icons-react";
+import { IconCalendarEvent, IconCode, IconHeart } from "@tabler/icons-react";
 
 type ComponentPageProps = ComponentItem;
 
@@ -68,17 +68,19 @@ export function ComponentPage({
         </div>
       </div>
 
-      <div className="rounded-lg shadow-md p-4">
-        <pre className="p-4 bg-slate-800 text-gray-200 rounded-lg overflow-x-auto">
-          <code>{html_code}</code>
-        </pre>
+      <div className="rounded-lg shadow-md mt-12">
         <a
+          className="bg-slate-900 flex items-center max-w-fit gap-2 py-2 px-4 rounded-tl-md rounded-tr-md top-4 right-4"
           href={`/editor?html_code=${globalThis.encodeURIComponent(
             globalThis.btoa(html_code)
           )}`}
         >
+          <IconCode />
           Open in editor
         </a>
+        <pre className="p-4 bg-slate-800 text-gray-200 rounded-lg overflow-x-auto">
+          <code className="min-h-[3rem]">{html_code}</code>
+        </pre>
       </div>
     </article>
   );
