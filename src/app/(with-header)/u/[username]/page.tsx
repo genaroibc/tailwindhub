@@ -1,10 +1,12 @@
-import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { cookies, headers } from "next/headers";
-import { type Database } from "@/types/db";
-import { type ComponentItem } from "@/types";
-import { ComponentsList } from "@/app/(with-header)/components/ComponentsList/ComponentsList";
 import { type Metadata } from "next";
 import { BASE_URL } from "@/constants";
+import { Icon3dCubeSphere, IconHeart } from "@tabler/icons-react";
+import { createClient } from "@supabase/supabase-js";
+import ENV from "@/constants/env";
+import { notFound } from "next/navigation";
+import { ComponentsList } from "@/app/(with-header)/components/ComponentsList/ComponentsList";
+import { ComponentItem } from "@/types";
+import { UserMetadata } from "@/types/user";
 
 type PageProps = {
   params: { username: string };
@@ -70,21 +72,59 @@ export async function generateMetadata({
 export const revalidate = 60;
 
 export default async function UserPage({ params }: PageProps) {
-  const supabase = createServerComponentSupabaseClient<Database>({
-    cookies,
-    headers,
-  });
+  const supabaseAdmin = createClient(
+    ENV.NEXT_PUBLIC_SUPABASE_URL,
+    ENV.SUPABASE_SERVICE_ROLE_KEY
+  );
 
-  const { data } = await supabase
+  const allUsers = await supabaseAdmin.auth.admin.listUsers();
+  const userData = allUsers.data.users.find(
+    (u) => u.user_metadata.user_name === params.username
+  )?.user_metadata as UserMetadata | undefined;
+
+  if (userData == null) {
+    return notFound();
+  }
+
+  const { data } = await supabaseAdmin
     .from("components")
     .select("likes (author_username),*")
     .eq("author_username", params.username);
 
+  const userComponents = data as ComponentItem[];
+
   return (
-    <>
+    <main className="max-w-page-max-width mx-auto">
+      <section className="relative bg-slate-950 px-4 py-20 flex flex-col gap-4 items-center">
+        <article className="flex flex-col items-center gap-2 mt-4 mb-8">
+          <img
+            className="bg-cover aspect-square rounded-full mb-4"
+            src="/tailwindhub-editor.png"
+            width={120}
+            height={120}
+            alt={userData.user_name}
+          />
+          <h1 className="text-3xl text-gray-100">{userData.name}</h1>
+          <h2 className="text-xl text-gray-400">@{userData.user_name}</h2>
+        </article>
+
+        <nav>
+          <ul className="flex gap-4 items-center">
+            <li className="flex items-center gap-2">
+              55
+              <IconHeart />
+            </li>
+            <li className="flex items-center gap-2">
+              {userComponents.length}
+              <Icon3dCubeSphere />
+            </li>
+          </ul>
+        </nav>
+      </section>
+
       {Array.isArray(data) && data && (
-        <ComponentsList defaultComponents={data as ComponentItem[]} />
+        <ComponentsList defaultComponents={userComponents} />
       )}
-    </>
+    </main>
   );
 }
