@@ -72,6 +72,13 @@ export function ComponentPage({
         <pre className="p-4 bg-slate-800 text-gray-200 rounded-lg overflow-x-auto">
           <code>{html_code}</code>
         </pre>
+        <a
+          href={`/editor?html_code=${globalThis.encodeURIComponent(
+            globalThis.btoa(html_code)
+          )}`}
+        >
+          Open in editor
+        </a>
       </div>
     </article>
   );

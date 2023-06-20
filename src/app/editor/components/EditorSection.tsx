@@ -4,8 +4,18 @@ import { useRef } from "react";
 import { CodeEditorForm } from "@/app/editor/components/CodeEditorForm";
 import { CodeEditor } from "@/app/editor/components/CodeEditor";
 import { CodeEditorRef, CodePreviewRef } from "@/app/editor/types";
+import { useSearchParams } from "next/navigation";
+import { DEFAULT_CODE_EDITOR_VALUE } from "@/constants";
 
 export function EditorSection() {
+  const searchParams = useSearchParams();
+  const codeFromURL = searchParams.get("html_code");
+
+  const initialCode =
+    codeFromURL != null
+      ? globalThis.atob(globalThis.decodeURIComponent(codeFromURL))
+      : DEFAULT_CODE_EDITOR_VALUE;
+
   const codePreviewRef: CodePreviewRef = useRef(null);
   const codeEditorRef: CodeEditorRef = useRef(null);
 
@@ -17,6 +27,7 @@ export function EditorSection() {
       />
 
       <CodeEditor
+        initialCode={initialCode}
         codeEditorRef={codeEditorRef}
         codePreviewRef={codePreviewRef}
       />

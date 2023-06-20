@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import MonacoEditor, { Monaco } from "@monaco-editor/react";
-import { DEFAULT_CODE_EDITOR_VALUE, LOCAL_STORAGE_KEYS } from "@/constants";
+import { LOCAL_STORAGE_KEYS } from "@/constants";
 import { emmetHTML } from "emmet-monaco-es";
 import { Loader } from "@/app/(with-header)/components/shared/Loader/Loader";
 import BlackboardTheme from "@/themes/Blackboard.json";
@@ -20,10 +20,15 @@ type Props = {
   // eslint-disable-next-line react/no-unused-prop-types
   codePreviewRef: CodePreviewRef;
   codeEditorRef: CodeEditorRef;
+  initialCode: string;
 };
 
-export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
-  const [code, setCode] = useState(DEFAULT_CODE_EDITOR_VALUE);
+export function CodeEditor({
+  codeEditorRef,
+  codePreviewRef,
+  initialCode,
+}: Props) {
+  const [code, setCode] = useState(initialCode);
   const [wordWrap, setWordWrap] = useState(true);
   const [hasUnsavedProgress, setHasUnsavedProgress] = useState(false);
   const [layout, setLayout] = useState(DEFAULT_LAYOUT);
@@ -102,6 +107,9 @@ export function CodeEditor({ codeEditorRef, codePreviewRef }: Props) {
 
   useEffect(() => {
     registerTailwindCSSWorker();
+    if (new URLSearchParams(window.location.search).get("html_code") != null)
+      return;
+
     const { html_code: INITIAL_CODE_EDITOR_VALUE } = JSON.parse(
       localStorage.getItem(LOCAL_STORAGE_KEYS.HTML_CODE) ?? "{}"
     );
