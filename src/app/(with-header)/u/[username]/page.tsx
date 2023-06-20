@@ -99,11 +99,12 @@ export default async function UserPage({ params }: PageProps) {
         <article className="flex flex-col items-center gap-2 mt-4 mb-8">
           <img
             className="bg-cover aspect-square rounded-full mb-4"
-            src="/tailwindhub-editor.png"
+            src={userData.avatar_url}
             width={120}
             height={120}
             alt={userData.user_name}
           />
+          {JSON.stringify([allUsers.data.users, params.username])}
           <h1 className="text-3xl text-gray-100">{userData.name}</h1>
           <h2 className="text-xl text-gray-400">@{userData.user_name}</h2>
         </article>
