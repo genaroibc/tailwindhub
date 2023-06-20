@@ -11,9 +11,10 @@ import Link from "next/link";
 
 type Props = {
   defaultComponents: TComponentItem[];
+  authorUsername?: string;
 };
 
-export function ComponentsList({ defaultComponents }: Props) {
+export function ComponentsList({ defaultComponents, authorUsername }: Props) {
   const [components, setComponents] =
     useState<TComponentItem[]>(defaultComponents);
   const [error, setError] = useState<string | null>(null);
@@ -41,9 +42,15 @@ export function ComponentsList({ defaultComponents }: Props) {
       }
 
       setLoading(true);
-      const res = await supabase
+      const genericQuery = supabase
         .from("components")
-        .select("likes (author_username),*")
+        .select("likes (author_username),*");
+
+      const withUsernameQuery = authorUsername
+        ? genericQuery.eq("author_username", authorUsername)
+        : genericQuery;
+
+      const res = await withUsernameQuery
         .ilike("title", `%${normalizedQuery}%`)
         .contains(
           "tags",
@@ -58,7 +65,7 @@ export function ComponentsList({ defaultComponents }: Props) {
       setLoading(false);
       setComponents(res.data as TComponentItem[]);
     },
-    [supabase, setComponents, setError, defaultComponents]
+    [supabase, setComponents, setError, defaultComponents, authorUsername]
   );
 
   return (

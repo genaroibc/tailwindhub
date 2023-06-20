@@ -124,7 +124,10 @@ export default async function UserPage({ params }: PageProps) {
       </section>
 
       {Array.isArray(data) && data && (
-        <ComponentsList defaultComponents={userComponents} />
+        <ComponentsList
+          authorUsername={params.username}
+          defaultComponents={userComponents}
+        />
       )}
     </main>
   );
