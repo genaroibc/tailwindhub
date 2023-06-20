@@ -22,7 +22,7 @@ const DEFAULT_RESPONSIVE_SIZE = { width: 540, height: 720 };
 type Props = {
   code: string;
   isResizable?: boolean;
-  codePreviewRef: CodePreviewRef;
+  codePreviewRef?: CodePreviewRef;
 };
 
 export const Preview = ({ code, isResizable, codePreviewRef }: Props) => {
@@ -268,7 +268,7 @@ export const Preview = ({ code, isResizable, codePreviewRef }: Props) => {
                   }
                 : {}
             }
-            className={`flex items-center justify-center w-full relative h-full overflow-auto bg-white text-dimmed-black ![&_img]:inline-block inset-0 ${
+            className={`flex items-center p-4 justify-center w-full relative h-full overflow-auto bg-white text-dimmed-black ![&_img]:inline-block inset-0 ${
               resizing ? "pointer-events-none select-none" : ""
             }`}
           />

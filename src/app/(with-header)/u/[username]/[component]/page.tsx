@@ -22,7 +22,7 @@ export default async function Page({ params }: PageProps) {
     .eq("title", unsluglify(params.component));
 
   return (
-    <main className="max-w-page-max-width mx-auto">
+    <main>
       {Array.isArray(data) && data != null && (
         <ComponentPage {...(data[0] as TComponentItem)} />
       )}
