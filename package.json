@@ -15,27 +15,28 @@
     "@supabase/supabase-js": "2.17.0",
     "@tabler/icons-react": "2.16.0",
     "@vercel/analytics": "1.0.0",
+    "bright": "0.8.2",
     "emmet-monaco-es": "5.2.1",
     "encoding": "0.1.13",
     "html2canvas": "1.4.1",
     "monaco-editor": "0.37.1",
     "monaco-tailwindcss": "0.6.0",
-    "next": "13.4.1",
+    "next": "13.4.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-image-crop": "10.0.9",
     "react-select": "5.7.3"
   },
   "devDependencies": {
-    "@types/node": "18.15.1",
-    "@types/react": "18.0.28",
-    "@types/react-dom": "18.0.11",
+    "@types/node": "20.3.1",
+    "@types/react": "18.2.13",
+    "@types/react-dom": "18.2.6",
     "autoprefixer": "10.4.14",
-    "eslint": "8.36.0",
-    "eslint-config-next": "13.4.1",
+    "eslint": "8.43.0",
+    "eslint-config-next": "13.4.6",
     "postcss": "8.4.21",
     "supabase": "1.50.2",
     "tailwindcss": "3.3.1",
-    "typescript": "4.9.5"
+    "typescript": "5.1.3"
   }
 }
