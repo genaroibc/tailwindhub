@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import MonacoEditor, { Monaco } from "@monaco-editor/react";
-import { LOCAL_STORAGE_KEYS } from "@/constants";
+import { HTML_CODE_SEARCH_PARAM, LOCAL_STORAGE_KEYS } from "@/constants";
 import { emmetHTML } from "emmet-monaco-es";
 import { Loader } from "@/app/(with-header)/components/shared/Loader/Loader";
 import BlackboardTheme from "@/themes/Blackboard.json";
@@ -106,8 +106,12 @@ export function CodeEditor({
 
   useEffect(() => {
     registerTailwindCSSWorker();
-    if (new URLSearchParams(window.location.search).get("html_code") != null)
-      return;
+
+    const isThereCodeInURL =
+      new URLSearchParams(window.location.search).get(HTML_CODE_SEARCH_PARAM) !=
+      null;
+
+    if (isThereCodeInURL) return;
 
     const { html_code: INITIAL_CODE_EDITOR_VALUE } = JSON.parse(
       localStorage.getItem(LOCAL_STORAGE_KEYS.HTML_CODE) ?? "{}"

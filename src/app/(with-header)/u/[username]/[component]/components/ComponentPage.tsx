@@ -4,6 +4,7 @@ import { getRelativeTime } from "@/utils/get-relative-time";
 import { IconCalendarEvent, IconCode, IconHeart } from "@tabler/icons-react";
 import { ComponentPreview } from "./ComponentPreview";
 import CustomTheme from "@/themes/CustomTheme.json";
+import { encode } from "@/utils/encode-decode-url";
 
 Code.theme = CustomTheme;
 
@@ -79,9 +80,7 @@ export function ComponentPage({
         <div className="rounded-lg shadow-md relative">
           <a
             className="bg-slate-900 flex items-center max-w-fit gap-2 py-2 px-4 rounded-tl-md rounded-tr-md top-4 right-4 absolute"
-            href={`/editor?html_code=${globalThis.encodeURIComponent(
-              globalThis.btoa(html_code)
-            )}`}
+            href={`/editor?html_code=${encode(html_code)}`}
           >
             <IconCode />
             Open in editor

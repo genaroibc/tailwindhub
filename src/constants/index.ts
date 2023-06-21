@@ -20,3 +20,5 @@ export enum LOCAL_STORAGE_KEYS {
 }
 
 export const BASE_URL = `https://${ENV.NEXT_PUBLIC_VERCEL_URL}`;
+
+export const HTML_CODE_SEARCH_PARAM = "html_code";

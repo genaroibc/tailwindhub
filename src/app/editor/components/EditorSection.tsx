@@ -5,16 +5,15 @@ import { CodeEditorForm } from "@/app/editor/components/CodeEditorForm";
 import { CodeEditor } from "@/app/editor/components/CodeEditor";
 import { CodeEditorRef, CodePreviewRef } from "@/app/editor/types";
 import { useSearchParams } from "next/navigation";
-import { DEFAULT_CODE_EDITOR_VALUE } from "@/constants";
+import { DEFAULT_CODE_EDITOR_VALUE, HTML_CODE_SEARCH_PARAM } from "@/constants";
+import { decode } from "@/utils/encode-decode-url";
 
 export function EditorSection() {
   const searchParams = useSearchParams();
-  const codeFromURL = searchParams.get("html_code");
+  const codeFromURL = searchParams.get(HTML_CODE_SEARCH_PARAM);
 
   const initialCode =
-    codeFromURL != null
-      ? globalThis.atob(globalThis.decodeURIComponent(codeFromURL))
-      : DEFAULT_CODE_EDITOR_VALUE;
+    codeFromURL != null ? decode(codeFromURL) : DEFAULT_CODE_EDITOR_VALUE;
 
   const codePreviewRef: CodePreviewRef = useRef(null);
   const codeEditorRef: CodeEditorRef = useRef(null);
