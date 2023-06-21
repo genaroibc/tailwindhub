@@ -1,12 +1,10 @@
+import { Suspense } from "react";
 import { Hero } from "@/app/(with-header)/components/Hero";
-import { ComponentsList } from "@/app/(with-header)/components/ComponentsList/ComponentsList";
 import { type Metadata } from "next";
-import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { cookies, headers } from "next/headers";
-import { Database } from "@/types/db";
-import { ComponentItem } from "@/types";
 import { PageFooter } from "@/app/(with-header)/components/PageFooter";
 import { BASE_URL } from "@/constants";
+import { SearchSection } from "./components/SearchSection";
+import { ComponentItemSkeleton } from "./components/ComponentsList/ComponentItem/ComponentItemSkeleton";
 
 const TITLE = "TailwindHub - open-source Tailwind components";
 const DESCRIPTION = "Free, open-source platform to share Tailwind components";
@@ -51,21 +49,23 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function Home() {
-  const supabase = createServerComponentSupabaseClient<Database>({
-    cookies,
-    headers,
-  });
-
-  const { data } = await supabase
-    .from("components")
-    .select("likes (author_username),*");
-
   return (
     <>
       <Hero />
-      {Array.isArray(data) && data && (
-        <ComponentsList defaultComponents={data as ComponentItem[]} />
-      )}
+
+      <Suspense
+        fallback={
+          <section className="grid grid-cols-[repeat(auto-fit,minmax(min(150px,100%),1fr))] md:grid-cols-[repeat(auto-fill,minmax(min(250px,100%),1fr))] gap-8 w-full max-w-page-max-width my-0 mx-auto">
+            {Array(10)
+              .fill(null)
+              .map((_, index) => (
+                <ComponentItemSkeleton key={index} />
+              ))}
+          </section>
+        }
+      >
+        <SearchSection />
+      </Suspense>
 
       <PageFooter />
     </>
