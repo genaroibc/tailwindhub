@@ -3,6 +3,9 @@ import { ComponentItem } from "@/types";
 import { getRelativeTime } from "@/utils/get-relative-time";
 import { IconCalendarEvent, IconCode, IconHeart } from "@tabler/icons-react";
 import { ComponentPreview } from "./ComponentPreview";
+import CustomTheme from "@/themes/CustomTheme.json";
+
+Code.theme = CustomTheme;
 
 type ComponentPageProps = ComponentItem;
 
@@ -85,9 +88,7 @@ export function ComponentPage({
           </a>
           <pre className="p-4 my-8 bg-slate-800 text-gray-200 rounded-lg overflow-x-auto">
             {/* @ts-expect-error */}
-            <Code lang="html" theme="material-ocean">
-              {html_code}
-            </Code>
+            <Code lang="html">{html_code}</Code>
           </pre>
         </div>
       </div>
