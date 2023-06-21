@@ -1,9 +1,8 @@
-"use client";
-
-import { Preview } from "@/app/editor/components/Preview/Preview";
+import { Code } from "bright";
 import { ComponentItem } from "@/types";
 import { getRelativeTime } from "@/utils/get-relative-time";
 import { IconCalendarEvent, IconCode, IconHeart } from "@tabler/icons-react";
+import { ComponentPreview } from "./ComponentPreview";
 
 type ComponentPageProps = ComponentItem;
 
@@ -72,9 +71,7 @@ export function ComponentPage({
           </div>
         </div>
 
-        <div className="py-4 mt-12">
-          <Preview code={html_code} isResizable={false} />
-        </div>
+        <ComponentPreview code={html_code} />
 
         <div className="rounded-lg shadow-md relative">
           <a
@@ -86,8 +83,11 @@ export function ComponentPage({
             <IconCode />
             Open in editor
           </a>
-          <pre className="p-4 bg-slate-800 text-gray-200 rounded-lg overflow-x-auto">
-            <code className="min-h-[3rem]">{html_code}</code>
+          <pre className="p-4 my-8 bg-slate-800 text-gray-200 rounded-lg overflow-x-auto">
+            {/* @ts-expect-error */}
+            <Code lang="html" theme="material-ocean">
+              {html_code}
+            </Code>
           </pre>
         </div>
       </div>
