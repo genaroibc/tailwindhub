@@ -87,7 +87,6 @@ export function ComponentPage({
             Open in editor
           </a>
           <pre className="p-4 my-8 bg-slate-800 text-gray-200 rounded-lg overflow-x-auto">
-            {/* @ts-expect-error */}
             <Code lang="html">{html_code}</Code>
           </pre>
         </div>
