@@ -553,8 +553,8 @@
   },
   "colors": {
     "checkbox.border": "#6B6B6B",
-    "editor.background": "#000000ff",
-    "editor.foreground": "#000000ff",
+    "editor.background": "#0C1021ff",
+    "editor.foreground": "#0C1021ff",
     "editor.inactiveSelectionBackground": "#3A3D41",
     "editorIndentGuide.background": "#404040",
     "editorIndentGuide.activeBackground": "#707070",
