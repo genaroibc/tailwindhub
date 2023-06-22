@@ -21,11 +21,6 @@ export async function GET(req: Request) {
     ? searchParams.get("image")?.slice(0, 100)
     : `https://github.com/${username}.png`;
 
-  // const hasType = searchParams.has("type");
-  // const typeURL = hasType ? searchParams.get("type") : null;
-
-  // const imgURL = typeURL === "component" ?  :
-
   const componentTitle = unsluglify(searchParams.get("component") ?? "");
 
   const { data } = await supabase
@@ -36,7 +31,6 @@ export async function GET(req: Request) {
 
   const componentPreviewURL = data?.[0]?.preview_img;
 
-  console.log({ BASE_URL, BG_IMAGE_URL: ONLY_TITLE_IMAGE_URL });
   return new ImageResponse(
     (
       <article tw="h-screen flex items-center justify-center text-black w-full relative">
@@ -54,18 +48,6 @@ export async function GET(req: Request) {
 
         {componentPreviewURL != null ? (
           <div tw="h-screen flex flex-col items-center justify-center text-black w-full absolute inset-0 bg-white">
-            {/* <h2 className="text-3xl font-bold flex gap-2 items-center">
-              {componentTitle} by{" "}
-              <img
-                tw="w-14 h-14 rounded-full"
-                width="56"
-                height="56"
-                src={imageURL}
-                alt={`${username}'s profile image`}
-              />
-              <h2 tw="font-bold tracking-tight text-left">{username}</h2>
-            </h2> */}
-
             <img
               width={600}
               height={600}
