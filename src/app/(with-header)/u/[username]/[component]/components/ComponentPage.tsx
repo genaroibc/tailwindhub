@@ -1,18 +1,8 @@
-import { Code } from "bright";
 import { ComponentItem } from "@/types";
 import { getRelativeTime } from "@/utils/get-relative-time";
-import {
-  IconBrandGithub,
-  IconCalendarEvent,
-  IconCode,
-  IconExternalLink,
-  IconHeart,
-} from "@tabler/icons-react";
+import { IconCalendarEvent, IconHeart } from "@tabler/icons-react";
 import { ComponentPreview } from "./ComponentPreview";
-import CustomTheme from "@/themes/CustomTheme.json";
-import { encode } from "@/utils/encode-decode-url";
-
-Code.theme = CustomTheme;
+import { ComponentCode } from "./ComponentCode";
 
 type ComponentPageProps = ComponentItem;
 
@@ -78,18 +68,7 @@ export function ComponentPage({
 
         <ComponentPreview code={html_code} />
 
-        <div className="rounded-lg shadow-md relative">
-          <a
-            className="bg-slate-900 flex items-center max-w-fit gap-2 py-2 px-4 rounded-tl-md rounded-tr-md top-4 right-4 absolute"
-            href={`/editor?html_code=${encode(html_code)}`}
-          >
-            <IconCode />
-            Open in editor
-          </a>
-          <pre className="text-gray-200 overflow-x-auto">
-            <Code lang="html">{html_code}</Code>
-          </pre>
-        </div>
+        <ComponentCode code={html_code} />
       </div>
     </article>
   );
