@@ -1,8 +1,9 @@
 "use client";
 
+import { CopyToClipboardButton } from "@/app/components/shared/CopyToClipboardButton";
 import { useSupabase } from "@/hooks/useSupabase";
 import { ComponentItem } from "@/types";
-import { IconCheck, IconCopy, IconHeart } from "@tabler/icons-react";
+import { IconHeart } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -18,17 +19,8 @@ export function ComponentItemNavBar({
 }: Props) {
   const { supabase } = useSupabase();
 
-  const [copied, setCopied] = useState(false);
   const [likes, setLikes] = useState<ComponentItem["likes"]>(initialLikes);
   const [userLiked, setUserLiked] = useState(false);
-
-  useEffect(() => {
-    if (!copied) return;
-
-    const timeoutId = setTimeout(() => setCopied(false), 2000);
-
-    return () => clearTimeout(timeoutId);
-  }, [copied]);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -36,10 +28,6 @@ export function ComponentItemNavBar({
       setUserLiked(likes.some((like) => like.author_username === username));
     });
   }, [supabase, likes]);
-
-  const handleCopyCode = () => {
-    navigator.clipboard.writeText(textToCopy).then(() => setCopied(true));
-  };
 
   const handleLike = async () => {
     const {
@@ -83,13 +71,11 @@ export function ComponentItemNavBar({
 
   return (
     <nav className="flex justify-end gap-2 self-end align-center text-dimmed-black">
-      <button
+      <CopyToClipboardButton
+        textToCopy={textToCopy}
         className="flex place-items-center gap-1 p-2 md:p-3 bg-secondary-color hover:bg-tertiary-color"
-        title="Copy code"
-        onClick={handleCopyCode}
-      >
-        {copied ? <IconCheck size="20" /> : <IconCopy size="20" />}
-      </button>
+      />
+
       <button
         onClick={handleLike}
         title="Like this component"
