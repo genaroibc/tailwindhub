@@ -8,7 +8,7 @@ type Props = {
 
 export function ComponentPreview({ code }: Props) {
   return (
-    <div className="py-4 mt-12">
+    <div className="py-4 rounded-md mt-12 bg-white">
       <Preview code={code} isResizable={false} />
     </div>
   );
