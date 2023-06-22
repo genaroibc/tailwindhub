@@ -195,7 +195,7 @@ export const Preview = ({ code, isResizable, codePreviewRef }: Props) => {
 
   return (
     <section
-      className="h-full w-full inset-0 flex flex-col border-t border-gray-200 dark:border-white/10 lg:border-0 bg-gray-50 dark:bg-black relative"
+      className="h-full w-full inset-0 flex flex-col bg-gray-50 dark:bg-black relative"
       ref={containerRef}
     >
       <TailwindScript />
@@ -268,7 +268,7 @@ export const Preview = ({ code, isResizable, codePreviewRef }: Props) => {
                   }
                 : {}
             }
-            className={`flex items-center p-4 justify-center w-full relative h-full overflow-auto bg-white text-dimmed-black ![&_img]:inline-block inset-0 ${
+            className={`flex min-h-[400px] items-center p-4 justify-center w-full relative h-full overflow-auto bg-white text-dimmed-black ![&_img]:inline-block inset-0 ${
               resizing ? "pointer-events-none select-none" : ""
             }`}
           />
