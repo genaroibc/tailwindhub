@@ -19,6 +19,7 @@ export enum LOCAL_STORAGE_KEYS {
   HTML_CODE = "__tailwindhub_html_code__",
 }
 
-export const BASE_URL = `https://${ENV.NEXT_PUBLIC_VERCEL_URL}`;
+const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+export const BASE_URL = `${protocol}://${ENV.NEXT_PUBLIC_VERCEL_URL}`;
 
 export const HTML_CODE_SEARCH_PARAM = "html_code";
