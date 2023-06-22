@@ -36,14 +36,15 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { username, component } = params;
+  const componentTitle = unsluglify(component);
 
-  const COMPONENT_PAGE_URL = `${BASE_URL}/u/${username}/${component}`;
-  const TITLE = `${component} - TailwindHub`;
-  const DESCRIPTION = `${component} by ${username}`;
+  const COMPONENT_PAGE_URL = `${BASE_URL}/u/${username}/${componentTitle}`;
+  const TITLE = `${componentTitle} - TailwindHub`;
+  const DESCRIPTION = `${componentTitle} by ${username}`;
 
   const ogUrl = new URL(`${BASE_URL}/api/og`);
   ogUrl.searchParams.set("username", username || "");
-  ogUrl.searchParams.set("component", component || "");
+  ogUrl.searchParams.set("component", componentTitle || "");
   ogUrl.searchParams.set("image", `https://github.com/${username}.png`);
 
   return {
