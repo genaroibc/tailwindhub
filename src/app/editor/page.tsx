@@ -1,5 +1,7 @@
 import { type Metadata } from "next";
 import { EditorSection } from "@/app/editor/components/EditorSection";
+import { DEFAULT_CODE_EDITOR_VALUE, HTML_CODE_SEARCH_PARAM } from "@/constants";
+import { decode } from "@/utils/encode-decode-url";
 
 const EDITOR_PAGE_URL = "https://tailwindhub.dev/editor";
 const TITLE = "TailwindHub - Editor";
@@ -42,10 +44,19 @@ export const metadata: Metadata = {
   },
 };
 
-function HomePage() {
+type PageProps = {
+  searchParams: {
+    [HTML_CODE_SEARCH_PARAM]?: string;
+  };
+};
+
+function HomePage({ searchParams: { html_code } }: PageProps) {
+  const initialCode =
+    html_code != null ? decode(html_code) : DEFAULT_CODE_EDITOR_VALUE;
+
   return (
     <main className="grid grid-rows-1 bg-dimmed-black text-primary-color w-screen h-screen max-w-screen">
-      <EditorSection />
+      <EditorSection initialCode={initialCode} />
     </main>
   );
 }

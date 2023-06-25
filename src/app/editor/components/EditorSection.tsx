@@ -4,17 +4,12 @@ import { useRef } from "react";
 import { CodeEditorForm } from "@/app/editor/components/CodeEditorForm";
 import { CodeEditor } from "@/app/editor/components/CodeEditor";
 import { CodeEditorRef, CodePreviewRef } from "@/app/editor/types";
-import { useSearchParams } from "next/navigation";
-import { DEFAULT_CODE_EDITOR_VALUE, HTML_CODE_SEARCH_PARAM } from "@/constants";
-import { decode } from "@/utils/encode-decode-url";
 
-export function EditorSection() {
-  const searchParams = useSearchParams();
-  const codeFromURL = searchParams.get(HTML_CODE_SEARCH_PARAM);
+type Props = {
+  initialCode: string;
+};
 
-  const initialCode =
-    codeFromURL != null ? decode(codeFromURL) : DEFAULT_CODE_EDITOR_VALUE;
-
+export function EditorSection({ initialCode }: Props) {
   const codePreviewRef: CodePreviewRef = useRef(null);
   const codeEditorRef: CodeEditorRef = useRef(null);
 
