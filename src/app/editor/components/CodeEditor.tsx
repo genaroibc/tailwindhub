@@ -12,6 +12,7 @@ import { HomeLink } from "@/app/components/shared/HomeLink";
 import { EditorLayoutSelector } from "./EditorLayoutSelector";
 import { IconDeviceFloppy } from "@tabler/icons-react";
 import { ResizableSection } from "./ResizableSection";
+import { debounce } from "@/utils/debounce";
 
 const DEFAULT_LAYOUT: EditorLayout = "preview-and-editor-columns";
 
@@ -120,6 +121,43 @@ export function CodeEditor({
     if (INITIAL_CODE_EDITOR_VALUE) setCode(INITIAL_CODE_EDITOR_VALUE);
   }, []);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedHandleChange = useCallback(
+    debounce(
+      (code?: string) => {
+        setCode(code ?? "");
+        setHasUnsavedProgress(true);
+      },
+      500,
+      false
+    ),
+    [setCode, setHasUnsavedProgress]
+  );
+
+  const Editor = (
+    <MonacoEditor
+      beforeMount={(monaco) => handleConfigureIntellisense(monaco)}
+      onMount={(editor, monaco) => {
+        codeEditorRef.current = editor;
+        // @ts-ignore
+        monaco.editor?.defineTheme?.("Blackboard", BlackboardTheme);
+        monaco.editor?.setTheme?.("Blackboard");
+        emmetHTML(monaco);
+      }}
+      className="w-full h-full"
+      theme="vs-dark"
+      defaultLanguage="html"
+      defaultValue={code}
+      onChange={debouncedHandleChange}
+      line={2}
+      loading={<Loader color="var(--primary-color, #fff)" />}
+      options={{
+        minimap: { enabled: false },
+        wordWrap: wordWrap ? "on" : "off",
+      }}
+    />
+  );
+
   return (
     <>
       <header className="bg-slate-950 flex flex-wrap items-center justify-between gap-2 px-4">
@@ -155,34 +193,7 @@ export function CodeEditor({
             layout === "preview-and-editor-columns" ? "columns" : "rows"
           }
         >
-          <ResizableSection.LeftSide>
-            {
-              <MonacoEditor
-                beforeMount={(monaco) => handleConfigureIntellisense(monaco)}
-                onMount={(editor, monaco) => {
-                  codeEditorRef.current = editor;
-                  // @ts-ignore
-                  monaco.editor?.defineTheme?.("Blackboard", BlackboardTheme);
-                  monaco.editor?.setTheme?.("Blackboard");
-                  emmetHTML(monaco);
-                }}
-                className="w-full h-full"
-                theme="vs-dark"
-                defaultLanguage="html"
-                defaultValue={code}
-                onChange={(code) => {
-                  setCode(code ?? "");
-                  setHasUnsavedProgress(true);
-                }}
-                line={2}
-                loading={<Loader color="var(--primary-color, #fff)" />}
-                options={{
-                  minimap: { enabled: false },
-                  wordWrap: wordWrap ? "on" : "off",
-                }}
-              />
-            }
-          </ResizableSection.LeftSide>
+          <ResizableSection.LeftSide>{Editor}</ResizableSection.LeftSide>
           <ResizableSection.RightSide>
             {
               <Preview
@@ -205,36 +216,7 @@ export function CodeEditor({
           }
         </>
       )}
-      {layout === "editor-only" && (
-        <>
-          {
-            <MonacoEditor
-              beforeMount={(monaco) => handleConfigureIntellisense(monaco)}
-              onMount={(editor, monaco) => {
-                codeEditorRef.current = editor;
-                // @ts-ignore
-                monaco.editor?.defineTheme?.("Blackboard", BlackboardTheme);
-                monaco.editor?.setTheme?.("Blackboard");
-                emmetHTML(monaco);
-              }}
-              className="w-full h-full"
-              theme="vs-dark"
-              defaultLanguage="html"
-              defaultValue={code}
-              onChange={(code) => {
-                setCode(code ?? "");
-                setHasUnsavedProgress(true);
-              }}
-              line={2}
-              loading={<Loader color="var(--primary-color, #fff)" />}
-              options={{
-                minimap: { enabled: false },
-                wordWrap: wordWrap ? "on" : "off",
-              }}
-            />
-          }
-        </>
-      )}
+      {layout === "editor-only" && <>{Editor}</>}
     </>
   );
 }
