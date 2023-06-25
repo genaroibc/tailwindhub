@@ -9,9 +9,9 @@ import { Preview } from "@/app/editor/components/Preview/Preview";
 import { EditorLayout } from "@/types";
 import { HomeLink } from "@/app/components/shared/HomeLink";
 import { EditorLayoutSelector } from "./EditorLayoutSelector";
-import { IconDeviceFloppy } from "@tabler/icons-react";
 import { ResizableSection } from "./ResizableSection";
 import { debounce } from "@/utils/debounce";
+import { EditorActionsMenu } from "./EditorActionsMenu";
 
 const DEFAULT_LAYOUT: EditorLayout = "preview-and-editor-columns";
 
@@ -167,24 +167,16 @@ export function CodeEditor({
         <nav className="flex gap-2 justify-between items-center w-full">
           <HomeLink />
 
-          <button
-            onClick={handleSaveCode}
-            className={`
-            bg-blue-500 text-white px-2 py-1 rounded-md flex items-center justify-center gap-1
-            ${
-              hasUnsavedProgress
-                ? "opacity-100 hover:bg-blue-600 active:bg-blue-700"
-                : "opacity-70"
-            }`}
-            disabled={!hasUnsavedProgress}
-          >
-            Save <IconDeviceFloppy />
-          </button>
-
           <EditorLayoutSelector
             handleLayoutChange={handleLayoutChange}
             selectedLayout={layout}
             onIsResizableChange={(isResizable) => setIsResizable(isResizable)}
+          />
+
+          <EditorActionsMenu
+            code={code}
+            handleSaveCode={handleSaveCode}
+            hasUnsavedProgress={hasUnsavedProgress}
           />
         </nav>
       </header>
