@@ -12,7 +12,7 @@ type Props = {
 
 export function ComponentCode({ code }: Props) {
   return (
-    <section className="flex flex-col gap-2 shadow-md my-12 bg-slate-800 p-4 rounded-md">
+    <section>
       <nav className="flex gap-4 items-center">
         <a
           className="bg-slate-900 flex items-center max-w-fit gap-2 py-2 px-4 rounded-md"

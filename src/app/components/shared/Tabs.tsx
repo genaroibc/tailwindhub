@@ -17,7 +17,7 @@ type Props = {
 };
 
 export function Tabs({ items }: Props) {
-  const [visibleTab, setVisibleTab] = useState<TabId>(items[0].id);
+  const [visibleTabId, setVisibleTabId] = useState<TabId>(items[0].id);
 
   return (
     <section>
@@ -26,8 +26,10 @@ export function Tabs({ items }: Props) {
           {items.map(({ id, label }) => (
             <li key={id}>
               <button
-                onClick={() => setVisibleTab(id)}
-                className="py-2 px-4 bg-slate-700"
+                onClick={() => setVisibleTabId(id)}
+                className={`${
+                  visibleTabId === id ? "bg-slate-800" : "bg-slate-900"
+                } py-2 px-4 transition-colors rounded-none rounded-tl-md rounded-tr-md`}
               >
                 {label}
               </button>
@@ -36,11 +38,14 @@ export function Tabs({ items }: Props) {
         </menu>
       </nav>
 
-      {items.map(({ element, id }) => (
-        <article key={id} className={id === visibleTab ? "" : "hidden"}>
-          {element}
-        </article>
-      ))}
+      <div className="flex flex-col gap-2 shadow-md bg-slate-800 p-4 rounded-md rounded-tl-none">
+        {items.map(({ element, id }) => (
+          <article key={id} className={id === visibleTabId ? "" : "hidden"}>
+            {element}
+          </article>
+        ))}
+      </div>
     </section>
   );
 }
+// focus:ring ring-blue-400

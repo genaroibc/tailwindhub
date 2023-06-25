@@ -65,7 +65,7 @@ button:disabled {
 textarea:focus,
 input:focus,
 button:focus {
-  outline: 2px solid #000;
+  outline: 2px solid currentColor;
 }
 
 input {
