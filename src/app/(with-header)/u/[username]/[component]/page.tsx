@@ -6,6 +6,7 @@ import { unsluglify } from "@/utils/url-formatting";
 import { ComponentPage } from "./components/ComponentPage";
 import { Metadata } from "next";
 import { BASE_URL } from "@/constants";
+import { notFound } from "next/navigation";
 
 type PageProps = {
   params: { username: string; component: string };
@@ -22,6 +23,10 @@ export default async function Page({ params }: PageProps) {
     .select("likes (author_username),*")
     .eq("author_username", params.username)
     .eq("title", unsluglify(params.component));
+
+  if (data == null || data.length === 0) {
+    return notFound();
+  }
 
   return (
     <main>
