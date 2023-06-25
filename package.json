@@ -19,6 +19,7 @@
     "emmet-monaco-es": "5.2.1",
     "encoding": "0.1.13",
     "html2canvas": "1.4.1",
+    "js-base64": "3.7.5",
     "monaco-editor": "0.37.1",
     "monaco-tailwindcss": "0.6.0",
     "next": "13.4.6",
