@@ -1,8 +1,14 @@
 import { ComponentItem } from "@/types";
 import { getRelativeTime } from "@/utils/get-relative-time";
-import { IconCalendarEvent, IconHeart } from "@tabler/icons-react";
-import { ComponentPreview } from "./ComponentPreview";
+import {
+  IconCalendarEvent,
+  IconCode,
+  IconEye,
+  IconHeart,
+} from "@tabler/icons-react";
 import { ComponentCode } from "./ComponentCode";
+import { ComponentPreview } from "./ComponentPreview";
+import { Tab, Tabs } from "@/app/components/shared/Tabs";
 
 type ComponentPageProps = ComponentItem;
 
@@ -38,7 +44,7 @@ export function ComponentPage({
           </p>
 
           <p className="flex items-center gap-2">
-            <IconHeart /> {likes.length} likes
+            <IconHeart /> {likes?.length} likes
           </p>
 
           <p className="text-gray-300 flex gap-2 items-center">
@@ -49,13 +55,13 @@ export function ComponentPage({
             <span>
               created{" "}
               <time dateTime={created_at}>
-                {getRelativeTime(new Date(created_at).getTime())}
+                {getRelativeTime(new Date(created_at ?? 0).getTime())}
               </time>
             </span>
           </p>
 
           <div className="mt-4">
-            {tags.map((tag) => (
+            {tags?.map((tag) => (
               <span
                 key={tag}
                 className="inline-block bg-slate-800 text-white text-sm px-2 py-1 rounded-lg mr-2"
@@ -66,9 +72,27 @@ export function ComponentPage({
           </div>
         </div>
 
-        <ComponentPreview code={html_code} />
+        <Tabs>
+          <Tab
+            label={
+              <span className="flex items-center gap-2">
+                Preview <IconEye />
+              </span>
+            }
+          >
+            <ComponentPreview code={html_code} />
+          </Tab>
 
-        <ComponentCode code={html_code} />
+          <Tab
+            label={
+              <span className="flex items-center gap-2">
+                Code <IconCode />
+              </span>
+            }
+          >
+            <ComponentCode code={html_code} />
+          </Tab>
+        </Tabs>
       </div>
     </article>
   );
