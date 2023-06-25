@@ -48,7 +48,7 @@ export function CodeEditor({
     setTimeout(() => {
       const codeToSave = codeEditorRef.current?.getValue();
 
-      if (codeToSave) {
+      if (codeToSave != null) {
         localStorage.setItem(
           LOCAL_STORAGE_KEYS.HTML_CODE,
           JSON.stringify({ html_code: codeToSave })
@@ -122,7 +122,7 @@ export function CodeEditor({
       localStorage.getItem(LOCAL_STORAGE_KEYS.HTML_CODE) ?? "{}"
     );
 
-    if (INITIAL_CODE_EDITOR_VALUE) setCode(INITIAL_CODE_EDITOR_VALUE);
+    if (INITIAL_CODE_EDITOR_VALUE != null) setCode(INITIAL_CODE_EDITOR_VALUE);
   }, []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
