@@ -38,17 +38,25 @@ export function CodeEditor({
     setLayout(layout);
   };
 
-  const handleSaveCode = useCallback(() => {
-    const codeToSave = codeEditorRef.current?.getValue();
-
-    if (codeToSave) {
-      localStorage.setItem(
-        LOCAL_STORAGE_KEYS.HTML_CODE,
-        JSON.stringify({ html_code: codeToSave })
-      );
-      setHasUnsavedProgress(false);
-    }
+  const handleFormatCode = useCallback(() => {
+    codeEditorRef.current?.getAction?.("editor.action.formatDocument")?.run?.();
   }, [codeEditorRef]);
+
+  const handleSaveCode = useCallback(() => {
+    handleFormatCode();
+
+    setTimeout(() => {
+      const codeToSave = codeEditorRef.current?.getValue();
+
+      if (codeToSave) {
+        localStorage.setItem(
+          LOCAL_STORAGE_KEYS.HTML_CODE,
+          JSON.stringify({ html_code: codeToSave })
+        );
+        setHasUnsavedProgress(false);
+      }
+    }, 800);
+  }, [codeEditorRef, handleFormatCode]);
 
   const handleConfigureIntellisense = useCallback(async (monaco: Monaco) => {
     const { cssDefaults } = monaco.languages.css;
@@ -76,10 +84,6 @@ export function CodeEditor({
       }
       if (e.ctrlKey && e.key === "s") {
         e.preventDefault();
-
-        codeEditorRef.current
-          ?.getAction?.("editor.action.formatDocument")
-          ?.run?.();
 
         handleSaveCode();
       }
