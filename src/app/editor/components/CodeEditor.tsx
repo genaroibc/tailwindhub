@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import MonacoEditor, { Monaco } from "@monaco-editor/react";
 import { HTML_CODE_SEARCH_PARAM, LOCAL_STORAGE_KEYS } from "@/constants";
 import { emmetHTML } from "emmet-monaco-es";
+import BlackboardTheme from "@/themes/Blackboard.json";
 import { registerTailwindCSSWorker } from "@/utils/register-tailwindcss-worker";
 import { CodeEditorRef, CodePreviewRef } from "@/app/editor/types";
 import { Preview } from "@/app/editor/components/Preview/Preview";
@@ -141,17 +142,10 @@ export function CodeEditor({
       beforeMount={(monaco) => handleConfigureIntellisense(monaco)}
       onMount={(editor, monaco) => {
         codeEditorRef.current = editor;
-
+        // @ts-ignore
+        monaco.editor?.defineTheme?.("Blackboard", BlackboardTheme);
+        monaco.editor?.setTheme?.("Blackboard");
         emmetHTML(monaco);
-
-        import("@/themes/Blackboard.json").then((theme) => {
-          monaco.editor?.defineTheme?.(
-            "Blackboard",
-            // @ts-ignore
-            theme
-          );
-          monaco.editor?.setTheme?.("Blackboard");
-        });
       }}
       className="w-full h-full"
       theme="vs-dark"
