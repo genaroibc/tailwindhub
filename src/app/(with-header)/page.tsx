@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import { Hero } from "@/app/(with-header)/components/Hero";
 import { type Metadata } from "next";
-import { PageFooter } from "@/app/(with-header)/components/PageFooter";
 import { BASE_URL } from "@/constants";
 import { SearchSection } from "./components/SearchSection";
 import { ComponentItemSkeleton } from "./components/ComponentsList/ComponentItem/ComponentItemSkeleton";
@@ -66,8 +65,6 @@ export default async function Home() {
       >
         <SearchSection />
       </Suspense>
-
-      <PageFooter />
     </>
   );
 }
