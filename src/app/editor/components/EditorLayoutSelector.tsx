@@ -43,7 +43,7 @@ export function EditorLayoutSelector({
   onIsResizableChange,
 }: Props) {
   return (
-    <nav className="flex items-center p-2 gap-2 justify-end">
+    <menu className="flex items-center gap-2 justify-end bg-blue-950/50 rounded-md">
       {LAYOUT_OPTIONS.map(({ icon, layoutName }) => (
         <button
           className={`${
@@ -67,10 +67,14 @@ export function EditorLayoutSelector({
           className="peer"
           onChange={(event) => onIsResizableChange(event.target.checked)}
         />
-        <span className="block peer-checked:text-blue-400 peer-checked:bg-blue-950 bg-transparent p-2 hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 rounded-md">
+
+        <span
+          tabIndex={0}
+          className="block peer-checked:text-blue-400 peer-checked:bg-blue-950 bg-transparent p-2 hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 rounded-md"
+        >
           <IconTextResize size="1.5rem" />
         </span>
       </label>
-    </nav>
+    </menu>
   );
 }

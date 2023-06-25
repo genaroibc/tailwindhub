@@ -164,7 +164,7 @@ export function CodeEditor({
   return (
     <>
       <header className="bg-slate-950 flex flex-wrap items-center justify-between gap-2 px-4">
-        <nav className="flex gap-2 justify-between items-center w-full">
+        <nav className="flex p-2 gap-2 justify-between items-center w-full">
           <HomeLink />
 
           <EditorLayoutSelector
