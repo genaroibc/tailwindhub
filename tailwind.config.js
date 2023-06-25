@@ -10,6 +10,8 @@ module.exports = {
         "dark-brown": "var(--dark-brown)",
         "light-brown": "var(--light-brown)",
         "tertiary-color": "var(--tertiary-color)",
+        "tailwind-dark": "var(--tailwind-dark)",
+        "tailwind-normal": "var(--tailwind-normal)",
       },
       maxWidth: {
         "page-max-width": "var(--page-max-width)",

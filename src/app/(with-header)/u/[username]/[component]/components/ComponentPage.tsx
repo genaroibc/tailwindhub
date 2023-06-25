@@ -9,6 +9,8 @@ import {
 import { ComponentCode } from "./ComponentCode";
 import { ComponentPreview } from "./ComponentPreview";
 import { Tabs } from "@/app/components/shared/Tabs";
+import { encode } from "@/utils/encode-decode-url";
+import { CopyToClipboardButton } from "@/app/components/shared/CopyToClipboardButton";
 
 type ComponentPageProps = ComponentItem;
 
@@ -80,7 +82,14 @@ export function ComponentPage({
                   Preview <IconEye />
                 </span>
               ),
-              element: <ComponentPreview code={html_code} />,
+              element: (
+                <div className="relative">
+                  <div className="absolute top-2 right-2 z-10">
+                    <NavBar code={html_code} />
+                  </div>
+                  <ComponentPreview code={html_code} />
+                </div>
+              ),
               id: 1,
             },
             {
@@ -89,7 +98,14 @@ export function ComponentPage({
                   Code <IconCode />
                 </span>
               ),
-              element: <ComponentCode code={html_code} />,
+              element: (
+                <div className="relative">
+                  <div className="absolute top-2 right-2 z-10">
+                    <NavBar code={html_code} />
+                  </div>
+                  <ComponentCode code={html_code} />
+                </div>
+              ),
               id: 2,
             },
           ]}
@@ -98,3 +114,26 @@ export function ComponentPage({
     </article>
   );
 }
+
+const NavBar = ({ code }: { code: string }) => {
+  return (
+    <section>
+      <nav className="flex gap-4 items-center">
+        <a
+          className="bg-tailwind-dark hover:bg-tailwind-normal font-medium flex items-center max-w-fit gap-2 py-2 px-4 rounded-md"
+          href={`/editor?html_code=${encode(code)}`}
+        >
+          <IconCode />
+          Open in editor
+        </a>
+
+        <CopyToClipboardButton
+          textToCopy={code}
+          className="bg-tailwind-dark hover:bg-tailwind-normal font-medium flex items-center max-w-fit gap-2 py-2 px-4 rounded-md"
+        >
+          Copy
+        </CopyToClipboardButton>
+      </nav>
+    </section>
+  );
+};

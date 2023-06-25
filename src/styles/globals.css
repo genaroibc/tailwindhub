@@ -26,6 +26,9 @@
   --light-brown: #43383b;
   --dimmed-black: #1a202c;
 
+  --tailwind-dark: #0ea5e9;
+  --tailwind-normal: #38bdf8;
+
   --page-max-width: 1400px;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
