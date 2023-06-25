@@ -32,6 +32,7 @@ export function CodeEditor({
   const [hasUnsavedProgress, setHasUnsavedProgress] = useState(false);
   const [layout, setLayout] = useState(DEFAULT_LAYOUT);
   const [isResizable, setIsResizable] = useState(false);
+  const [isSavingCode, setIsSavingCode] = useState(false);
 
   const handleLayoutChange = (layout: EditorLayout) => {
     setLayout(layout);
@@ -42,6 +43,8 @@ export function CodeEditor({
   }, [codeEditorRef]);
 
   const handleSaveCode = useCallback(() => {
+    if (!hasUnsavedProgress) return;
+    setIsSavingCode(true);
     handleFormatCode();
 
     setTimeout(() => {
@@ -54,8 +57,9 @@ export function CodeEditor({
         );
         setHasUnsavedProgress(false);
       }
+      setIsSavingCode(false);
     }, 800);
-  }, [codeEditorRef, handleFormatCode]);
+  }, [codeEditorRef, handleFormatCode, hasUnsavedProgress]);
 
   const handleConfigureIntellisense = useCallback(async (monaco: Monaco) => {
     const { cssDefaults } = monaco.languages.css;
@@ -176,6 +180,7 @@ export function CodeEditor({
           <EditorActionsMenu
             code={code}
             handleSaveCode={handleSaveCode}
+            isSavingCode={isSavingCode}
             hasUnsavedProgress={hasUnsavedProgress}
           />
         </nav>

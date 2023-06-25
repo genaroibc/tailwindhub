@@ -1,10 +1,17 @@
+import { SpinnerLoader } from "@/app/components/shared/SpinnerLoader";
 import { HTML_CODE_SEARCH_PARAM } from "@/constants";
 import { encode } from "@/utils/encode-decode-url";
-import { IconCheck, IconDeviceFloppy, IconShare } from "@tabler/icons-react";
+import {
+  IconCheck,
+  IconDeviceFloppy,
+  IconShare,
+  // IconTruckLoading,
+} from "@tabler/icons-react";
 import { useState } from "react";
 
 type Props = {
   handleSaveCode: () => void;
+  isSavingCode: boolean;
   hasUnsavedProgress: boolean;
   code: string;
 };
@@ -13,6 +20,7 @@ export function EditorActionsMenu({
   handleSaveCode,
   hasUnsavedProgress,
   code,
+  isSavingCode,
 }: Props) {
   const [shared, setShared] = useState(false);
 
@@ -45,7 +53,15 @@ export function EditorActionsMenu({
             }`}
           disabled={!hasUnsavedProgress}
         >
-          Save <IconDeviceFloppy size={20} />
+          {isSavingCode ? (
+            <>
+              Saving <SpinnerLoader size={20} />
+            </>
+          ) : (
+            <>
+              Save <IconDeviceFloppy size={20} />
+            </>
+          )}
         </button>
       </li>
 
