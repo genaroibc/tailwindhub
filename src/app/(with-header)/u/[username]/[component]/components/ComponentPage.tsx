@@ -8,7 +8,7 @@ import {
 } from "@tabler/icons-react";
 import { ComponentCode } from "./ComponentCode";
 import { ComponentPreview } from "./ComponentPreview";
-import { Tab, Tabs } from "@/app/components/shared/Tabs";
+import { Tabs } from "@/app/components/shared/Tabs";
 
 type ComponentPageProps = ComponentItem;
 
@@ -72,27 +72,28 @@ export function ComponentPage({
           </div>
         </div>
 
-        <Tabs>
-          <Tab
-            label={
-              <span className="flex items-center gap-2">
-                Preview <IconEye />
-              </span>
-            }
-          >
-            <ComponentPreview code={html_code} />
-          </Tab>
-
-          <Tab
-            label={
-              <span className="flex items-center gap-2">
-                Code <IconCode />
-              </span>
-            }
-          >
-            <ComponentCode code={html_code} />
-          </Tab>
-        </Tabs>
+        <Tabs
+          items={[
+            {
+              label: (
+                <span className="flex items-center gap-2">
+                  Preview <IconEye />
+                </span>
+              ),
+              element: <ComponentPreview code={html_code} />,
+              id: 1,
+            },
+            {
+              label: (
+                <span className="flex items-center gap-2">
+                  Code <IconCode />
+                </span>
+              ),
+              element: <ComponentCode code={html_code} />,
+              id: 2,
+            },
+          ]}
+        />
       </div>
     </article>
   );

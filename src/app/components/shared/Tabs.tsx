@@ -4,48 +4,43 @@ import React from "react";
 
 import { useState } from "react";
 
-type TabChild = React.ReactElement;
+type TabId = string | number;
 
-type Props = {
-  children: TabChild[];
+type Tab = {
+  label: React.ReactNode;
+  element: React.ReactNode;
+  id: TabId;
 };
 
-const filterInvalidChildren = (child: TabChild) =>
-  child.props[LABEL_PROP_NAME] != null;
+type Props = {
+  items: Tab[];
+};
 
-export function Tabs({ children }: Props) {
-  const [visibleTab, setVisibleTab] = useState(0);
+export function Tabs({ items }: Props) {
+  const [visibleTab, setVisibleTab] = useState<TabId>(items[0].id);
 
   return (
     <section>
       <nav>
         <menu className="flex items-center gap-2">
-          {children.filter(filterInvalidChildren).map((child, i) => (
-            <li key={i}>
+          {items.map(({ id, label }) => (
+            <li key={id}>
               <button
-                onClick={() => setVisibleTab(i)}
+                onClick={() => setVisibleTab(id)}
                 className="py-2 px-4 bg-slate-700"
               >
-                {child.props[LABEL_PROP_NAME]}
+                {label}
               </button>
             </li>
           ))}
         </menu>
       </nav>
 
-      {children.filter(filterInvalidChildren).find((_, i) => i === visibleTab)}
+      {items.map(({ element, id }) => (
+        <article key={id} className={id === visibleTab ? "" : "hidden"}>
+          {element}
+        </article>
+      ))}
     </section>
   );
-}
-
-const LABEL_PROP_NAME = "label";
-
-type TabProps = {
-  children: React.ReactNode;
-  // eslint-disable-next-line react/no-unused-prop-types
-  [LABEL_PROP_NAME]: React.ReactNode;
-};
-
-export function Tab({ children }: TabProps) {
-  return <>{children}</>;
 }
