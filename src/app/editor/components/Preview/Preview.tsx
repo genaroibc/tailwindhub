@@ -14,8 +14,9 @@ import {
   IconResizeRight,
 } from "@/app/editor/components/Preview/ResizeIcons";
 import { Resizer } from "@/app/editor/components/Preview/Resizer";
-import { CodePreviewRef, Size } from "@/app/editor/types";
+import { CodePreviewRef, ResizingData, Size } from "@/app/editor/types";
 import { constrainSize } from "@/utils/constrain-size";
+import { IframePreview } from "./IframePreview";
 
 const DEFAULT_RESPONSIVE_SIZE = { width: 540, height: 720 };
 
@@ -31,13 +32,7 @@ export const Preview = ({ code, isResizable, codePreviewRef }: Props) => {
     width: 0,
     height: 0,
   });
-  const [resizing, setResizing] = useState<{
-    direction: "bottom" | "left" | "right" | "bottom-left" | "bottom-right";
-    startWidth: number;
-    startHeight: number;
-    startX: number;
-    startY: number;
-  } | null>(null);
+  const [resizing, setResizing] = useState<ResizingData | null>(null);
 
   const timeout = useRef<number | null>(null);
   const [responsiveSize, setResponsiveSize] = useState(DEFAULT_RESPONSIVE_SIZE);
@@ -250,33 +245,10 @@ export const Preview = ({ code, isResizable, codePreviewRef }: Props) => {
           }
         >
           {isResizable ? (
-            <iframe
-              className={resizing ? "pointer-events-none select-none" : ""}
-              style={{
-                width: constrainedResponsiveSize.width,
-                height: constrainedResponsiveSize.height,
-                marginLeft:
-                  (constrainedResponsiveSize.width -
-                    Math.round(
-                      constrainedResponsiveSize.width *
-                        constrainedResponsiveSize.zoom
-                    )) /
-                  -2,
-                transformOrigin: "top",
-                transform: `scale(${constrainedResponsiveSize.zoom})`,
-              }}
-              srcDoc={`<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Code Preview</title>
-  <script src="/tailwind-3.2.6.min.js"></script>
-</head>
-<body class="flex min-h-[400px] items-center p-4 justify-center w-full relative h-full overflow-auto bg-white text-dimmed-black ![&_img]:inline-block inset-0">
-  ${code}
-</body>
-</html>`}
+            <IframePreview
+              code={code}
+              isResizing={resizing !== null}
+              constrainedResponsiveSize={constrainedResponsiveSize}
             />
           ) : (
             <div

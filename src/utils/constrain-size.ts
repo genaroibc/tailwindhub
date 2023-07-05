@@ -1,4 +1,4 @@
-import { Size } from "@/app/editor/types";
+import { ConstrainSize, Size } from "@/app/editor/types";
 
 type Params = {
   desiredWidth: number;
@@ -6,7 +6,11 @@ type Params = {
   size: Size;
 };
 
-export function constrainSize({ desiredHeight, desiredWidth, size }: Params) {
+export function constrainSize({
+  desiredHeight,
+  desiredWidth,
+  size,
+}: Params): ConstrainSize {
   const { width, zoom: widthZoom } = constrainWidth({
     desiredDimension: desiredWidth,
     size,
