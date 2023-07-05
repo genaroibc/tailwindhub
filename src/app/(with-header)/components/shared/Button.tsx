@@ -13,9 +13,9 @@ const commonStyles =
 
 const variantStyles: Record<ButtonVariant, string> = {
   solid:
-    "bg-light-brown border-light-brown disabled:hover:bg-light-brown text-white hover:bg-dark-brown",
+    "bg-tailwind-dark border-tailwind-dark disabled:hover:bg-tailwind-dark text-white hover:bg-tailwind-normal",
   outlined:
-    "bg-transparent border-light-brown disabled:hover:bg-transparent text-dark-brown hover:border-dark-brown",
+    "bg-transparent border-tailwind-dark disabled:hover:bg-transparent text-tailwind-normal hover:border-tailwind-normal",
   secondary:
     "bg-secondary-color border-secondary-color disabled:hover:bg-secondary-color text-dimmed-black hover:bg-tertiary-color",
 };

@@ -3,7 +3,12 @@ import { Loader } from "@/app/(with-header)/components/shared/Loader/Loader";
 import { useSupabase } from "@/hooks/useSupabase";
 import { createComponent } from "@/services/create-component";
 import { getImageDataURL } from "@/utils/get-image-data-url";
-import { IconCrop, IconExclamationCircle, IconX } from "@tabler/icons-react";
+import {
+  IconCrop,
+  IconExclamationCircle,
+  IconUpload,
+  IconX,
+} from "@tabler/icons-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { ImageCropper } from "@/app/editor/components/ImageCropper";
 import { LoginToPublishButton } from "@/app/editor/components/LoginToPublishButton";
@@ -221,60 +226,6 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
                   <span className="text-sm text-gray-400">
                     There was an error generating the preview of your component
                   </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    There was an error generating the preview of your component
-                  </span>
                 </div>
               )}
             </div>
@@ -338,9 +289,9 @@ export function CodeEditorForm({ codeEditorRef, codePreviewRef }: Props) {
         </div>
       </div>
 
-      <div className="w-fit fixed bottom-4 right-4 z-10">
+      <div className="w-fit">
         <LoginToPublishButton onClick={handleOpenForm}>
-          Publish
+          Publish <IconUpload size={20} />
         </LoginToPublishButton>
       </div>
     </div>

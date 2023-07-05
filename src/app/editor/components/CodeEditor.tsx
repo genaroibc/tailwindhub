@@ -182,6 +182,8 @@ export function CodeEditor({
             handleSaveCode={handleSaveCode}
             isSavingCode={isSavingCode}
             hasUnsavedProgress={hasUnsavedProgress}
+            codeEditorRef={codeEditorRef}
+            codePreviewRef={codePreviewRef}
           />
         </nav>
       </header>

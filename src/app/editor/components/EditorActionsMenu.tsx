@@ -1,19 +1,19 @@
 import { SpinnerLoader } from "@/app/components/shared/SpinnerLoader";
 import { HTML_CODE_SEARCH_PARAM } from "@/constants";
 import { encode } from "@/utils/encode-decode-url";
-import {
-  IconCheck,
-  IconDeviceFloppy,
-  IconShare,
-  // IconTruckLoading,
-} from "@tabler/icons-react";
+import { IconCheck, IconDeviceFloppy, IconShare } from "@tabler/icons-react";
 import { useState } from "react";
+import { CodeEditorForm } from "@/app/editor/components/CodeEditorForm";
+import { CodeEditorRef, CodePreviewRef } from "../types";
+import { Button } from "@/app/(with-header)/components/shared/Button";
 
 type Props = {
   handleSaveCode: () => void;
   isSavingCode: boolean;
   hasUnsavedProgress: boolean;
   code: string;
+  codeEditorRef: CodeEditorRef;
+  codePreviewRef: CodePreviewRef;
 };
 
 export function EditorActionsMenu({
@@ -21,6 +21,8 @@ export function EditorActionsMenu({
   hasUnsavedProgress,
   code,
   isSavingCode,
+  codeEditorRef,
+  codePreviewRef,
 }: Props) {
   const [shared, setShared] = useState(false);
 
@@ -42,16 +44,10 @@ export function EditorActionsMenu({
   return (
     <menu className="flex items-center gap-2">
       <li>
-        <button
+        <Button
           onClick={handleSaveCode}
-          className={`
-              bg-blue-500 text-white px-3 py-1.5 text-sm rounded-md flex items-center justify-center gap-1
-            ${
-              hasUnsavedProgress
-                ? "opacity-100 hover:bg-blue-600 active:bg-blue-700"
-                : "opacity-70"
-            }`}
-          disabled={!hasUnsavedProgress}
+          className="px-2 py-1 text-sm gap-1"
+          disabled={!hasUnsavedProgress || isSavingCode}
         >
           {isSavingCode ? (
             <>
@@ -62,17 +58,19 @@ export function EditorActionsMenu({
               Save <IconDeviceFloppy size={20} />
             </>
           )}
-        </button>
+        </Button>
       </li>
 
       <li>
-        <button
-          onClick={handleShareLink}
-          className="bg-blue-500 text-white px-3 py-1.5 text-sm rounded-md flex items-center justify-center gap-1 opacity-100 hover:bg-blue-600 active:bg-blue-700"
-        >
+        <Button onClick={handleShareLink} className="px-2 py-1 text-sm gap-1">
           Share {shared ? <IconCheck size={20} /> : <IconShare size={20} />}
-        </button>
+        </Button>
       </li>
+
+      <CodeEditorForm
+        codeEditorRef={codeEditorRef}
+        codePreviewRef={codePreviewRef}
+      />
     </menu>
   );
 }

@@ -29,9 +29,13 @@ export function LoginToPublishButton(props: Props) {
   return (
     <>
       {session?.user.user_metadata ? (
-        <Button {...props} />
+        <Button
+          className="px-2 py-1 text-sm items-center justify-center gap-1"
+          {...props}
+        />
       ) : (
         <Button
+          className="px-2 py-1 text-sm items-center justify-center gap-1"
           onClick={() =>
             supabase.auth.signInWithOAuth({
               provider: "github",
@@ -41,7 +45,7 @@ export function LoginToPublishButton(props: Props) {
             })
           }
         >
-          <IconBrandGithub width={30} height={30} />
+          <IconBrandGithub width={20} height={20} />
           Login to publish
         </Button>
       )}
