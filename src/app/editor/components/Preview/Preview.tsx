@@ -30,7 +30,7 @@ type Props = {
   code: string;
   isResizable: boolean;
   codePreviewRef?: CodePreviewRef;
-  toggleIsResizable: () => void;
+  toggleIsResizable?: () => void;
 };
 
 export const Preview = ({
@@ -213,7 +213,7 @@ export const Preview = ({
         <BreakpointsMenu
           currentBreakpoint={responsiveSize}
           onBreakpointChange={(breakpoint) => {
-            toggleIsResizable();
+            toggleIsResizable?.();
             setResponsiveSize(breakpoint);
           }}
         />
