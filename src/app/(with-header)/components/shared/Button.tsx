@@ -9,7 +9,7 @@ interface Props
 }
 
 const commonStyles =
-  "py-2 px-4 border-2 transition-colors border-solid disabled:opacity-90 disabled:cursor-not-allowed flex flex-row gap-2 items-center justify-center";
+  "py-1.5 px-3 border-2 transition-colors border-solid disabled:opacity-90 disabled:cursor-not-allowed flex flex-row gap-2 items-center justify-center";
 
 const variantStyles: Record<ButtonVariant, string> = {
   solid:
@@ -23,7 +23,7 @@ const variantStyles: Record<ButtonVariant, string> = {
 export function Button({ variant = "solid", className, ...props }: Props) {
   return (
     <button
-      className={`${commonStyles} ${variantStyles[variant]} ${className}`}
+      className={`${className} ${commonStyles} ${variantStyles[variant]}`}
       {...props}
     ></button>
   );

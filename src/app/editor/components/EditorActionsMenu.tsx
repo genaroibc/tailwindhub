@@ -46,7 +46,7 @@ export function EditorActionsMenu({
       <li>
         <Button
           onClick={handleSaveCode}
-          className="px-2 py-1 text-sm gap-1"
+          className="text-xs gap-1 font-semibold"
           disabled={!hasUnsavedProgress || isSavingCode}
         >
           {isSavingCode ? (
@@ -62,7 +62,10 @@ export function EditorActionsMenu({
       </li>
 
       <li>
-        <Button onClick={handleShareLink} className="px-2 py-1 text-sm gap-1">
+        <Button
+          onClick={handleShareLink}
+          className="text-xs gap-1 font-semibold"
+        >
           Share {shared ? <IconCheck size={20} /> : <IconShare size={20} />}
         </Button>
       </li>
