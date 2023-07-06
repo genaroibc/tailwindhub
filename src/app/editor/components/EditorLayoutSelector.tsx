@@ -35,12 +35,14 @@ type Props = {
   // eslint-disable-next-line no-unused-vars
   onIsResizableChange: (isResizable: boolean) => void;
   selectedLayout: EditorLayout;
+  isResizable: boolean;
 };
 
 export function EditorLayoutSelector({
   handleLayoutChange,
   selectedLayout,
   onIsResizableChange,
+  isResizable,
 }: Props) {
   return (
     <menu className="flex items-center gap-2 justify-end bg-blue-950/50 rounded-md">
@@ -65,6 +67,7 @@ export function EditorLayoutSelector({
           hidden
           type="checkbox"
           className="peer"
+          checked={isResizable}
           onChange={(event) => onIsResizableChange(event.target.checked)}
         />
 

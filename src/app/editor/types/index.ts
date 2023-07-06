@@ -23,3 +23,8 @@ export type ResizingData = {
   startX: number;
   startY: number;
 };
+
+export type Breakpoint = {
+  width: number;
+  height: number;
+};

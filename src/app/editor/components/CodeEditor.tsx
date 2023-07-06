@@ -141,6 +141,8 @@ export function CodeEditor({
     [setCode, setHasUnsavedProgress]
   );
 
+  const toggleIsResizable = () => setIsResizable(true);
+
   const Editor = (
     <MonacoEditor
       beforeMount={(monaco) => handleConfigureIntellisense(monaco)}
@@ -174,6 +176,7 @@ export function CodeEditor({
           <EditorLayoutSelector
             handleLayoutChange={handleLayoutChange}
             selectedLayout={layout}
+            isResizable={isResizable}
             onIsResizableChange={(isResizable) => setIsResizable(isResizable)}
           />
 
@@ -201,6 +204,7 @@ export function CodeEditor({
               <Preview
                 codePreviewRef={codePreviewRef}
                 isResizable={isResizable}
+                toggleIsResizable={toggleIsResizable}
                 code={code}
               />
             }
@@ -213,6 +217,7 @@ export function CodeEditor({
             <Preview
               codePreviewRef={codePreviewRef}
               isResizable={isResizable}
+              toggleIsResizable={toggleIsResizable}
               code={code}
             />
           }

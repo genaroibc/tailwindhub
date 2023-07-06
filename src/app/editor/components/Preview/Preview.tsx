@@ -14,19 +14,31 @@ import {
   IconResizeRight,
 } from "@/app/editor/components/Preview/ResizeIcons";
 import { Resizer } from "@/app/editor/components/Preview/Resizer";
-import { CodePreviewRef, ResizingData, Size } from "@/app/editor/types";
+import {
+  Breakpoint,
+  CodePreviewRef,
+  ResizingData,
+  Size,
+} from "@/app/editor/types";
 import { constrainSize } from "@/utils/constrain-size";
 import { IframePreview } from "./IframePreview";
+import { BreakpointsMenu } from "@/app/editor/components/BreakpointsMenu";
 
-const DEFAULT_RESPONSIVE_SIZE = { width: 540, height: 720 };
+const DEFAULT_RESPONSIVE_SIZE: Breakpoint = { width: 540, height: 720 };
 
 type Props = {
   code: string;
-  isResizable?: boolean;
+  isResizable: boolean;
   codePreviewRef?: CodePreviewRef;
+  toggleIsResizable: () => void;
 };
 
-export const Preview = ({ code, isResizable, codePreviewRef }: Props) => {
+export const Preview = ({
+  code,
+  isResizable,
+  codePreviewRef,
+  toggleIsResizable,
+}: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState<Size>({
     width: 0,
@@ -35,7 +47,9 @@ export const Preview = ({ code, isResizable, codePreviewRef }: Props) => {
   const [resizing, setResizing] = useState<ResizingData | null>(null);
 
   const timeout = useRef<number | null>(null);
-  const [responsiveSize, setResponsiveSize] = useState(DEFAULT_RESPONSIVE_SIZE);
+  const [responsiveSize, setResponsiveSize] = useState<Breakpoint>(
+    DEFAULT_RESPONSIVE_SIZE
+  );
   const constrainedResponsiveSize = constrainSize({
     desiredHeight: responsiveSize.height,
     desiredWidth: responsiveSize.width,
@@ -196,12 +210,15 @@ export const Preview = ({ code, isResizable, codePreviewRef }: Props) => {
       <TailwindScript />
 
       {isResizable && (
-        <div className="flex-none text-center text-xs leading-4 tabular-nums whitespace-pre py-3 text-gray-900 dark:text-gray-400">
-          {constrainedResponsiveSize.width}
-          {"  "}×{"  "}
-          {constrainedResponsiveSize.height}
-        </div>
+        <BreakpointsMenu
+          currentBreakpoint={responsiveSize}
+          onBreakpointChange={(breakpoint) => {
+            toggleIsResizable();
+            setResponsiveSize(breakpoint);
+          }}
+        />
       )}
+
       <div
         className="flex-auto grid justify-center"
         style={
