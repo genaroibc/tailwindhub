@@ -15,7 +15,8 @@ type Props = {
   desktopLayout?: "rows" | "columns";
 };
 
-const RESIZABLE_SECTION_MIN_SIZE = 100;
+const RESIZABLE_SECTION_MIN_HEIGHT = 300;
+const RESIZABLE_SECTION_MIN_WIDTH = window.innerWidth / 4;
 const MOBILE_MEDIA_QUERY = "(max-width: 1024px)";
 // const MIN_RESIZABLE_SECTION_WIDTH = 300;
 // const MIN_RESIZABLE_SECTION_HEIGHT = 300;
@@ -69,7 +70,7 @@ export function ResizableSection({
 
         // if (w <= MIN_RESIZABLE_SECTION_WIDTH) return;
         leftSideRef.current.style.flex = `0 ${
-          w < RESIZABLE_SECTION_MIN_SIZE ? 0 : w
+          w < RESIZABLE_SECTION_MIN_WIDTH ? RESIZABLE_SECTION_MIN_WIDTH : w
         }px`;
         rightSideRef.current.style.flex = "1 0";
       }
@@ -81,7 +82,7 @@ export function ResizableSection({
 
         // if (w <= MIN_RESIZABLE_SECTION_WIDTH) return;
         rightSideRef.current.style.flex = `0 ${
-          w < RESIZABLE_SECTION_MIN_SIZE ? 0 : w
+          w < RESIZABLE_SECTION_MIN_WIDTH ? RESIZABLE_SECTION_MIN_WIDTH : w
         }px`;
         leftSideRef.current.style.flex = "1 0";
       }
@@ -100,7 +101,7 @@ export function ResizableSection({
         // if (h <= MIN_RESIZABLE_SECTION_HEIGHT) return;
 
         aboveSideRef.current.style.flex = `0 ${
-          h < RESIZABLE_SECTION_MIN_SIZE ? 0 : h
+          h < RESIZABLE_SECTION_MIN_HEIGHT ? RESIZABLE_SECTION_MIN_HEIGHT : h
         }px`;
         belowSideRef.current.style.flex = "1 0";
       }
@@ -113,7 +114,7 @@ export function ResizableSection({
         // if (h <= MIN_RESIZABLE_SECTION_HEIGHT) return;
 
         belowSideRef.current.style.flex = `0 ${
-          h < RESIZABLE_SECTION_MIN_SIZE ? 0 : h
+          h < RESIZABLE_SECTION_MIN_HEIGHT ? RESIZABLE_SECTION_MIN_HEIGHT : h
         }px`;
         aboveSideRef.current.style.flex = "1 0";
       }
@@ -149,7 +150,7 @@ export function ResizableSection({
         // if (w <= MIN_RESIZABLE_SECTION_WIDTH) return;
 
         leftSideRef.current.style.flex = `0 ${
-          w < RESIZABLE_SECTION_MIN_SIZE ? 0 : w
+          w < RESIZABLE_SECTION_MIN_WIDTH ? RESIZABLE_SECTION_MIN_WIDTH : w
         }px`;
         rightSideRef.current.style.flex = "1 0";
       }
@@ -163,7 +164,7 @@ export function ResizableSection({
         // if (w <= MIN_RESIZABLE_SECTION_WIDTH) return;
 
         rightSideRef.current.style.flex = `0 ${
-          w < RESIZABLE_SECTION_MIN_SIZE ? 0 : w
+          w < RESIZABLE_SECTION_MIN_WIDTH ? RESIZABLE_SECTION_MIN_WIDTH : w
         }px`;
         leftSideRef.current.style.flex = "1 0";
       }
@@ -182,7 +183,7 @@ export function ResizableSection({
         // if (h <= MIN_RESIZABLE_SECTION_HEIGHT) return;
 
         aboveSideRef.current.style.flex = `0 ${
-          h < RESIZABLE_SECTION_MIN_SIZE ? 0 : h
+          h < RESIZABLE_SECTION_MIN_HEIGHT ? RESIZABLE_SECTION_MIN_HEIGHT : h
         }px`;
         belowSideRef.current.style.flex = "1 0";
       }
@@ -195,7 +196,7 @@ export function ResizableSection({
         // if (h <= MIN_RESIZABLE_SECTION_HEIGHT) return;
 
         belowSideRef.current.style.flex = `0 ${
-          h < RESIZABLE_SECTION_MIN_SIZE ? 0 : h
+          h < RESIZABLE_SECTION_MIN_HEIGHT ? RESIZABLE_SECTION_MIN_HEIGHT : h
         }px`;
         aboveSideRef.current.style.flex = "1 0";
       }
