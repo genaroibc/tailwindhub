@@ -23,6 +23,7 @@ import {
 import { constrainSize } from "@/utils/constrain-size";
 import { IframePreview } from "./IframePreview";
 import { BreakpointsMenu } from "@/app/editor/components/BreakpointsMenu";
+import { CODE_PREVIEW_CONTAINER_CLASSNAME } from "@/app/editor/constants";
 
 const DEFAULT_RESPONSIVE_SIZE: Breakpoint = { width: 540, height: 720 };
 
@@ -271,7 +272,7 @@ export const Preview = ({
             <div
               ref={codePreviewRef}
               dangerouslySetInnerHTML={{ __html: code }}
-              className="flex min-h-[400px] items-center p-4 justify-center w-full relative h-full overflow-auto bg-white text-dimmed-black ![&_img]:inline-block inset-0"
+              className={CODE_PREVIEW_CONTAINER_CLASSNAME}
             />
           )}
         </div>
