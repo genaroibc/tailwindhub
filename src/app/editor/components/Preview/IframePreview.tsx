@@ -1,4 +1,5 @@
 import { ConstrainSize } from "@/app/editor/types";
+import { CODE_PREVIEW_CONTAINER_CLASSNAME } from "@/app/editor/constants";
 
 type Props = {
   code: string;
@@ -34,7 +35,7 @@ export function IframePreview({
   <title>Code Preview</title>
   <script src="/tailwind-3.2.6.min.js"></script>
 </head>
-<body class="flex min-h-[400px] items-center p-4 justify-center w-full relative h-full overflow-auto bg-white text-dimmed-black ![&_img]:inline-block inset-0">
+<body class="${CODE_PREVIEW_CONTAINER_CLASSNAME}">
   ${code}
 </body>
 </html>`}
