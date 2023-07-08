@@ -204,7 +204,7 @@ export const Preview = ({
 
   return (
     <section
-      className="h-full w-full inset-0 flex flex-col bg-gray-50 dark:bg-black relative"
+      className="h-full w-full inset-0 flex flex-col overflow-auto bg-gray-50 dark:bg-black relative"
       ref={containerRef}
     >
       <TailwindScript />
