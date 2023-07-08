@@ -153,7 +153,7 @@ export function CodeEditor({
         monaco.editor?.setTheme?.("Blackboard");
         emmetHTML(monaco);
       }}
-      className="w-full h-full"
+      className="w-full h-full overflow-hidden"
       theme="vs-dark"
       defaultLanguage="html"
       defaultValue={code}
