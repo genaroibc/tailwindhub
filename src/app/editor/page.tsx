@@ -55,7 +55,7 @@ function HomePage({ searchParams: { html_code } }: PageProps) {
     html_code != null ? decode(html_code) : DEFAULT_CODE_EDITOR_VALUE;
 
   return (
-    <main className="grid grid-rows-1 bg-dimmed-black text-primary-color w-screen h-screen max-w-screen">
+    <main className="grid grid-rows-1 bg-black text-primary-color w-screen h-screen max-w-screen">
       <EditorSection initialCode={initialCode} />
     </main>
   );
