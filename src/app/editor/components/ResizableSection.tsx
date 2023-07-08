@@ -213,7 +213,7 @@ export function ResizableSection({
     <section className="h-full flex overflow-hidden max-w-[100vw]">
       {layout === "rows" ? (
         <div className="flex max-w-[100vw] flex-col flex-1 h-full">
-          <div ref={aboveSideRef} className="h-full overflow-hidden">
+          <div ref={aboveSideRef} className="h-full overflow-auto">
             {Children.map(
               children,
               (child) =>
@@ -232,7 +232,7 @@ export function ResizableSection({
             <IconResizeBottom />
           </Resizer>
 
-          <div ref={belowSideRef} className="h-full overflow-hidden">
+          <div ref={belowSideRef} className="h-full overflow-auto">
             {Children.map(
               children,
               (child) =>
@@ -244,7 +244,7 @@ export function ResizableSection({
         </div>
       ) : (
         <div className="flex flex-row flex-1 w-full">
-          <div ref={leftSideRef} className="w-full max-w-full overflow-hidden">
+          <div ref={leftSideRef} className="w-full max-w-full overflow-auto">
             {Children.map(
               children,
               (child) =>
@@ -263,7 +263,7 @@ export function ResizableSection({
             <IconResizeLeft />
           </Resizer>
 
-          <div ref={rightSideRef} className="w-full max-w-full overflow-hidden">
+          <div ref={rightSideRef} className="w-full max-w-full overflow-auto">
             {Children.map(
               children,
               (child) =>
