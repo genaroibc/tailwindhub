@@ -16,7 +16,7 @@ type Props = {
 };
 
 const RESIZABLE_SECTION_MIN_HEIGHT = 300;
-const RESIZABLE_SECTION_MIN_WIDTH = window.innerWidth / 4;
+const RESIZABLE_SECTION_MIN_WIDTH = 400;
 const MOBILE_MEDIA_QUERY = "(max-width: 1024px)";
 // const MIN_RESIZABLE_SECTION_WIDTH = 300;
 // const MIN_RESIZABLE_SECTION_HEIGHT = 300;
