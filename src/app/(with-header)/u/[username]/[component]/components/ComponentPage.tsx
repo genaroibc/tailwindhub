@@ -24,9 +24,9 @@ export function ComponentPage({
   title,
 }: ComponentPageProps) {
   return (
-    <article className="bg-slate-950 rounded-lg shadow-lg flex-col gap-4 p-8">
+    <article className="shadow-lg flex-col gap-4">
       <div className="max-w-page-max-width mx-auto">
-        <h1 className="text-4xl mt-4 mb-8 font-semibold">{title}</h1>
+        <h1 className="text-4xl mb-8 font-semibold">{title}</h1>
 
         <div className="flex my-4 flex-col gap-4">
           <p className="text-gray-200 text-xl flex gap-2">
