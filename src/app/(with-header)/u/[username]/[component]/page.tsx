@@ -50,7 +50,6 @@ export async function generateMetadata({
   const ogUrl = new URL(`${BASE_URL}/api/og`);
   ogUrl.searchParams.set("username", username || "");
   ogUrl.searchParams.set("component", componentTitle || "");
-  ogUrl.searchParams.set("image", `https://github.com/${username}.png`);
 
   return {
     title: TITLE,

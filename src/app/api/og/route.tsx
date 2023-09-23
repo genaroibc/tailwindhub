@@ -11,25 +11,36 @@ const EMPTY_BG_IMAGE_URL = `${BASE_URL}/tailwindhub-empty.png`;
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
 
-  const hasUsername = searchParams.has("username");
-  const username = hasUsername
-    ? searchParams.get("username")?.slice(0, 100)
-    : "My default username";
+  const username = searchParams.get("username");
+  const component = searchParams.get("component");
 
-  const hasImage = searchParams.has("image");
-  const imageURL = hasImage
-    ? searchParams.get("image")?.slice(0, 100)
-    : `https://github.com/${username}.png`;
+  if (!username) {
+    return new Response("Invalid request: No username provided", {
+      status: 400,
+    });
+  }
 
-  const componentTitle = unsluglify(searchParams.get("component") ?? "");
+  let componentPreviewURL = null;
 
-  const { data } = await supabase
-    .from("components")
-    .select()
-    .eq("title", componentTitle)
-    .eq("author_username", username);
+  if (component) {
+    const componentTitle = unsluglify(component);
 
-  const componentPreviewURL = data?.[0]?.preview_img;
+    const { data } = await supabase
+      .from("components")
+      .select()
+      .eq("title", componentTitle)
+      .eq("author_username", username);
+
+    componentPreviewURL = data?.[0]?.preview_img;
+
+    if (!componentPreviewURL) {
+      return new Response("Error: No component found", {
+        status: 404,
+      });
+    }
+  }
+
+  const userAvatarURL = `https://github.com/${username}.png`;
 
   return new ImageResponse(
     (
@@ -62,7 +73,7 @@ export async function GET(req: Request) {
               tw="w-20 h-20 rounded-full mt-4"
               width="320"
               height="320"
-              src={imageURL}
+              src={userAvatarURL}
               alt={`${username}'s profile image`}
             />
             <div tw="flex flex-col ml-3 justify-center">
