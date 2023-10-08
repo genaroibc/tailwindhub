@@ -2,6 +2,7 @@
 
 import { CopyToClipboardButton } from "@/app/components/shared/CopyToClipboardButton";
 import { useSupabase } from "@/hooks/useSupabase";
+import { useGlobalStore } from "@/store/global";
 import { ComponentItem } from "@/types";
 import { IconHeart } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
@@ -21,6 +22,7 @@ export function ComponentItemNavBar({
 
   const [likes, setLikes] = useState<ComponentItem["likes"]>(initialLikes);
   const [userLiked, setUserLiked] = useState(false);
+  const openModal = useGlobalStore(({ openLoginModal: openModal }) => openModal);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -36,7 +38,10 @@ export function ComponentItemNavBar({
 
     const username = session?.user?.user_metadata.user_name;
 
-    if (!username) return;
+    if (!username) {
+      openModal();
+      return;
+    }
 
     if (userLiked) {
       supabase
